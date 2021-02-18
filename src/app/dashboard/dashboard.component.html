@@ -1,0 +1,23 @@
+<div class="grid-container">
+    <div style="display: flex;">
+      <h1 class="mat-h1">Dashboard</h1>
+      <span class="flex-spacer"></span>
+      <mat-label class="mat-h2" style="padding-right: 20px;">Filter</mat-label>
+    </div>
+    <mat-grid-list cols="4" rowHeight="200px">
+      <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+        <mat-card class="dashboard-card" style="color:white;background-color:#607D8B;">
+          <mat-card-header>
+            <mat-card-title>
+              <div></div>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <h1 class="mat-h1">{{card.title}}</h1>
+            <h5 class="mt-h5" style="padding-top: 17px;font-size:60px;">{{card.content}}</h5>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  

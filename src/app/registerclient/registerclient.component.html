@@ -1,0 +1,75 @@
+<div class="grid-container">
+        <mat-card>
+          <h3 style="text-align: center;">Register as a Client</h3>
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" fxLayout="column">
+              <mat-form-field class="w-100">
+                <input type="text" matInput placeholder="First Name" formControlName="firstname" required>
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-error *ngIf="data.firstname.errors?.required">First Name is required</mat-error>
+              </mat-form-field>
+              <mat-form-field class="w-100">
+                <input type="text" matInput placeholder="Last Name" formControlName="lastname" required>
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-error *ngIf="data.lastname.errors?.required">Last Name is required</mat-error>
+              </mat-form-field>
+              
+            <mat-radio-group required aria-label="Select" matInput formControlName="gender" placeholder="Gender" class="w-100">Gender:
+			  <mat-radio-button style="margin-left: 5px;" value="1">Male</mat-radio-button>
+			  <mat-radio-button style="margin-left: 5px;" value="2">female</mat-radio-button>
+			  <mat-radio-button style="margin-left: 5px;" value="3">Other</mat-radio-button>
+			</mat-radio-group>
+			<mat-form-field class="w-100">
+			  <mat-label>Enter your email</mat-label>
+			  <input matInput placeholder="abc@example.com"required formControlName="email" [ngClass]="{ 'is-invalid': submitted && data.email.errors }">
+			  <mat-icon matSuffix>email</mat-icon>
+			  <mat-error *ngIf="submitted && data.email.errors" class="invalid-feedback">
+                <mat-error *ngIf="data.email.errors?.required">Email is required</mat-error>
+                <mat-error *ngIf="data.email.errors?.email">Email must be a valid email address</mat-error>
+              </mat-error>
+			</mat-form-field>
+			<mat-form-field class="w-100">
+              <input type="text" matInput placeholder="Contact number" required formControlName="phnno" [ngClass]="{ 'is-invalid': submitted && data.phnno.errors }">
+              <mat-icon matSuffix>phone</mat-icon>
+              <mat-error *ngIf="submitted && data.phnno.errors" class="invalid-feedback">
+                <mat-error *ngIf="data.phnno.errors?.required">Contact number is required</mat-error>
+                <mat-error *ngIf="data.phnno.errors?.pattern">Contact number must be with code +91</mat-error>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-100">
+              <input type="text" matInput placeholder="City" required formControlName="city">
+              <mat-icon matSuffix>location_city</mat-icon>
+              <mat-error *ngIf="data.city.errors?.required">City is required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-100">
+              <mat-label>Birthdate</mat-label>
+              <input matInput [matDatepicker]="picker2" formControlName="birthdate" required>
+              <mat-icon matSuffix><mat-datepicker-toggle [for]="picker2"></mat-datepicker-toggle></mat-icon>
+              <mat-datepicker #picker2 color="primary"></mat-datepicker>
+              <mat-error *ngIf="data.birthdate.errors?.required">Birthdate is required</mat-error>
+              </mat-form-field>
+            <mat-form-field class="w-100">
+              <input type="password" matInput placeholder="Password" formControlName="password" required [ngClass]="{ 'is-invalid': submitted && data.password.errors }">
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-error *ngIf="submitted && data.password.errors">
+	              <mat-error *ngIf="data.password.errors?.required">Password is required</mat-error>
+	              <mat-error *ngIf="data.password.errors.minlength">Password must be at least 8 characters</mat-error>
+	          </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-100">
+              <input type="password" matInput placeholder="Confirm Password" formControlName="confirmpassword" required [ngClass]="{ 'is-invalid': submitted && data.confirmpassword.errors }">
+              <mat-error *ngIf="submitted && data.confirmpassword.errors">
+                        <mat-error *ngIf="data.confirmpassword.errors.required">Confirm Password is required</mat-error>
+                        <mat-error *ngIf="data.confirmpassword.errors.mustMatch">Passwords must match</mat-error>
+               </mat-error>
+              <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+            <div class="w-100" style="display: flex;">
+              <button mat-raised-button color="primary">Register</button>
+              <button style="margin-left: 10px;" mat-stroked-button color="warn" type="reset" (click)="onReset()">cancel</button>
+              <span class="flex-spacer"></span>
+              <a [routerLink]="['/loginclient']" style="margin-top: 5px;">Already registered? Login here</a>
+            </div>
+          </form>
+        </mat-card>
+</div>
+

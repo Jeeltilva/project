@@ -1,0 +1,45 @@
+<div class="grid-container">
+        <div style="display: flex;">
+            <h1 class="mat-h1">Cases</h1>
+            <span class="flex-spacer"></span>
+            <mat-label class="mat-h2" style="padding-right: 20px;">Filter</mat-label>
+        </div>
+        <mat-accordion multi>
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false"
+                                 *ngFor="let case of cases,let i = index" class="panel"
+                                 hideToggle>
+              <mat-expansion-panel-header [collapsedHeight]="(isHandset$ | async) ? '129px' : ''"
+              [expandedHeight]="(isHandset$ | async) ? '129px' : ''" style="padding-top: 9px;">
+                <mat-panel-title>
+                 {{i + 1}} ) {{case.stampNo}}
+                </mat-panel-title>
+                <mat-panel-description *ngIf="(isHandset$ | async)" fxLayout="column" >
+                  <p>{{ case.petitioner | slice:0:25 }}</p>
+                  <p style="color:red" >V/s</p>
+                  <p>{{ case.respondent | slice:0:25 }}</p> 
+                  <p style="color:black">{{case.bench}}</p>
+                </mat-panel-description>
+                <mat-panel-description *ngIf="(isHandset$ | async) === false">
+                    <p>{{ case.petitioner | slice:0:50 }}</p>
+                    <p style="color:red;margin-left: 10px;" >V/s</p>
+                    <p style="margin-left: 10px;">{{ case.respondent | slice:0:50 }}</p>
+                    <span class="flex-spacer"></span>
+                    <p style="margin-right: 70px;color :black">{{case.bench}}</p> 
+                  </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div style="display: flex;">
+                <button mat-raised-button color="primary" (click)="onView(case._id)">View</button>
+                <button mat-raised-button color="warn" style="margin-left: 10px;" (click)="onDispose(case._id)">Dispose</button>
+                <span class="flex-spacer"></span>
+                <button mat-raised-button color="warn" style="margin-left: 10px;" (click)="onDelete(case._id)" >Permanent delete</button>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <mat-divider></mat-divider>
+          <div *ngIf="cases.length != 0">
+          <mat-paginator [length]="cases.length"
+          [pageSize]="10"
+          [pageSizeOptions]="[10, 25, 50]"></mat-paginator>
+        </div>
+</div>

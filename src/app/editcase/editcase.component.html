@@ -1,0 +1,117 @@
+<div class="grid-container">
+    <h1 class="mat-h1">Edit Case</h1>
+  <form (ngSubmit)="onSubmit(editcase)" #editcase="ngForm" >
+    <mat-card>
+      <mat-card-content style="margin : 0px 30px">
+        <div fxLayout="column">
+      <mat-form-field class="half-width">
+        <mat-label for='stampNo'>Stamp Number</mat-label>
+          <input matInput id='stampNo' name='stampNo' [(ngModel)]="File.stampNo">
+        </mat-form-field>
+
+      <mat-form-field class="half-width">
+        <input matInput [matDatepicker]="picker" placeholder="Filling Date" name="fillingDate" id="fillingDate" [(ngModel)]="File.fillingDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="half-width">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="File.status" name="status" id="status" required>
+          <mat-option value="pre-admitted">pre-admitted</mat-option>
+          <mat-option value="admitted">admitted</mat-option>
+          <mat-option value="disposed">disposed</mat-option>
+          <mat-option value="rejected">rejected</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div fxLayout="row">
+      <mat-form-field class="half-width">
+        <mat-select placeholder="Forum" name="forum" id="forum" [(ngModel)]="File.forum">
+        <mat-option value="High Court">High Court</mat-option>
+          <mat-option value="Supreme Court">Supreme Court</mat-option>
+          <mat-option value="XYZ" disabled>XYZ</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="half-width" style="margin-left:10px">
+        <mat-label>Bench</mat-label>
+        <input matInput  placeholder="Morbi" name="bench" id="bench" [(ngModel)]="File.bench">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row">
+    <mat-form-field class="half-width">
+      <mat-label>Petitioner</mat-label>
+      <input matInput name="petitioner" id="petitioner" [(ngModel)]="File.petitioner">
+    </mat-form-field>
+
+    <mat-form-field class="half-width" style="margin-left: 10px;">
+      <mat-label>Respondent</mat-label>
+      <input matInput name="respondent" id="respondent" [(ngModel)]="File.respondent">
+    </mat-form-field>
+    </div>
+
+    <div fxLayout="row">
+      <mat-form-field class="full-width">
+        <mat-label>District</mat-label>
+        <input matInput placeholder="Ex. Morbi" name="district" id="district" [(ngModel)]="File.district">
+      </mat-form-field>
+
+     <mat-form-field class="full-width" style="margin-left: 10px;">
+           <mat-label>Postal Code</mat-label>
+           <input matInput #postalCode maxlength="6" placeholder="Ex. 363642" name="postalCode" id="postalCode" [(ngModel)]="File.postalCode">
+           <mat-hint>{{postalCode.value.length}} / 6</mat-hint>
+         </mat-form-field>
+      </div>
+
+      <mat-form-field class="half-width">
+        <mat-label>Act</mat-label>
+        <input matInput name="act" id="act" [(ngModel)]="File.act">
+      </mat-form-field>
+
+      <mat-form-field class="half-width">
+        <mat-label>Reg Number</mat-label>
+        <input matInput name="RegNo" id="RegNo" [(ngModel)]="File.RegNo">
+      </mat-form-field>
+
+      <mat-form-field class="half-width">
+        <mat-label>Stage</mat-label>
+        <input matInput name="stage" id="stage" [(ngModel)]="File.stage">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput #message maxlength="256" placeholder="Description" name="description" id="description" [(ngModel)]="File.description">
+        <mat-hint [align]="'end'">{{message.value.length}} / 256</mat-hint>
+      </mat-form-field>
+  
+      <mat-form-field class="half-width">
+        <input matInput [matDatepicker]="picker1" placeholder="Reg. Date" name="RegDate" id="RegDate" [(ngModel)]="File.RegDate">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-file-upload>
+        [labelText]="Document"
+        [selectButtonText]="'Choose File'"
+        [selectFilesButtonType]="button"
+        [uploadButtonText]="'Submit'"
+        [uploadButtonType]="submit"
+        [allowMultipleFiles]="false"
+        [showUploadButton]="true"
+        [customSvgIcon]="'close_custom'"
+        [acceptedTypes]="'.pdf, .docx'"
+        (uploadClicked)="onUploadClicked($event)"
+        (selectedFilesChanged)="onSelectedFilesChanged($event)"
+      </mat-file-upload>
+
+  </div>
+  <mat-card-actions>
+    <br><br>
+    <button  mat-raised-button color="primary" type="submit">update</button> 
+    <button mat-raised-button color="basic" type="reset">Clear</button>
+   </mat-card-actions>
+       </mat-card-content>
+    </mat-card>
+  </form>
+</div>

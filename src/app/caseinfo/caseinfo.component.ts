@@ -1,0 +1,198 @@
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { Case } from '../models/case.model';
+import { CaseService } from '../services/case.service';
+import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { Client } from '../models/client.model';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+
+export interface Order {
+  _id?:string;
+  orderDate: Date;
+  orderNote?: string ;
+}
+export interface Note {
+  _id?: string;
+  title: string;
+  note: string;
+  createdAt: Date;
+}
+
+@Component({
+  selector: 'app-caseinfo',
+  templateUrl: './caseinfo.component.html',
+  styleUrls: ['./caseinfo.component.scss']
+})
+export class CaseinfoComponent implements OnInit {
+
+  constructor(private caseService: CaseService, private router: Router) { }
+
+  private caseSub : Subscription;
+  caseData:Case;
+  private id:string;
+  public details:string;
+  public linkedClient: Client;
+  public linkedclientSub: Subscription;
+
+  public Editor = DecoupledEditor;
+
+  public onReady( editor ) {
+      editor.ui.getEditableElement().parentElement.insertBefore(
+          editor.ui.view.toolbar.element,
+          editor.ui.getEditableElement()
+      );
+  }
+
+  onEditCase() {
+    console.log(this.caseData);
+    this.router.navigate(["/editcase"]);
+  }
+
+  orders: Order[];
+  newOrderNote: string;
+  displayNextOrder:boolean = false;
+  displayedColumns: string[] = ['Order Date', 'Note', 'Action'];
+  
+
+  onDetailsUpdated() {
+    this.caseData.details = this.details;
+    this.caseService.updateDetails(this.caseData);
+  }
+  
+  onNewOrder(data:NgForm) {
+    if(!data.value.note) {
+      data.value.note = "No Note has been added";
+    }
+    this.orders = this.caseData.orders.concat({ orderDate:data.value.orderDate, orderNote: data.value.note});
+    this.caseData.orders = this.orders;
+    this.caseService.updateCase(this.caseData);
+    data.resetForm();
+    this.orders.sort(function(a, b) {
+      var c:any = new Date(a.orderDate);
+      var d:any = new Date(b.orderDate);
+      return d-c;
+  });
+  if(this.orders.length == 0) {
+    this.displayNextOrder =false;
+  }
+  else if(new Date(this.orders[0].orderDate) > new Date()) {
+      this.displayNextOrder = true;
+    }
+  }
+
+  onDeleteOrder(id) {
+    this.orders = this.orders.filter(function(e) {return e._id != id});
+    this.caseData.orders = this.orders;
+    this.caseService.updateCase(this.caseData);
+    this.orders.sort(function(a, b) {
+      var c:any = new Date(a.orderDate);
+      var d:any = new Date(b.orderDate);
+      return d-c;
+    });
+     
+    if(this.caseData.orders.length==0) {
+      this.displayNextOrder =false;
+    }
+    else if(new Date(this.orders[0].orderDate) > new Date()) {
+      this.displayNextOrder = true;
+    }
+  }
+
+  newTitle: string = '';
+  newNote:string = '';
+  notes: Note[];
+  editNote: Note;
+  editNoteMode: boolean = false;
+
+  @ViewChild('addNote') form:NgForm;
+  onAddNote(data:NgForm) {
+    console.log(this.form.value);
+    this.notes = this.notes.concat({title: data.value.title, note:data.value.Note, createdAt: new Date()});
+    console.log(this.notes);
+    this.caseData.notes = this.notes;
+    this.caseService.updateCase(this.caseData);
+    data.resetForm();
+  }
+
+  onEditNote(data:NgForm) {
+    this.editNote.title = data.value.title;
+    this.editNote.note = data.value.Note;
+    this.notes[this.editNote._id] = this.editNote;
+    console.log(this.notes);
+    this.caseData.notes = this.notes;
+    this.caseService.updateCase(this.caseData);
+    this.editNote = null;
+    this.editNoteMode = false;
+    this.newTitle = "";
+    this.newNote = "";
+  }
+
+  onEditMode(data) {
+    this.editNote = data;
+    this.editNoteMode = true;
+    this.newNote = this.editNote.note;
+    this.newTitle = this.editNote.title;
+  }
+
+  onDeleteNote(id) { 
+    this.notes = this.caseData.notes.filter(function(e) {return e._id != id});
+    this.caseData.notes = this.notes;
+    this.caseService.updateCase(this.caseData);
+   }
+
+  onLinkClient(_id:any, id) {
+    this.caseService.linkClient(_id, id);
+    this.caseData.client = _id;
+    this.caseService.getClient(_id);
+  }
+
+  unlink() {
+    this.linkedClient = null;
+    this.caseData.client = "";
+    this.caseService.updateCase(this.caseData);
+    this.caseService.unlinkClient();
+  }
+  clients$: Observable<Client[]>;
+  private searchTerms = new Subject<string>();
+  display: string[] = ['firstName','lastName', 'Contact', 'Email', 'Action'];
+
+  search(term: string): void {
+    this.searchTerms.next(term);
+  }
+
+  ngOnInit(): void {
+    this.clients$ = this.searchTerms.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((term: string) => this.caseService.searchclients(term.toLowerCase()))
+    );
+
+      this.linkedclientSub = this.caseService.getlinkedClientUpdateListener().subscribe((data:Client) => {
+        this.linkedClient = data;
+      });
+
+    this.caseSub = this.caseService.getsingleCaseUpdateListener().subscribe((data:Case) => {
+      this.caseData = data;
+      this.details = data.details;
+      this.orders = data.orders;
+      this.notes = data.notes;
+      this.caseData.orders.sort(function(a, b) {
+        var c:any = new Date(a.orderDate);
+        var d:any = new Date(b.orderDate);
+        return d-c;
+    });
+      if(new Date(this.caseData.orders[0].orderDate) > new Date()) {
+        this.displayNextOrder = true;
+    }
+    })
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.caseSub.unsubscribe();
+    this.linkedclientSub.unsubscribe();
+  }
+}
