@@ -134,7 +134,17 @@
       </div>
     </div>
   </mat-tab>
-  <mat-tab label="Documents">Content 3</mat-tab>
+
+  <mat-tab label="Documents">
+    <div style="display: flex; margin: 20px 20px;" fxLayout="column">
+      <mat-label style="font-size: large;">Add Document</mat-label>
+
+      <input type="file"
+             id="file"
+             (change)="handleFileInput($event.target.files)">
+    </div>
+  </mat-tab>
+
   <mat-tab label="Client">
     <div *ngIf="caseData.client">
       <div style="display: flex; margin: 20px 20px;" fxLayout="column" >

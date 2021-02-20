@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CasesComponent } from './cases/cases.component';
 import { PreadmittedComponent } from "./pre-admitted/preadmitted.component";
 import { AdmittedComponent } from "./admitted/admitted.component";
+import { DisposedComponent } from "./disposed/disposed.component";
 import { AddcaseComponent } from './addcase/addcase.component';
 import { CaseinfoComponent } from './caseinfo/caseinfo.component';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'cases', component: CasesComponent, canActivate: [AuthGuard]},
   {path: 'preadmittedcases', component: PreadmittedComponent, canActivate: [AuthGuard]},
   {path: 'admittedcases', component: AdmittedComponent, canActivate: [AuthGuard]},
+  {path: 'disposedcases', component: DisposedComponent, canActivate: [AuthGuard]},
   {path: 'addcase', component: AddcaseComponent, canActivate: [AuthGuard]},
   { path: 'caseinfo', component: CaseinfoComponent, canActivate: [AuthGuard]},
   { path: 'try', component: TryComponent, canActivate: [AuthGuard]},
@@ -27,7 +29,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'loginclient', component: LoginclientComponent },
   { path: 'registerclient', component: RegisterclientComponent },
-  { path: '', component:LoginComponent }
+  { path: '**', component:LoginComponent }
 ];
 
 @NgModule({

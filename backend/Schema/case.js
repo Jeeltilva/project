@@ -39,6 +39,20 @@ const caseSchema = new mongoose.Schema({
       type : Date,
     }
   }],
+  docs:[{
+    path: {
+      type: String,
+    },
+    filename: {
+      type : String,
+    },
+    size: {
+      type: String,
+    },
+    createdAt: {
+      type : Date,
+    }
+  }],
   client : {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Clients'

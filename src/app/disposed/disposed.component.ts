@@ -26,7 +26,7 @@ export class DisposedComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.caseSub = this.caseService.getCasesUpdateListener().subscribe((data: Case[]) => {
       this.cases = data;});
-      this.caseService.getCases();
+      this.caseService.getdisposedCases();
   }
   panelOpenState = false;
 

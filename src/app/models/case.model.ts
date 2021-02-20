@@ -20,4 +20,5 @@ export interface Case {
         orders?:any;
         notes?:any;
         client?:string;
+        docs?: any;
 }

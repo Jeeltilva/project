@@ -124,6 +124,23 @@ export class CaseService {
     });
   }
 
+  getdisposedCases(){
+    this.http.get<Case[]>(apiUrl+ 'disposedcases').pipe(
+      map((data:any) => {
+        if(data) {
+          return data;
+        }
+        else {
+          catchError(this.handleError)
+        }
+      })
+    ).subscribe( (data:Case[]) => {
+      this.Cases.next(data);
+    }, (err:any) => {
+      console.log(err);
+    }); 
+  }
+
   disposeCase(_id) {
     this.http.patch<any>(apiUrl+'makedispose', {_id}).pipe(
       catchError(this.handleError)
@@ -140,6 +157,15 @@ export class CaseService {
     }, (err:any) => {
       console.log(err);
     }); 
+  }
+
+  onUploadDoc(file:FileList){
+    const formData: FormData = new FormData();
+    const files = file
+    for (let index = 0; index < files.length; index++) {
+      formData.append('fileKey', files.item(index), files.item(index).name); 
+    }
+    // this.http.post<Case>(apiUrl+)
   }
 
   unlinkClient(){

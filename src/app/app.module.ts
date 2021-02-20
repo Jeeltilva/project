@@ -17,7 +17,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatFileUploadModule } from 'mat-file-upload';
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatRadioModule } from "@angular/material/radio";
@@ -95,7 +94,6 @@ import { DisposedComponent } from "./disposed/disposed.component";
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatFileUploadModule,
     MatTabsModule,
     MatSnackBarModule,
     MatRadioModule,

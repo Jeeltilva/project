@@ -1,6 +1,6 @@
 <div class="grid-container">
         <div style="display: flex;">
-            <h1 class="mat-h1">Cases</h1>
+            <h1 class="mat-h1">Disposed/Rejected Cases</h1>
             <span class="flex-spacer"></span>
             <mat-label class="mat-h2" style="padding-right: 20px;">Filter</mat-label>
         </div>
@@ -18,19 +18,18 @@
                   <p>{{ case.petitioner | slice:0:25 }}</p>
                   <p style="color:red" >V/s</p>
                   <p>{{ case.respondent | slice:0:25 }}</p> 
-                  <p style="color:black">{{case.bench}}</p>
+                  <p style="color:black">{{case.status}}</p>
                 </mat-panel-description>
                 <mat-panel-description *ngIf="(isHandset$ | async) === false">
                     <p>{{ case.petitioner | slice:0:50 }}</p>
                     <p style="color:red;margin-left: 10px;" >V/s</p>
                     <p style="margin-left: 10px;">{{ case.respondent | slice:0:50 }}</p>
                     <span class="flex-spacer"></span>
-                    <p style="margin-right: 70px;color :black">{{case.bench}}</p> 
+                    <p style="margin-right: 70px;color :black">{{case.status}}</p> 
                   </mat-panel-description>
               </mat-expansion-panel-header>
               <div style="display: flex;">
                 <button mat-raised-button color="primary" (click)="onView(case._id)">View</button>
-                <button mat-raised-button color="warn" style="margin-left: 10px;">Dispose</button>
                 <span class="flex-spacer"></span>
                 <button mat-raised-button color="warn" style="margin-left: 10px;" (click)="onDelete(case._id)" >Permanent delete</button>
               </div>

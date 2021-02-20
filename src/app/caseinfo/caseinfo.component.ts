@@ -142,6 +142,20 @@ export class CaseinfoComponent implements OnInit {
     this.caseService.updateCase(this.caseData);
    }
 
+  //  @ViewChild('upload') uploadForm:NgForm;
+
+
+  //  onUpload(form:NgForm) {
+  //    const value = form.value
+
+  //  }
+  fileToUpload: FileList = null;
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files;
+    this.caseService.onUploadDoc(this.fileToUpload);
+  }
+
+
   onLinkClient(_id:any, id) {
     this.caseService.linkClient(_id, id);
     this.caseData.client = _id;

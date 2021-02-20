@@ -36,9 +36,16 @@ export class CasesComponent implements OnInit, OnDestroy {
     this.router.navigate(["/caseinfo"]);
   }
 
-  onDispose(id) {
-    this.caseService.disposeCase(id);
-    this.cases = this.cases.filter(function(e:Case) {return e._id !== id});
+  onDispose(data:Case) {
+    this.caseService.disposeCase(data._id);
+    this.cases = this.cases.filter(function(e:Case) {
+      if(e._id !== data._id){
+        return e;}
+      else{
+        return e.status = "disposed"
+    }});
+    // data.status = "disposed"
+    // this.cases = [...this.cases, data]
     this.caseService.setCases(this.cases);
     // this.caseService.getCases();
   }

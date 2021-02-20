@@ -6,8 +6,9 @@ const auth = require('../middleware/Auth')
 const router = new express.Router()
 const Case = require("../Schema/case");
 const mongoose = require("mongoose")
-const { async } = require('rxjs/internal/scheduler/async')
-
+const multer = require('multer'),
+path = require('path')
+const fs = require('fs')
 
 
 router.post('/api/addcase',auth ,async (req,res) => {
@@ -78,6 +79,23 @@ router.get('/api/admittedcases', auth, async(req, res) => {
         const data = await Case.find({lawyer:_id,status:"admitted"})
         if(data) {
             res.status(201).send(data)
+        } else {
+            res.status(200).send({})
+        }
+    } catch(e) {
+        res.status(500).send(e)
+    }
+})
+
+router.get('/api/disposedcases', auth, async(req, res) => {
+    try{
+        const _id = req.user._id
+        const data = await Case.find({lawyer:_id,status:"disposed"})
+        const temp = await Case.find({lawyer:_id, status:"rejected"})
+
+        const data1 = [...data, ...temp]
+        if(data1!=[]) {
+            res.status(201).send(data1)
         } else {
             res.status(200).send({})
         }
@@ -237,6 +255,62 @@ router.get('/api/getLinkedClient/:id', auth, async(req,res)=> {
         res.status(201).send({})}
     } catch(e) {
         res.status(500).send(e)
+    }
+})
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(path.dirname(__dirname), 'Docs'))
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+})
+var upload = multer({ storage: storage,
+    fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(pdf)$/)) {
+        return cb(new Error({message: 'Please upload an pdf'}))
+    }
+    cb(undefined, true)
+} })
+
+router.post('/api/addDoc/:id',auth, upload.array('doc'), async(req, res) => {
+    try {
+        const _id = req.params.id
+        const data = await Case.findById({_id})
+
+        if(req.files.length > 0){
+            req.files.map(file => {
+
+                data.docs = data.docs.concat({ path: file.destination + '\\' + file.filename, filename: file.originalname,
+                 size: file.size, createdAt: Date.now()})
+            });
+        }
+        await data.save()
+        res.status(201).json(data)
+    } catch (e) {
+        res.status(404).json({ message: 'Data not found', errors: e.stack , body: req.body})
+    }
+})
+
+router.patch('/api/deleteDoc/:id',auth, upload.array(), async(req,res) => {
+    try{
+        const doc = req.body
+        const _id = req.params.id
+        const caseData = await Case.findById({_id})
+
+        caseData.docs = caseData.docs.filter(function(e) {return e._id != doc._id})
+        const data = doc.path
+
+        fs.unlink(data, (err) => {
+            if (err) {
+              res.status(404).json({message:"no such file exists."})
+              return
+            }
+            res.status(201).json(caseData)})
+        await caseData.save()
+    } catch(e) {
+        res.status(404).json({message: 'Data not found'})
     }
 })
 
