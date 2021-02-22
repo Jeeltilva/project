@@ -40,11 +40,14 @@ const caseSchema = new mongoose.Schema({
     }
   }],
   docs:[{
-    path: {
-      type: String,
-    },
     filename: {
       type : String,
+    },
+    contentType: {
+      type : String,
+    },
+    originalname: {
+      type: String,
     },
     size: {
       type: String,

@@ -5,11 +5,30 @@ const Client = require("../Schema/client")
 const auth = require('../middleware/Auth')
 const router = new express.Router()
 const Case = require("../Schema/case");
-const mongoose = require("mongoose")
-const multer = require('multer'),
 path = require('path')
-const fs = require('fs')
+const crypto = require('crypto');
+let mongoose = require('mongoose');
 
+let conn = mongoose.createConnection('mongodb://localhost/project');
+let multer = require('multer');
+let GridFsStorage = require('multer-gridfs-storage');
+let Grid = require('gridfs-stream');
+Grid.mongo = mongoose.mongo;
+let gfs;
+conn.once('open', function() {
+    gfs = Grid(conn.db)
+})
+
+// const url = 'mongodb://localhost/project';
+// const connect = mongoose.createConnection('mongodb://localhost/project', {
+//     useCreateIndex: true,
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+//   });
+// let gfs ;
+// connect.once('open', () => {
+//     gfs = new mongoose.mongo.GridFSBucket(connect.db, { bucketName: "uploads"}) 
+// });
 
 router.post('/api/addcase',auth ,async (req,res) => {
     //const task = new Task(req.body)
@@ -145,7 +164,7 @@ router.patch('/api/editcase/:id', auth, async (req,res) => {
     const _id = req.params.id
     const updates = Object.keys(req.body)
     try {
-        const caseData = await Case.findById(_id)
+        const caseData = await Case.findById({_id})
         updates.forEach((update) => caseData[update] = req.body[update])
         if(!caseData) {
             res.status(404).send();
@@ -164,6 +183,7 @@ router.delete('/api/case/:id', auth, async(req, res) => {
         if(!caseData) {
             res.status(404).send()
         }
+        caseData.docs.forEach((e)=> gfs.remove({filename: e.filename}, function(err){ if(err){ throw new Error('error')}}))
         res.status(200).send({message:"Successfully Removed."})
     } catch(e) {
         res.status(500).send(e)
@@ -173,7 +193,7 @@ router.delete('/api/case/:id', auth, async(req, res) => {
 router.patch('/api/case/order/:id', auth, async(req, res) => {
     const _id = req.params.id
     try {
-        const caseData = await Case.findById(_id)
+        const caseData = await Case.findById({_id})
         if(!caseData) {
             res.status(404).send()
         }
@@ -258,60 +278,162 @@ router.get('/api/getLinkedClient/:id', auth, async(req,res)=> {
     }
 })
 
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, path.join(path.dirname(__dirname), 'Docs'))
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname)
-    }
-})
-var upload = multer({ storage: storage,
-    fileFilter(req, file, cb) {
-    if (!file.originalname.match(/\.(pdf)$/)) {
-        return cb(new Error({message: 'Please upload an pdf'}))
-    }
-    cb(undefined, true)
-} })
+// var storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, path.join(path.dirname(__dirname), 'Docs'))
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, Date.now() + '-' + file.originalname)
+//     }
+// })
+// var upload = multer({ storage: storage,
+//     fileFilter(req, file, cb) {
+//     if (!file.originalname.match(/\.(pdf)$/)) {
+//         return cb(new Error({message: 'Please upload an pdf'}))
+//     }
+//     cb(undefined, true)
+// } })
 
-router.post('/api/addDoc/:id',auth, upload.array('doc'), async(req, res) => {
+// router.post('/api/addDoc/:id',auth, upload.array('doc'), async(req, res) => {
+//     try {
+//         const _id = req.params.id
+//         const data = await Case.findById({_id})
+
+//         if(req.files.length > 0){
+//             req.files.map(file => {
+
+//                 data.docs = data.docs.concat({ path: file.destination + '\\' + file.filename, filename: file.originalname,
+//                  size: file.size, createdAt: Date.now()})
+//             });
+//         }
+//         await data.save()
+//         res.status(201).json(data)
+//     } catch (e) {
+//         res.status(404).json({ message: 'Data not found', errors: e.stack , body: req.body})
+//     }
+// })
+
+// router.patch('/api/deleteDoc/:id',auth, upload.array(), async(req,res) => {
+//     try{
+//         const doc = req.body
+//         const _id = req.params.id
+//         const caseData = await Case.findById({_id})
+
+//         caseData.docs = caseData.docs.filter(function(e) {return e._id != doc._id})
+//         const data = doc.path
+
+//         fs.unlink(data, (err) => {
+//             if (err) {
+//               res.status(404).json({message:"no such file exists."})
+//               return
+//             }
+//             res.status(201).json(caseData)})
+//         await caseData.save()
+//     } catch(e) {
+//         res.status(404).json({message: 'Data not found'})
+//     }
+// })
+
+const storage = new GridFsStorage({
+    url: 'mongodb://localhost/project',
+    file: (req, file) => {
+        return new Promise((resolve, reject) => {
+          crypto.randomBytes(16, (err, buf) => {
+            if (err) {
+              return reject(err);
+            }
+            const filename = buf.toString('hex') + path.extname(file.originalname);
+            const fileInfo = {
+              filename: filename
+            };
+            resolve(fileInfo);
+          });
+        });
+      }
+    });
+    const upload = multer({ storage,  fileFilter(req, file, cb) {
+             if (!file.originalname.match(/\.(pdf)$/)) {
+                 return cb(new Error({message: 'Please upload an pdf'}))
+             }
+             cb(undefined, true)
+         } });
+
+router.post('/api/uploadPdf/:id',upload.array('file') ,async (req, res, next) => {
+    try {
+                const _id = req.params.id
+                const data = await Case.findById({_id})
+        
+                if(req.files.length > 0){
+                    req.files.map(file => {
+                        data.docs = data.docs.concat({ filename: file.filename, contentType : file.contentType,
+                        originalname: file.originalname, size: file.size, createdAt: Date.now()})
+                    });
+                }
+                await data.save()
+                res.status(201).json(data.docs)
+            } catch (e) {
+                res.status(404).json({ message: 'Data not found', errors: e.stack , body: req.body})
+            }
+});
+
+router.get('/api/file/:filename',async (req, res) => {
+    let filesData = [];
+    let count = 0;
+    // gfs.collection('ctFiles'); // set the collection to look up into
+
+    gfs.files.find({ filename: req.params.filename}).toArray((err, files) => {
+        // Error checking
+        if(!files || files.length === 0){
+            return res.status(404).json({
+                responseCode: 1,
+                responseMessage: "error"
+            });
+        }
+
+    var readstream = gfs.createReadStream({
+        filename: files[0].filename,
+    });
+
+    res.set('Content-type', files[0].contentType)
+    return readstream.pipe(res);
+        // res.status(200).json({file: files[0]});
+    });
+});
+
+router.get('/api/files', (req, res) => {
+    let filesData = [];
+    let count = 0; // set the collection to look up into
+
+    gfs.files.find({}).toArray((err, files) => {
+        // Error checking
+        if(!files || files.length === 0){
+            return res.status(404).json({
+                responseCode: 1,
+                responseMessage: "error"
+            });
+        }
+        // Loop through all the files and fetch the necessary information
+        res.json(files);
+    });
+});
+
+router.delete('/api/deletefile/:filename', (req, res) => {
+    gfs.remove({filename: req.params.filename}, function (err) {
+        if (err){ return handleError(err); }
+      });
+    res.status(200).send({message: "file deleted Successfully."})
+})
+
+router.patch('/api/updateDoc/:id', auth,async (req, res) => {
     try {
         const _id = req.params.id
         const data = await Case.findById({_id})
-
-        if(req.files.length > 0){
-            req.files.map(file => {
-
-                data.docs = data.docs.concat({ path: file.destination + '\\' + file.filename, filename: file.originalname,
-                 size: file.size, createdAt: Date.now()})
-            });
-        }
+        data.docs = req.body
         await data.save()
-        res.status(201).json(data)
-    } catch (e) {
-        res.status(404).json({ message: 'Data not found', errors: e.stack , body: req.body})
-    }
-})
-
-router.patch('/api/deleteDoc/:id',auth, upload.array(), async(req,res) => {
-    try{
-        const doc = req.body
-        const _id = req.params.id
-        const caseData = await Case.findById({_id})
-
-        caseData.docs = caseData.docs.filter(function(e) {return e._id != doc._id})
-        const data = doc.path
-
-        fs.unlink(data, (err) => {
-            if (err) {
-              res.status(404).json({message:"no such file exists."})
-              return
-            }
-            res.status(201).json(caseData)})
-        await caseData.save()
-    } catch(e) {
-        res.status(404).json({message: 'Data not found'})
-    }
+        res.status(201).send(data)   
+    } catch (error) {
+        res.status(500).send(error)
+    } 
 })
 
 module.exports = router

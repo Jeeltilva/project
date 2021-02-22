@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Client } from '../models/client.model';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { DomSanitizer } from '@angular/platform-browser';
 
 export interface Order {
   _id?:string;
@@ -25,9 +26,9 @@ export interface Note {
   templateUrl: './caseinfo.component.html',
   styleUrls: ['./caseinfo.component.scss']
 })
-export class CaseinfoComponent implements OnInit {
+export class CaseinfoComponent implements OnInit,OnDestroy {
 
-  constructor(private caseService: CaseService, private router: Router) { }
+  constructor(private caseService: CaseService, private router: Router, private sanitizer: DomSanitizer) { }
 
   private caseSub : Subscription;
   caseData:Case;
@@ -142,19 +143,19 @@ export class CaseinfoComponent implements OnInit {
     this.caseService.updateCase(this.caseData);
    }
 
-  //  @ViewChild('upload') uploadForm:NgForm;
-
-
-  //  onUpload(form:NgForm) {
-  //    const value = form.value
-
-  //  }
   fileToUpload: FileList = null;
   handleFileInput(files: FileList) {
     this.fileToUpload = files;
-    this.caseService.onUploadDoc(this.fileToUpload);
-  }
+    if(this.fileToUpload.length != 0) {
+    this.caseService.onUploadDoc(this.fileToUpload, this.caseData._id).subscribe((data:any)=> {
+      this.files = data;
+      this.caseData.docs = data;
+      console.log(data);
+    })
+  } }
 
+  DocColumns: string[] = ['Name', 'Size', 'Created_At', 'Actions'];
+  files: any;
 
   onLinkClient(_id:any, id) {
     this.caseService.linkClient(_id, id);
@@ -164,13 +165,36 @@ export class CaseinfoComponent implements OnInit {
 
   unlink() {
     this.linkedClient = null;
-    this.caseData.client = "";
+    this.caseData.client = null;
     this.caseService.updateCase(this.caseData);
     this.caseService.unlinkClient();
   }
   clients$: Observable<Client[]>;
   private searchTerms = new Subject<string>();
   display: string[] = ['firstName','lastName', 'Contact', 'Email', 'Action'];
+
+  
+
+  downloadPdf(filename, contentType) {
+    this.caseService.downloadPDF(filename, contentType).subscribe(
+      (res) => {
+        const file = new Blob([(res)], { type: "application/pdf" });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+      }
+    );
+  }
+
+  deletePdf(filename) {
+    this.files = this.files.filter( function(e) {
+      return e.filename != filename
+    })
+    this.caseData.docs = this.files;
+    console.log(this.files);
+    console.log(this.caseData);
+    this.caseService.onDeleteDoc(this.files, this.caseData._id);
+    this.caseService.deletePDF(filename);
+  }
 
   search(term: string): void {
     this.searchTerms.next(term);
@@ -187,20 +211,23 @@ export class CaseinfoComponent implements OnInit {
         this.linkedClient = data;
       });
 
+      
     this.caseSub = this.caseService.getsingleCaseUpdateListener().subscribe((data:Case) => {
       this.caseData = data;
       this.details = data.details;
       this.orders = data.orders;
       this.notes = data.notes;
+      this.files = data.docs;
       this.caseData.orders.sort(function(a, b) {
         var c:any = new Date(a.orderDate);
         var d:any = new Date(b.orderDate);
         return d-c;
-    });
+      });
       if(new Date(this.caseData.orders[0].orderDate) > new Date()) {
         this.displayNextOrder = true;
-    }
+      }
     })
+
   }
 
   ngOnDestroy(): void {

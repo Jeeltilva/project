@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Addcase } from '../models/addcase.model';
 import { Subject } from 'rxjs/internal/Subject';
@@ -111,7 +111,7 @@ export class CaseService {
       catchError(this.handleError)
     ) .subscribe((data:Case) => {
       this.singleCase.next(data);
-    }, (err:any) => {
+    }, (err) => {
       console.log(err);
     }); 
   }
@@ -150,24 +150,31 @@ export class CaseService {
   }
 
   addOrder(id,data:any) {
-    this.http.patch<Case>(`${apiUrl}case/order/${id}`,{order:data}).pipe(
-      catchError(this.handleError)
-    ).subscribe((CaseData:Case) => {
+    this.http.patch<Case>(`${apiUrl}case/order/${id}`,{order:data}).subscribe((CaseData:Case) => {
       this.singleCase.next(CaseData);
     }, (err:any) => {
-      console.log(err);
+      alert('Please upload an pdf');
     }); 
   }
 
-  onUploadDoc(file:FileList){
+  onUploadDoc(file:FileList, id){
     const formData: FormData = new FormData();
     const files = file
     for (let index = 0; index < files.length; index++) {
-      formData.append('fileKey', files.item(index), files.item(index).name); 
+      formData.append('file', files.item(index), files.item(index).name); 
     }
-    // this.http.post<Case>(apiUrl+)
+    return this.http.post<any>(apiUrl+"uploadPdf/"+id,formData).pipe(
+      catchError(this.handleError)
+    )
   }
 
+  onDeleteDoc(files, id) {
+    this.http.patch<Case>(apiUrl+'updateDoc/'+id, files).subscribe((data:Case) => {
+      this.singleCase.next(data);
+    }, (err:any) => {
+      console.log(err)
+    })
+  }
   unlinkClient(){
     this.linkedClient.next(null)
   }
@@ -198,7 +205,6 @@ export class CaseService {
       catchError(this.handleError)
     ) .subscribe((data:Case) => {
       this.singleCase.next(data);
-      console.log(data);
     }, (err:any) => {
       console.log(err);
     }); 
@@ -209,7 +215,6 @@ export class CaseService {
       catchError(this.handleError)
     ) .subscribe((data:Client) => {
       this.linkedClient.next(data);
-      console.log(data)
     }, (err:any) => {
       console.log(err);
     }); 
@@ -266,4 +271,18 @@ export class CaseService {
   getCasesUpdateListener() {
     return this.Cases.asObservable();
   }
+
+  downloadPDF(filename, filetype): any {
+    return this.http.get(apiUrl+ 'file/' + filename,
+    { responseType: 'blob' });
+  }
+
+  deletePDF(filename) {
+    this.http.delete<any>(apiUrl + 'deletefile/' + filename).pipe(
+      catchError(this.handleError)
+    ).subscribe((data) => {
+      alert(data.message);
+    });
+  }
+  
 }
