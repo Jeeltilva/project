@@ -8,7 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Case } from "../models/case.model";
 import { Client } from '../models/client.model';
 
-
 const apiUrl = 'http://localhost:4000/api/';
 @Injectable({
   providedIn: 'root'

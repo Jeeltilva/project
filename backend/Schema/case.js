@@ -20,6 +20,9 @@ const caseSchema = new mongoose.Schema({
     default: "<p>Enter your details here...</p>"
   },
   orders: [{
+      id : {
+        type : String,
+      },
       orderDate : {
         type : Date,
       },

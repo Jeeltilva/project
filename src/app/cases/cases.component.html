@@ -30,7 +30,7 @@
               </mat-expansion-panel-header>
               <div style="display: flex;">
                 <button mat-raised-button color="primary" (click)="onView(case._id)">View</button>
-                <button mat-raised-button color="warn" style="margin-left: 10px;" (click)="onDispose(case)">Dispose</button>
+                <button mat-raised-button color="warn" style="margin-left: 10px;" *ngIf="!(case.status === 'disposed' || case.status==='rejected')" (click)="onDispose(case)">Dispose</button>
                 <span class="flex-spacer"></span>
                 <button mat-raised-button color="warn" style="margin-left: 10px;" (click)="onDelete(case._id)" >Permanent delete</button>
               </div>

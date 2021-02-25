@@ -44,10 +44,17 @@ import { AuthInterceptor } from "./auth-interceptor";
 import { ErrorInterceptor} from "./error-interceptor";
 import { LayoutModule } from '@angular/cdk/layout';
 import { EditcaseComponent } from './editcase/editcase.component';
-import { TryComponent } from './try/try.component';
+// import { TryComponent } from './try/try.component';
 import { PreadmittedComponent } from "./pre-admitted/preadmitted.component";
 import { AdmittedComponent } from "./admitted/admitted.component";
 import { DisposedComponent } from "./disposed/disposed.component";
+
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { DemoUtilsModule } from './demo-utils/module';
+import { TryModule } from "./try/module";
 
 @NgModule({
   declarations: [
@@ -64,7 +71,7 @@ import { DisposedComponent } from "./disposed/disposed.component";
     HomepageComponent,
     ErrorComponent,
     EditcaseComponent,
-    TryComponent,
+    // TryComponent,
     PreadmittedComponent,
     AdmittedComponent,
     DisposedComponent
@@ -100,7 +107,15 @@ import { DisposedComponent } from "./disposed/disposed.component";
     MatProgressSpinnerModule,
     MatPaginatorModule,
     CKEditorModule,
-    MatTableModule
+    MatTableModule,
+    NgbModalModule,
+    DemoUtilsModule,
+    TryModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
