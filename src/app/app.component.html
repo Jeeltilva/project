@@ -2,6 +2,13 @@
   <router-outlet></router-outlet>
 </app-main-nav>
 
+<ng-container *ngIf='(role === "client" && !isLoading)'>
+  <app-client-main-nav>
+    <router-outlet></router-outlet>
+  </app-client-main-nav>
+</ng-container>
+
+
 <ng-container *ngIf='(role !== "lawyer" && !isLoading && role !== "client")'>
   <app-homepage></app-homepage>
   <router-outlet></router-outlet>

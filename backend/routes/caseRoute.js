@@ -9,10 +9,15 @@ path = require('path')
 const crypto = require('crypto');
 let mongoose = require('mongoose');
 
-let conn = mongoose.createConnection('mongodb://localhost/project');
+let conn = mongoose.createConnection('mongodb://localhost/project', {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
 let multer = require('multer');
 let GridFsStorage = require('multer-gridfs-storage');
 let Grid = require('gridfs-stream');
+const ChatRoom = require('../Schema/chatroom')
 Grid.mongo = mongoose.mongo;
 let gfs;
 conn.once('open', function() {
@@ -208,12 +213,12 @@ router.patch('/api/case/order/:id', auth, async(req, res) => {
 router.patch('/api/linkClient/:id', auth, async(req, res) => {
     try{
     const id = req.params.id
-    const _id = req.body._id
+    const userId = req.body.userId
 
     const caseData = await Case.findById({_id: id})
-    const client = await Client.findById({_id})
+    const client = await Client.findOne({userId})
 
-    caseData.client = _id
+    caseData.client = userId
     client.cases = client.cases.concat({case: id})
 
     // await client.populate({path:'Cases'}).execPopulate()
@@ -269,8 +274,9 @@ router.get('/api/getLinkedClient/:id', auth, async(req,res)=> {
         const _id =  req.params.id
         const caseData = await Case.findById({_id})
         if(caseData.client) {
-        const client = await Client.findById({_id:caseData.client})
-        res.status(201).send(client) }
+            const client = await Client.findOne({ userId :caseData.client})
+            res.status(201).send(client) 
+        }
         else {
         res.status(201).send({})}
     } catch(e) {
@@ -400,6 +406,62 @@ router.get('/api/calendarOrders', auth, async(req, res) => {
         }
     } catch(e) {
         res.status(500).send(e)
+    }
+})
+
+router.get('/api/getClientCases', auth, async(req,res) => {
+    try {
+        await req.user.populate({path:'Cases_client'}).execPopulate()
+        res.status(201).send(req.user.Cases_client)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+})
+
+router.get('/api/getLinkedLawyer/:id', auth, async(req,res)=> {
+    try {
+        const _id =  req.params.id
+        const caseData = await Case.findById({_id})
+        if(caseData.lawyer) {
+            const lawyer = await Lawyer.findOne({ userId :caseData.lawyer})
+            res.status(201).send(lawyer) 
+        }
+        else {
+        res.status(201).send({})}
+    } catch(e) {
+        res.status(500).send(e)
+    }
+})
+
+router.get('/api/lawyer/getchatrooms',auth, async(req, res) => {
+    try {
+        const _id = req.user._id
+        const data = await ChatRoom.find({lawyer: _id})
+        let result = []
+        for (let index = 0; index < data.length; index++) {
+            const element = data[index].client;
+            const temp = await Client.findOne({userId: element})
+            result.push(temp) 
+        }
+        res.status(201).send(result)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+})
+
+router.get('/api/client/getchatrooms',auth, async(req, res) => {
+    try {
+        const _id = req.user._id
+        const data = await ChatRoom.find({client: _id})
+        let result = []
+        for (let index = 0; index < data.length; index++) {
+            const element = data[index].lawyer;
+            const temp = await Lawyer.findOne({userId: element})
+            result.push(temp) 
+        }
+        res.status(201).send(result)
+    } catch (error) {
+        res.status(500).send(error)
     }
 })
 

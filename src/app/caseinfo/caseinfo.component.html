@@ -38,7 +38,7 @@
       <!-- <button style="margin-top:20px;" mat-raised-button color="accent" *ngIf="caseData.status == 'admitted'" (click)="onDetailsUpdated()">Update</button> -->
     </div>
   </mat-tab>
-  <mat-tab label="Orders">
+  <mat-tab label="Hearings">
     <div style="display: flex; margin: 20px 20px;" fxLayout="column"  *ngIf="caseData.status === 'admitted' || caseData.status==='pre-admitted'">
       <mat-label style="font-size: large;"> Add Hearing Date</mat-label>
       <form #addOrder="ngForm" (ngSubmit)="onNewOrder(addOrder)">
@@ -183,7 +183,10 @@
     <div *ngIf="caseData.client">
       <div style="display: flex; margin: 20px 20px;" fxLayout="column" >
         <mat-label style="font-size: large;">Linked Client</mat-label>
-        <mat-card style="margin-top: 20px;display: flex;">{{linkedClient.firstname}} <span class="tab"></span> {{linkedClient.lastname}} <span class="tab"></span> {{linkedClient.email}} <span class="tab"></span> {{linkedClient.phnno}} <span class="flex-spacer"></span><button style="width: 10%;" mat-raised-button color="accent" (click)="unlink()">Unlink</button></mat-card> 
+        <mat-card style="margin-top: 20px;display: flex;">{{linkedClient.firstname}} <span class="tab"></span> {{linkedClient.lastname}} <span class="tab"></span> {{linkedClient.email}} <span class="tab"></span> {{linkedClient.phnno}} <span class="flex-spacer"></span>
+          <button style="width: 10%;" mat-raised-button color="primary" (click)="onMessage()">Message</button>
+          <pre>  </pre>
+          <button style="width: 10%;" mat-raised-button color="accent" (click)="unlink()">Unlink</button></mat-card> 
       </div>
     </div>
     <div id="search-component" *ngIf="!caseData.client">
@@ -209,7 +212,7 @@
           </ng-container>
           <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef> Action </th>
-            <td mat-cell *matCellDef="let element"> <button (click)="onLinkClient(element._id, caseData._id)" mat-icon-button color="warn"> Link </button> </td>
+            <td mat-cell *matCellDef="let element"> <button (click)="onLinkClient(element, caseData._id)" mat-icon-button color="warn"> Link </button> </td>
           </ng-container>       
           <tr mat-header-row *matHeaderRowDef="display"></tr>
           <tr mat-row *matRowDef="let row; columns: display;"></tr>

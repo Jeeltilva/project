@@ -158,10 +158,10 @@ export class CaseinfoComponent implements OnInit,OnDestroy {
   DocColumns: string[] = ['Name', 'Size', 'Created_At', 'Actions'];
   files: any;
 
-  onLinkClient(_id:any, id) {
-    this.caseService.linkClient(_id, id);
-    this.caseData.client = _id;
-    this.caseService.getClient(_id);
+  onLinkClient(data:Client, id) {
+    this.caseService.linkClient(data.userId, id);
+    this.caseData.client = data.userId;
+    this.caseService.getClient(data._id);
   }
 
   unlink() {
@@ -201,6 +201,9 @@ export class CaseinfoComponent implements OnInit,OnDestroy {
     this.searchTerms.next(term);
   }
 
+  onMessage(){
+    this.router.navigate(["/chatroom"]);
+  }
   ngOnInit(): void {
     this.clients$ = this.searchTerms.pipe(
       debounceTime(300),

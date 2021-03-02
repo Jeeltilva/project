@@ -14,6 +14,11 @@ import { RegisterclientComponent } from './registerclient/registerclient.compone
 import { AuthGuard } from "../app/auth.guard";
 import { EditcaseComponent } from './editcase/editcase.component';
 import { TryComponent } from './try/try.component';
+import { ChatroomComponent } from "./chatroom/chatroom.component";
+import { ClientDashboardComponent } from './client-dashboard/client-dashboard.component';
+import { ClientCasesComponent } from './client-cases/client-cases.component';
+import { ClientCaseinfoComponent } from './client-caseinfo/client-caseinfo.component';
+import { ClientChatroomComponent } from './client-chatroom/client-chatroom.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
@@ -25,10 +30,15 @@ const routes: Routes = [
   { path: 'caseinfo', component: CaseinfoComponent, canActivate: [AuthGuard]},
   { path: 'try', component: TryComponent, canActivate: [AuthGuard]},
   { path: 'editcase', component: EditcaseComponent, canActivate: [AuthGuard]},
+  { path: 'chatroom', component: ChatroomComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'loginclient', component: LoginclientComponent },
   { path: 'registerclient', component: RegisterclientComponent },
+  { path: 'clientdashboard', component: ClientDashboardComponent},
+  { path: 'clientcases', component: ClientCasesComponent},
+  { path: 'clientcaseinfo', component: ClientCaseinfoComponent},
+  { path: 'clientChatroom', component: ClientChatroomComponent},
   { path: '**', component:LoginComponent }
 ];
 

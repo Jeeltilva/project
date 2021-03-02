@@ -52,10 +52,22 @@ userSchema.virtual('Lawyers', {
     foreignField: 'userId'
 })
 
+userSchema.virtual('Clients', {
+    ref: 'Clients',
+    localField: '_id',
+    foreignField: 'userId'
+})
+
 userSchema.virtual('Cases', {
     ref: 'Cases',
     localField: '_id',
     foreignField: 'lawyer'
+})
+
+userSchema.virtual('Cases_client', {
+    ref: 'Cases',
+    localField: '_id',
+    foreignField: 'client'
 })
 
 

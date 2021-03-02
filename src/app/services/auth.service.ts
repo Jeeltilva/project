@@ -5,7 +5,7 @@ import { Subject } from "rxjs";
 
 import { AuthData } from "../models/auth-data.model";
 import { Lawyer } from '../models/lawyer.model';
-import {Client} from '../models/client.model';
+import { Client } from '../models/client.model';
 
 const BACKEND_URL = 'http://localhost:4000/api';
 
@@ -13,6 +13,7 @@ const BACKEND_URL = 'http://localhost:4000/api';
 export class AuthService {
   private isAuthenticated = false;
   private token: string;
+  private userName: string;
   private userId: string;
   private role = new Subject<String>();
 
@@ -20,6 +21,10 @@ export class AuthService {
 
   getToken() {
     return this.token;
+  }
+
+  getuserName() {
+    return this.userName;
   }
 
   getRole() {
@@ -40,7 +45,7 @@ export class AuthService {
 
   createLawyer(lawyer: Lawyer, role: string) {
     const data = {...lawyer, role} 
-    this.http.post<{ token: string; role:string; userId: string }>(
+    this.http.post<{ token: string; role:string; userId: string; userName: string }>(
       BACKEND_URL + "/signupLawyer", data)
       .subscribe( (response) => {
         const token = response.token;
@@ -49,8 +54,9 @@ export class AuthService {
         if (token) {
           this.isAuthenticated = true;
           this.userId = response.userId;
+          this.userName = response.userName;
           this.role.next(role);
-          this.saveAuthData(token, role, this.userId);
+          this.saveAuthData(token, role, this.userId, this.userName);
           this.router.navigate(["/dashboard"]);
         }
       },
@@ -62,7 +68,7 @@ export class AuthService {
 
   createClient(client: Client, role: string) {
     const data = {...client, role} 
-    this.http.post<{ token: string; role:string; userId: string }>(
+    this.http.post<{ token: string; role:string; userId: string, userName: string  }>(
       BACKEND_URL + "/signupClient", data)
       .subscribe( (response) => {
         const token = response.token;
@@ -71,9 +77,10 @@ export class AuthService {
         if (token) {
           this.isAuthenticated = true;
           this.userId = response.userId;
+          this.userName = response.userName;
           this.role.next(role);
-          // this.saveAuthData(token, role, this.userId);
-          this.router.navigate(["/loginclient"]);
+          this.saveAuthData(token, role, this.userId, this.userName);
+          this.router.navigate(["/clientdashboard"]);
         }
       },
       error => {
@@ -85,7 +92,7 @@ export class AuthService {
   loginLawyer(email: string, password: string, role: string) {
     const authData: AuthData = { email: email, password: password, role: role };
     this.http
-      .post<{ token: string; role:string; userId: string }>(
+      .post<{ token: string; role:string; userId: string; userName: string }>(
         BACKEND_URL + "/login",
         authData
       )
@@ -97,8 +104,10 @@ export class AuthService {
           if (token) {
             this.isAuthenticated = true;
             this.userId = response.userId;
+            this.userName = response.userName;
             this.role.next(role);
-            this.saveAuthData(token, role, this.userId);
+            this.saveAuthData(token, role, this.userId, this.userName);
+            console.log(this.userName)
             this.router.navigate(["/dashboard"]);
           }
         },
@@ -112,8 +121,8 @@ export class AuthService {
   loginClient(email: string, password: string, role: string) {
     const authData: AuthData = { email: email, password: password, role: role };
     this.http
-      .post<{ userId: string ,token: string; role:string}>(
-        BACKEND_URL + "/login",
+      .post<{ userId: string ,token: string; role:string, userName: string}>(
+        BACKEND_URL + "/loginClient",
         authData
       )
       .subscribe(
@@ -124,9 +133,10 @@ export class AuthService {
           if (token) {
             this.isAuthenticated = true;
             this.userId = response.userId;
+            this.userName = response.userName;
             this.role.next(role);
-            this.saveAuthData(token, role, this.userId);
-            this.router.navigate([""]);
+            this.saveAuthData(token, role, this.userId, this.userName);
+            this.router.navigate(["/clientdashboard"]);
           }
         },
         error => {
@@ -144,12 +154,14 @@ export class AuthService {
     this.isAuthenticated = true;
     const role = authInformation.role;
     this.userId = authInformation.userId;
+    this.userName = authInformation.userName;
     this.role.next(role);
     if(role === "lawyer") {
       this.router.navigate(["/dashboard"]);
     }
     if(role === "client"){
-
+      this.router.navigate(["/clientdashboard"
+    ])
     }
   }
 
@@ -159,6 +171,7 @@ export class AuthService {
       this.token = null;
       this.role.next(null);
       this.userId = null;
+      this.userName = null;
       this.isAuthenticated = false;
       this.clearAuthData();
       this.router.navigate(["/login"]);
@@ -168,29 +181,37 @@ export class AuthService {
     });
   }
 
-  private saveAuthData(token: string, role: string, userId: string) {
+  getChatRoomsChat(chatRoom) {
+    return this.http.get<any>('http://localhost:4000/api/chatroom/' + chatRoom);
+  }
+
+  private saveAuthData(token: string, role: string, userId: string, userName: string) {
     localStorage.setItem("token", token);
     localStorage.setItem("role", role);
     localStorage.setItem("userId", userId);
+    localStorage.setItem("userName", userName);
   }
 
   private clearAuthData() {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     localStorage.removeItem("userId");
+    localStorage.removeItem("userName")
   }
 
   private getAuthData() {
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
     const userId = localStorage.getItem("userId");
+    const userName = localStorage.getItem("userName");
     if (!token) {
       return;
     }
     return {
       token: token,
       role: role,
-      userId: userId
+      userId: userId,
+      userName: userName
     };
   }
 }

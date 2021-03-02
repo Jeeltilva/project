@@ -6,11 +6,12 @@ export interface Client {
       city: string;
       gender: string; 
       birthdate: Date; 
-      password: string;
+      password?: string;
       confirmpassword?: string;
       _id?:string;
       _v?:string;
       createdAt?:string;
       updatedAt?:string;
       cases?:any;
+      userId?:string;
 }

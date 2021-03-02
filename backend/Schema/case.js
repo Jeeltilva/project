@@ -61,7 +61,7 @@ const caseSchema = new mongoose.Schema({
   }],
   client : {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Clients'
+    ref: 'User'
   },
   lawyer: {
     type: mongoose.Schema.Types.ObjectId,

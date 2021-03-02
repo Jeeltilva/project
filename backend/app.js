@@ -5,17 +5,6 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/project', {
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => {
-    console.log("Connected to database!");
-  })
-  .catch(() => {
-    console.log("Connection failed!");
-  });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -48,6 +48,11 @@ import { EditcaseComponent } from './editcase/editcase.component';
 import { PreadmittedComponent } from "./pre-admitted/preadmitted.component";
 import { AdmittedComponent } from "./admitted/admitted.component";
 import { DisposedComponent } from "./disposed/disposed.component";
+import { ClientDashboardComponent } from "./client-dashboard/client-dashboard.component";
+import { ClientMainNavComponent } from "./client-main-nav/client-main-nav.component";
+import { ClientCasesComponent } from "./client-cases/client-cases.component";
+import { ClientCaseinfoComponent } from "./client-caseinfo/client-caseinfo.component";
+import { ClientChatroomComponent } from "./client-chatroom/client-chatroom.component";
 
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -55,6 +60,8 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { DemoUtilsModule } from './demo-utils/module';
 import { TryModule } from "./try/module";
+import { ChatroomComponent } from './chatroom/chatroom.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -71,10 +78,16 @@ import { TryModule } from "./try/module";
     HomepageComponent,
     ErrorComponent,
     EditcaseComponent,
-    // TryComponent,
     PreadmittedComponent,
     AdmittedComponent,
-    DisposedComponent
+    DisposedComponent,
+    ChatroomComponent,
+    ClientDashboardComponent,
+    ClientMainNavComponent,
+    ClientCasesComponent,
+    ClientCaseinfoComponent,
+    ClientChatroomComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

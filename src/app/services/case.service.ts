@@ -7,6 +7,8 @@ import { Subject } from 'rxjs/internal/Subject';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Case } from "../models/case.model";
 import { Client } from '../models/client.model';
+import { Lawyer } from '../models/lawyer.model';
+import { LawyerInt } from '../models/lawyer.model copy';
 
 const apiUrl = 'http://localhost:4000/api/';
 @Injectable({
@@ -18,6 +20,9 @@ export class CaseService {
   singleCase = new Subject<Case>();
   Caseid:string;
   linkedClient = new Subject<Client>();
+  linkedLawyer = new Subject<LawyerInt>();
+  clientData : Client;
+  lawyerData : LawyerInt;
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
@@ -200,7 +205,7 @@ export class CaseService {
   }
 
   linkClient(_id, id) {
-    this.http.patch<Case>(`${apiUrl}linkClient/${id}`, {_id}).pipe(
+    this.http.patch<Case>(`${apiUrl}linkClient/${id}`, {userId:_id}).pipe(
       catchError(this.handleError)
     ) .subscribe((data:Case) => {
       this.singleCase.next(data);
@@ -214,6 +219,18 @@ export class CaseService {
       catchError(this.handleError)
     ) .subscribe((data:Client) => {
       this.linkedClient.next(data);
+      this.clientData = data;
+    }, (err:any) => {
+      console.log(err);
+    }); 
+  }
+
+  getLinkedLawyer(id) {
+    this.http.get<LawyerInt>(`${apiUrl}getLinkedLawyer/${id}`).pipe(
+      catchError(this.handleError)
+    ) .subscribe((data:LawyerInt) => {
+      this.linkedLawyer.next(data);
+      this.lawyerData = data;
     }, (err:any) => {
       console.log(err);
     }); 
@@ -224,7 +241,7 @@ export class CaseService {
       catchError(this.handleError)
     ) .subscribe((data:Client) => {
       this.linkedClient.next(data);
-      console.log(data)
+      this.clientData = data;
     }, (err:any) => {
       console.log(err);
     }); 
@@ -263,8 +280,20 @@ export class CaseService {
     return this.linkedClient.asObservable();
   }
 
+  getlinkedLawyerUpdateListener(){
+    return this.linkedLawyer.asObservable();
+  }
+
   getId(){
     return this.Caseid;
+  }
+
+  returnClient() {
+    return this.clientData;
+  }
+
+  returnLawyer() {
+    return this.lawyerData;
   }
 
   getCasesUpdateListener() {
@@ -284,4 +313,20 @@ export class CaseService {
     });
   }
   
+  getClientCases() {
+    this.http.get<Case[]>(apiUrl+ 'getClientCases').pipe(
+      map((data:any) => {
+        if(data) {
+          return data;
+        }
+        else {
+          catchError(this.handleError)
+        }
+      })
+    ).subscribe( (data:Case[]) => {
+      this.Cases.next(data);
+    }, (err:any) => {
+      console.log(err);
+    }); 
+  }
 }

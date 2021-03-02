@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-loginclient',
@@ -11,7 +12,7 @@ export class LoginclientComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService : AuthService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -25,10 +26,8 @@ export class LoginclientComponent implements OnInit {
   onSubmit() {    
     if (this.loginForm.invalid) {
       return;
-    } else if (this.data.username.value == localStorage.getItem("username") && this.data.password.value == localStorage.getItem("password")) {
-      this.router.navigate(['/home']);
     } else {
-      this.submitted = true;      
+      this.authService.loginClient(this.data.username.value, this.data.password.value, "client")    
     }
   }
 }

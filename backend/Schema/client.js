@@ -57,11 +57,6 @@ const clientSchema = new mongoose.Schema({
     timestamps: true
 })
 
-clientSchema.virtual('Cases', {
-    ref: 'Cases',
-    localField: '_id',
-    foreignField: 'client'
-})
 
 const Client = mongoose.model('Clients', clientSchema)
 
