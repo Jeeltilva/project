@@ -4,6 +4,7 @@ const Lawyer = require("../Schema/lawyer")
 const Client = require("../Schema/client")
 const auth = require('../middleware/Auth')
 const ChatRoom = require('../Schema/chatroom')
+const { sendWelcomeEmail} = require('./mail')
 const router = new express.Router()
 
 router.post('/api/signupLawyer', async (req, res) => {
@@ -15,6 +16,7 @@ router.post('/api/signupLawyer', async (req, res) => {
         const token = await user.generateAuthToken()
         await user.save()
         await lawyer.save()
+        sendWelcomeEmail(user.email, lawyer.firstname)
         var firstname = String(lawyer.firstname)
         var lastname = String(lawyer.lastname)
         res.status(201).send({ userId: user._id, token, role: user.role, userName: firstname.concat(" ",lastname)})
@@ -68,6 +70,7 @@ router.post('/api/signupClient', async (req, res) => {
         phnno: req.body.phnno, city: req.body.city, email: req.body.email, gender: req.body.gender, userId: user._id })
     try {
         const token = await user.generateAuthToken()
+        sendWelcomeEmail(user.email, client.firstname)
         var firstname = String(client.firstname)
         var lastname = String(client.lastname)
         await user.save()

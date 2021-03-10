@@ -5,7 +5,7 @@
       <mat-label class="mat-h2" style="padding-right: 20px;">Filter</mat-label>
     </div>
     <mat-grid-list cols="4" rowHeight="200px">
-      <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-grid-tile [colspan]="1" [rowspan]='1'>
         <mat-card class="dashboard-card" style="color:white;background-color:#607D8B;">
           <mat-card-header>
             <mat-card-title>
@@ -13,8 +13,50 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <h1 class="mat-h1">{{card.title}}</h1>
-            <h5 class="mt-h5" style="padding-top: 17px;font-size:60px;">{{card.content}}</h5>
+            <h1 class="mat-h1">Total Cases</h1>
+            <h5 class="mt-h5" style="padding-top: 17px;font-size:60px;">{{total_cases}}</h5>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]='1'>
+        <mat-card class="dashboard-card" style="color:white;background-color:#607D8B;">
+          <mat-card-header>
+            <mat-card-title>
+              <div></div>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <h1 class="mat-h1">Total Admitted Cases</h1>
+            <h5 class="mt-h5" style="padding-top: 17px;font-size:60px;">{{total_admitted}}</h5>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]='1'>
+        <mat-card class="dashboard-card" style="color:white;background-color:#607D8B;">
+          <mat-card-header>
+            <mat-card-title>
+              <div></div>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <h1 class="mat-h1">Total Disposed Cases</h1>
+            <h5 class="mt-h5" style="padding-top: 17px;font-size:60px;">{{total_disposed}}</h5>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]='1'>
+        <mat-card class="dashboard-card" style="color:white;background-color:#607D8B;">
+          <mat-card-header>
+            <mat-card-title>
+              <div></div>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <h1 class="mat-h1">Total Clients</h1>
+            <h5 class="mt-h5" style="padding-top: 17px;font-size:60px;">{{total_clients}}</h5>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>

@@ -69,7 +69,7 @@ export class CaseinfoComponent implements OnInit,OnDestroy {
     }
     this.orders = this.caseData.orders.concat({id:this.caseData.stampNo, orderDate:data.value.orderDate, orderNote: data.value.note});
     this.caseData.orders = this.orders;
-    this.caseService.updateCase(this.caseData);
+    this.caseService.addOrder(this.caseData._id, {id:this.caseData.stampNo, orderDate:data.value.orderDate, orderNote: data.value.note});
     data.resetForm();
     this.orders.sort(function(a, b) {
       var c:any = new Date(a.orderDate);
@@ -215,9 +215,9 @@ export class CaseinfoComponent implements OnInit,OnDestroy {
         this.linkedClient = data;
       });
 
-      
     this.caseSub = this.caseService.getsingleCaseUpdateListener().subscribe((data:Case) => {
       this.caseData = data;
+      console.log(data)
       this.details = data.details;
       this.orders = data.orders;
       this.notes = data.notes;
@@ -232,6 +232,9 @@ export class CaseinfoComponent implements OnInit,OnDestroy {
       }
     })
 
+    
+    const t = this.caseService.getId()
+    this.caseService.getLinkedClient(t);
   }
 
   ngOnDestroy(): void {

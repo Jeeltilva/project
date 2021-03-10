@@ -91,20 +91,6 @@
       <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
 
-      <mat-file-upload>
-        [labelText]="Document"
-        [selectButtonText]="'Choose File'"
-        [selectFilesButtonType]="button"
-        [uploadButtonText]="'Submit'"
-        [uploadButtonType]="submit"
-        [allowMultipleFiles]="false"
-        [showUploadButton]="true"
-        [customSvgIcon]="'close_custom'"
-        [acceptedTypes]="'.pdf, .docx'"
-        (uploadClicked)="onUploadClicked($event)"
-        (selectedFilesChanged)="onSelectedFilesChanged($event)"
-      </mat-file-upload>
-
   </div>
   <mat-card-actions>
     <br><br>

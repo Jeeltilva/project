@@ -53,6 +53,8 @@ import { ClientMainNavComponent } from "./client-main-nav/client-main-nav.compon
 import { ClientCasesComponent } from "./client-cases/client-cases.component";
 import { ClientCaseinfoComponent } from "./client-caseinfo/client-caseinfo.component";
 import { ClientChatroomComponent } from "./client-chatroom/client-chatroom.component";
+import { ChatsComponent } from "./chats/chats.component";
+import { ClientsideChatComponent } from "./clientside-chat/clientside-chat.component";
 
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -62,6 +64,7 @@ import { DemoUtilsModule } from './demo-utils/module';
 import { TryModule } from "./try/module";
 import { ChatroomComponent } from './chatroom/chatroom.component';
 import { ChatComponent } from './chat/chat.component';
+import { ClientListComponent } from './client-list/client-list.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +90,10 @@ import { ChatComponent } from './chat/chat.component';
     ClientCasesComponent,
     ClientCaseinfoComponent,
     ClientChatroomComponent,
-    ChatComponent
+    ChatComponent,
+    ClientListComponent,
+    ChatsComponent,
+    ClientsideChatComponent
   ],
   imports: [
     BrowserModule,
@@ -132,7 +138,7 @@ import { ChatComponent } from './chat/chat.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
   schemas: [

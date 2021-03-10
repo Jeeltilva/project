@@ -35,6 +35,7 @@ export class EditcaseComponent implements OnInit{
   onSubmit(form: NgForm) {
     console.log(this.File);
     this.caseService.updateCase(this.File);
+    this.caseService.getLinkedClient(this.id);
     this.router.navigate(["/caseinfo"]);
   }
 

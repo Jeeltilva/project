@@ -50,7 +50,7 @@
         <span>Lawyer Portal</span>
         <span class="flex-spacer"></span>
         <button mat-icon-button >
-          <mat-icon>chat</mat-icon>
+          <mat-icon routerLink="/chats">chat</mat-icon>
         </button>
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>settings</mat-icon>
@@ -80,8 +80,8 @@
                     <mat-divider></mat-divider>
                     <a mat-list-item routerLink='/cases'>Lawbook</a><mat-divider></mat-divider>
                     <a mat-list-item routerLink='/cases'>Reference Cases</a><mat-divider></mat-divider>
-                    <a mat-list-item routerLink='/try'>Calender</a><mat-divider></mat-divider>
-                    <a mat-list-item routerLink='/chatroom'>Clients</a>
+                    <a mat-list-item routerLink='/try'>Calendar</a><mat-divider></mat-divider>
+                    <a mat-list-item routerLink='/clientlist'>Clients</a>
                   </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>

@@ -41,7 +41,6 @@ export class CaseService {
     .subscribe((res:any) => {
       this.Caseid = res._id; 
       this.singleCase.next(res);
-      console.log('success');
     }, (err: any) => {
       console.log(err);
     });
@@ -103,8 +102,8 @@ export class CaseService {
       catchError(this.handleError)
     )
     .subscribe((data:Case) => {
-      this.singleCase.next(data);
       this.router.navigate(["/caseinfo"]);
+      this.singleCase.next(data);
     }, (err:any) => {
       console.log(err);
     }); 
@@ -115,6 +114,7 @@ export class CaseService {
       catchError(this.handleError)
     ) .subscribe((data:Case) => {
       this.singleCase.next(data);
+      console.log(data)
     }, (err) => {
       console.log(err);
     }); 
@@ -157,7 +157,7 @@ export class CaseService {
     this.http.patch<Case>(`${apiUrl}case/order/${id}`,{order:data}).subscribe((CaseData:Case) => {
       this.singleCase.next(CaseData);
     }, (err:any) => {
-      alert('Please upload an pdf');
+      console.log(err);
     }); 
   }
 
@@ -235,6 +235,10 @@ export class CaseService {
       console.log(err);
     }); 
   }
+
+  getClientList() {
+    return this.http.get<Client[]>(`${apiUrl}getClientList`)
+  }
   
   getClient(id) {
     this.http.get<Client>(`${apiUrl}getClient/${id}`).pipe(
@@ -311,6 +315,32 @@ export class CaseService {
     ).subscribe((data) => {
       alert(data.message);
     });
+  }
+
+  getLawyerDashboard() {
+    return this.http.get<any>(apiUrl + 'lawyerDashboard')
+  }
+
+  getClientDashboard() {
+    return this.http.get<any>(apiUrl + 'clientDashboard')
+  }
+  
+   //lawyer side
+   getExistingChats(){
+    return this.http.get<Client[]>(apiUrl+ 'lawyer/getchatrooms');
+  }
+
+  storeClientForChat(clientData: Client){
+    this.clientData = clientData;
+  }
+
+  //client side
+  getExistingLawyerChat(){
+    return this.http.get<LawyerInt[]>(apiUrl + 'client/getchatrooms');
+  }
+
+  storeLawyerForChat(lawyerData: LawyerInt){
+    this.lawyerData = lawyerData;
   }
   
   getClientCases() {

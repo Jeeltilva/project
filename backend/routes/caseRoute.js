@@ -5,6 +5,7 @@ const Client = require("../Schema/client")
 const auth = require('../middleware/Auth')
 const router = new express.Router()
 const Case = require("../Schema/case");
+const { sendReminderEmailLawyer, sendReminderEmailClient } = require('./mail')
 path = require('path')
 const crypto = require('crypto');
 let mongoose = require('mongoose');
@@ -171,9 +172,6 @@ router.patch('/api/editcase/:id', auth, async (req,res) => {
     try {
         const caseData = await Case.findById({_id})
         updates.forEach((update) => caseData[update] = req.body[update])
-        if(!caseData) {
-            res.status(404).send();
-        }
         await caseData.save()
         res.status(201).send(caseData)
     } catch(e) {
@@ -201,6 +199,14 @@ router.patch('/api/case/order/:id', auth, async(req, res) => {
         const caseData = await Case.findById({_id})
         if(!caseData) {
             res.status(404).send()
+        }
+        const lawyer = await Lawyer.findOne({userId: caseData.lawyer})
+        const user = await User.findById({_id: caseData.lawyer})
+        sendReminderEmailLawyer(user.email, lawyer.firstname, req.body.order.orderDate, caseData.stampNo, req.body.order.orderNote)
+        if(caseData.client) {
+            const client = await Client.findOne({userId: caseData.client})
+            const userTemp = await User.findById({_id: caseData.client})
+            sendReminderEmailclient(userTemp.email, client.firstname, req.body.order.orderDate, caseData.stampNo, req.body.order.orderNote)
         }
         caseData.orders = caseData.orders.concat(req.body.order)
         await caseData.save()
@@ -460,6 +466,74 @@ router.get('/api/client/getchatrooms',auth, async(req, res) => {
             result.push(temp) 
         }
         res.status(201).send(result)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+})
+
+router.get('/api/lawyerDashboard', auth, async(req, res) => {
+    try {
+        const _id = req.user._id
+        const cases = await Case.find({lawyer: _id})
+        const total_cases = cases.length
+        total_admitted = 0
+        total_disposed = 0
+        let clients = [] 
+        for (let index = 0; index < cases.length; index++) {
+            if(cases[index].status === "admitted") {
+                total_admitted = total_admitted + 1
+            }
+            if(cases[index].status === "disposed") {
+                total_disposed = total_disposed + 1
+            }
+            if(cases[index].client) {
+                if(!clients.includes(String(cases[index].client))){
+                    clients.push(String(cases[index].client))
+                }
+            }
+        }
+        res.status(201).send({total_cases, total_admitted, total_disposed, total_clients: clients.length})
+    } catch (error) {
+        res.status(500).send(error)
+        console.log(error)
+    }
+})
+
+router.get('/api/clientDashboard', auth, async(req, res) => {
+    try {
+        const _id = req.user._id
+        const cases = await Case.find({client: _id})
+        const total_cases = cases.length
+        total_admitted = 0
+        total_disposed = 0
+        for (let index = 0; index < cases.length; index++) {
+            if(cases[index].status === "admitted") {
+                total_admitted = total_admitted + 1
+            }
+            if(cases[index].status === "disposed") {
+                total_disposed = total_disposed + 1
+            }
+        }
+        res.status(201).send({total_cases, total_admitted, total_disposed})
+    } catch (error) {
+        res.status(500).send(error)
+    }
+})
+
+router.get('/api/getClientList', auth, async(req, res) => {
+    try {
+        const _id = req.user._id
+        const cases = await Case.find({lawyer: _id})
+        let clients = []
+        for (let index = 0; index < cases.length; index++) {
+            if(cases[index].client) {
+                if(!clients.includes(String(cases[index].client))){
+                    const temp = await Client.findOne({userId: cases[index].client})
+                    clients.push(temp)
+                }
+            }
+        }
+        res.status(201).send(clients)
     } catch (error) {
         res.status(500).send(error)
     }
