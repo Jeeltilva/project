@@ -1,0 +1,16 @@
+<mat-toolbar color="primary" style="display: flex;">
+    <span>Lawyer Portal</span>
+    <span class="flex-spacer"></span>
+    <button mat-button [matMenuTriggerFor]="menu"> Login
+          <mat-menu #menu="matMenu">
+            <button [routerLink]="['/loginclient']" mat-menu-item>Login as client</button>
+            <button [routerLink]="['/login']" mat-menu-item>Login as Lawyer</button>
+          </mat-menu>
+      </button>
+      <button mat-button [matMenuTriggerFor]="menu1"> Register
+        <mat-menu #menu1="matMenu">
+          <button [routerLink]="['/registerclient']" mat-menu-item>Register as client</button>
+          <button [routerLink]="['/register']" mat-menu-item>Register as Lawyer</button>
+        </mat-menu>
+    </button>
+</mat-toolbar>

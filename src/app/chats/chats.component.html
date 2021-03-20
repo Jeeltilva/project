@@ -1,0 +1,19 @@
+<div class="bg-image"></div>
+<div style="margin: 10px;" class="bg-text">
+  <h1 class="mat-h1">Chats</h1>
+    <table mat-table [dataSource]="clientData" class="mat-elevation-z8" style="width: 95%;">
+
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstname}} {{element.lastname}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element"> <button mat-stroked-button color="primary" (click)="onChat(element)">Chat</button> </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

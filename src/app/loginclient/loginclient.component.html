@@ -1,0 +1,28 @@
+<div class="bg-image">
+</div>
+<div class="card bg-text">
+        <div role="alert" *ngIf="submitted">
+          Username or password is incorrect
+        </div>
+        <mat-card class="vache">
+          <h3 style="text-align: center;">Login as a Client</h3>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <mat-form-field style="width: 60%; margin-left: 20%; margin-right: 20%;">
+              <input type="text" matInput placeholder="Username" formControlName="username">
+              <mat-icon matSuffix>face</mat-icon>
+              <mat-error *ngIf="data.username.errors?.required">Username is required</mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 60%; margin-left: 20%; margin-right: 20%;">
+              <input type="password" matInput placeholder="Password" formControlName="password">
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-error *ngIf="data.password.errors?.required">Password is required</mat-error>
+            </mat-form-field>
+            <div style="width: 60%; margin-left: 20%; margin-right: 20%; margin-top: 20px; display: flex;" >
+              <button mat-raised-button color="primary">Login</button>
+              <span class="flex-spacer"></span>
+              <a [routerLink]="['/registerclient']">Don't have an account? Register here</a>
+            </div>
+          </form>
+        </mat-card>
+</div>
+

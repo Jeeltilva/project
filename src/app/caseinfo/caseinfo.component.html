@@ -1,0 +1,227 @@
+<div class="bg-image"></div>
+<div class="grid-container bg-text" style="width: 95%;">
+    <h1 class="mat-h1">Case Info</h1>
+    <mat-card style="margin: 20px 50px;">
+        <mat-card-content style="min-height: 510px;
+        max-height: auto;">
+<mat-tab-group mat-align-tabs="start">
+  <mat-tab label="Case Info">
+    <div fxLayout="column" style="display: flex;margin: 20px 20px;">
+      <div fxLayout="row">
+        <mat-label>Stamp No: {{caseData.stampNo}}</mat-label>
+        <mat-label style="margin-left: 30px;">Filling Date: {{caseData.fillingDate | date}}</mat-label>
+      </div>
+      <hr *ngIf="(caseData.RegNo || caseData.RegDate)">
+      <div fxLayout="row">
+        <mat-label *ngIf="caseData.RegNo">Reg No: {{caseData.RegNo}}</mat-label>
+        <mat-label *ngIf="caseData.RegDate" style="margin-left: 30px;">Reg Date: {{caseData.RegDate | date}}</mat-label>
+      </div>
+      <hr>
+      <mat-label>Retitioner: {{caseData.petitioner}}</mat-label>
+      <mat-label>Respondent: {{caseData.respondent}}</mat-label>
+      <mat-label>Bench: {{caseData.bench}}</mat-label>
+      <mat-label>Status: {{caseData.status}}</mat-label>
+      <mat-label>District: {{caseData.district}}</mat-label>
+      <mat-label *ngIf="caseData.stage">Stage: {{caseData.stage}}</mat-label>
+      <mat-label *ngIf="caseData.description">Description: {{caseData.description}}</mat-label>
+      <hr *ngIf="caseData.act">
+      <mat-label *ngIf="caseData.act">Act: {{caseData.act}}</mat-label>
+    </div>
+    <mat-divider></mat-divider>
+    <button style="margin-top:20px;" mat-raised-button color="accent"  *ngIf="caseData.status === 'admitted' || caseData.status==='pre-admitted'" (click)="onEditCase()">Update</button>
+
+  </mat-tab>
+  <mat-tab label="Details">
+    <div>
+      <ckeditor class="document-editor" [editor]="Editor" [(ngModel)]="details" (ready)="onReady($event)"></ckeditor>
+      <mat-divider></mat-divider>
+      <button style="margin-top:20px;" mat-raised-button color="accent" *ngIf="caseData.status === 'admitted' || caseData.status==='pre-admitted'" (click)="onDetailsUpdated()">Update</button>
+      <!-- <button style="margin-top:20px;" mat-raised-button color="accent" *ngIf="caseData.status == 'admitted'" (click)="onDetailsUpdated()">Update</button> -->
+    </div>
+  </mat-tab>
+  <mat-tab label="Hearings">
+    <div style="display: flex; margin: 20px 20px;" fxLayout="column"  *ngIf="caseData.status === 'admitted' || caseData.status==='pre-admitted'">
+      <mat-label style="font-size: large;"> Add Hearing Date</mat-label>
+      <form #addOrder="ngForm" (ngSubmit)="onNewOrder(addOrder)">
+      <mat-form-field style="width:40%; margin-top: 20px;">
+        <input matInput ngModel required [matDatepicker]="picker" placeholder="Hearing Date" name="orderDate" id="orderDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <span class="flex-spacer"></span>
+      <mat-form-field style="width:40%;margin-top: 20px; margin-left:10%;">
+        <input matInput [(ngModel)]="newOrderNote" #message maxlength="256" placeholder="Note" name="note" id="note">
+        <mat-hint [align]="'end'">{{message.value.length}} / 256</mat-hint>
+      </mat-form-field>
+
+      <button style="width: 200px; margin-top: 10px;" mat-raised-button color="accent" type="submit" [disabled]="addOrder.invalid">Add New Hearing Date</button>
+     </form>
+    </div>
+
+    <mat-card style="display: flex; width: 80%; margin: 40px auto;" *ngIf="displayNextOrder">
+      <mat-label class="mat-h3" style="font-size: large;">Next Hearing Date :</mat-label>
+      <h3 class="mat-h3" style="margin-left: 20px;">{{orders[0].orderDate | date}}</h3>
+      <h3 class="mat-h3" style="margin-left: 20px;">{{orders[0].orderNote }}</h3>
+    </mat-card>
+    <table mat-table [dataSource]="caseData.orders" *ngIf="orders.length != 0" class="mat-elevation-z8" style="width: 80%; margin: 40px auto;">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <!-- <ng-container matColumnDef="Order Date">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element}} </td>
+      </ng-container> -->
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Order Date">
+        <th mat-header-cell *matHeaderCellDef style="font-size: medium;"> Hearing Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.orderDate | date}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Note">
+        <th mat-header-cell *matHeaderCellDef style="font-size: medium;"> Note </th>
+        <td mat-cell *matCellDef="let element"> {{element.orderNote}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef style="font-size: medium;"> Action </th>
+        <td mat-cell *matCellDef="let element"><button (click)="onDeleteOrder(element._id)" mat-icon-button  *ngIf="caseData.status === 'admitted' || caseData.status==='pre-admitted'" color="warn" aria-label="Example icon button with a delete icon">
+          <mat-icon>delete</mat-icon>
+        </button></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-tab>
+  <mat-tab label="Notes">
+    <div *ngIf="caseData.status === 'admitted' || caseData.status==='pre-admitted'">
+    <div style="display: flex; margin: 20px 20px;" fxLayout="column" >
+      <mat-label style="font-size: large;" *ngIf="!editNoteMode"> Add New Note</mat-label>
+      <mat-label style="font-size: large;" *ngIf="editNoteMode"> Edit Note</mat-label>
+      <form #addNote="ngForm" (ngSubmit)="onAddNote(addNote)" *ngIf="!editNoteMode">
+        <mat-form-field style="margin-right: 15px;">
+          <input matInput ngModel name="title" id="title" placeholder="title" required>
+        </mat-form-field>
+        <mat-form-field style="width:80%; margin-top: 20px; margin-right:10px;">
+          <input matInput #message1 ngModel maxlength="256" placeholder="Note" name="Note" id="Note" required>
+          <mat-hint [align]="'end'">{{message1.value.length}} / 256</mat-hint>
+        </mat-form-field>
+        <button type="submit" mat-raised-button style="margin: 10px auto;" color="accent" [disabled]="addNote.invalid">Add Note</button>
+      </form>
+      <form #editNote="ngForm" (ngSubmit)="onEditNote(editNote)" *ngIf="editNoteMode">
+        <mat-form-field style="margin-right: 15px;">
+          <input matInput  [(ngModel)]="newTitle" name="title" id="title" placeholder="title" required>
+        </mat-form-field>
+        <mat-form-field style="width:80%; margin-top: 20px; margin-right:10px;">
+          <input matInput [(ngModel)]="newNote" #message1 maxlength="256" placeholder="Note" name="Note" id="Note" required>
+          <mat-hint [align]="'end'">{{message1.value.length}} / 256</mat-hint>
+        </mat-form-field>
+        <button type="submit" mat-raised-button style="margin: 10px auto;" color="accent" [disabled]="editNote.invalid">Edit Note</button>
+      </form>
+    </div>
+      <div *ngIf="!editNoteMode">
+        <mat-card class="example-card mat-elevation-z8" *ngFor="let note of caseData.notes" style="margin-bottom: 1rem;">
+          <mat-card-header>
+            <mat-card-title>{{note.title}}</mat-card-title>
+            <mat-card-subtitle>{{note.createdAt | date}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content style="padding-left: 15px;">
+            <p>{{note.note}}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-stroked-button color="accent" *ngIf="caseData.status === 'admitted' || caseData.status==='pre-admitted'" (click)="onEditMode(note)">Edit</button>
+            <button mat-stroked-button color="warn" *ngIf="caseData.status === 'admitted' || caseData.status==='pre-admitted'" (click)="onDeleteNote(note._id)">Delete</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Documents">
+    <div style="display: flex; margin: 20px 20px;" *ngIf="caseData.status === 'admitted' || caseData.status==='pre-admitted'" fxLayout="column">
+      <mat-label style="font-size: large;">Upload Document</mat-label>
+      <br>
+      <form enctype="multipart/form-data">
+        <input type="file"
+             id="file" multiple accept="application/pdf"
+             (change)="handleFileInput($event.target.files)">
+        <pre style="color: red;">  *only pdf can be uploaded</pre>
+      </form>
+    </div>
+    <br><br><br>
+    <table mat-table [dataSource]="files" style="width: 80%; margin: auto">
+
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.originalname}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Size">
+        <th mat-header-cell *matHeaderCellDef> Size(In Kb) </th>
+        <td mat-cell *matCellDef="let element"> {{element.size/1000}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Created_At">
+        <th mat-header-cell *matHeaderCellDef> Created At </th>
+        <td mat-cell *matCellDef="let element"> {{element.createdAt | date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element"><button mat-button color="accent" (click)="downloadPdf(element.filename, element.contentType)"> View </button> <button *ngIf="caseData.status === 'admitted' || caseData.status==='pre-admitted'" mat-icon-button color="warn" (click)="deletePdf(element.filename)">  Delete  </button> </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="DocColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: DocColumns;"></tr>
+
+    </table>
+  </mat-tab>
+
+  <mat-tab label="Client">
+    <div *ngIf="caseData.client">
+      <div style="display: flex; margin: 20px 20px;" fxLayout="column" >
+        <mat-label style="font-size: large;">Linked Client</mat-label>
+        <mat-card style="margin-top: 20px;display: flex;">{{linkedClient.firstname}} <span class="tab"></span> {{linkedClient.lastname}} <span class="tab"></span> {{linkedClient.email}} <span class="tab"></span> {{linkedClient.phnno}} <span class="flex-spacer"></span>
+          <button style="width: 10%;" mat-raised-button color="primary" (click)="onMessage()">Message</button>
+          <pre>  </pre>
+          <button style="width: 10%;" mat-raised-button color="accent" (click)="unlink()">Unlink</button></mat-card>
+      </div>
+    </div>
+    <div id="search-component" *ngIf="!caseData.client">
+      <h4><label for="search-box">Client Search</label></h4>
+      <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+      <ul class="search-result">
+        <table mat-table [dataSource]="(clients$ | async)" *ngIf= "clients$" class="mat-elevation-z8" style="width: 80%; margin: 40px auto;">
+          <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef> firstName </th>
+            <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+          </ng-container>
+          <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef> lastName </th>
+            <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Contact">
+            <th mat-header-cell *matHeaderCellDef> Contact </th>
+            <td mat-cell *matCellDef="let element"> {{element.phnno}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element"> <button (click)="onLinkClient(element, caseData._id)" mat-icon-button color="warn"> Link </button> </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="display"></tr>
+          <tr mat-row *matRowDef="let row; columns: display;"></tr>
+        </table>
+      </ul>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+</mat-card-content>
+</mat-card>
+</div>
