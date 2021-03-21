@@ -1,4 +1,5 @@
-<div class="grid-container">
+<div class="bg-image"></div>
+<div class="grid-container bg-text" style="width: 95%;">
     <h1 class="mat-h1">Case Info</h1>
     <mat-card style="margin: 20px 50px;">
         <mat-card-content style="min-height: 510px;
@@ -52,11 +53,11 @@
         <input matInput [(ngModel)]="newOrderNote" #message maxlength="256" placeholder="Note" name="note" id="note">
         <mat-hint [align]="'end'">{{message.value.length}} / 256</mat-hint>
       </mat-form-field>
-    
+
       <button style="width: 200px; margin-top: 10px;" mat-raised-button color="accent" type="submit" [disabled]="addOrder.invalid">Add New Hearing Date</button>
      </form>
     </div>
-    
+
     <mat-card style="display: flex; width: 80%; margin: 40px auto;" *ngIf="displayNextOrder">
       <mat-label class="mat-h3" style="font-size: large;">Next Hearing Date :</mat-label>
       <h3 class="mat-h3" style="margin-left: 20px;">{{orders[0].orderDate | date}}</h3>
@@ -66,19 +67,19 @@
 
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
-    
+
       <!-- Position Column -->
       <!-- <ng-container matColumnDef="Order Date">
         <th mat-header-cell *matHeaderCellDef> No. </th>
         <td mat-cell *matCellDef="let element"> {{element}} </td>
       </ng-container> -->
-    
+
       <!-- Name Column -->
       <ng-container matColumnDef="Order Date">
         <th mat-header-cell *matHeaderCellDef style="font-size: medium;"> Hearing Date </th>
         <td mat-cell *matCellDef="let element"> {{element.orderDate | date}} </td>
       </ng-container>
-    
+
       <!-- Weight Column -->
       <ng-container matColumnDef="Note">
         <th mat-header-cell *matHeaderCellDef style="font-size: medium;"> Note </th>
@@ -90,7 +91,7 @@
           <mat-icon>delete</mat-icon>
         </button></td>
       </ng-container>
-    
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
@@ -152,30 +153,30 @@
     </div>
     <br><br><br>
     <table mat-table [dataSource]="files" style="width: 80%; margin: auto">
-    
+
       <ng-container matColumnDef="Name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
         <td mat-cell *matCellDef="let element"> {{element.originalname}} </td>
       </ng-container>
-    
+
       <ng-container matColumnDef="Size">
         <th mat-header-cell *matHeaderCellDef> Size(In Kb) </th>
         <td mat-cell *matCellDef="let element"> {{element.size/1000}} </td>
       </ng-container>
-    
+
       <ng-container matColumnDef="Created_At">
         <th mat-header-cell *matHeaderCellDef> Created At </th>
         <td mat-cell *matCellDef="let element"> {{element.createdAt | date}} </td>
       </ng-container>
-    
+
       <ng-container matColumnDef="Actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let element"><button mat-button color="accent" (click)="downloadPdf(element.filename, element.contentType)"> View </button> <button *ngIf="caseData.status === 'admitted' || caseData.status==='pre-admitted'" mat-icon-button color="warn" (click)="deletePdf(element.filename)">  Delete  </button> </td>
       </ng-container>
-    
+
       <tr mat-header-row *matHeaderRowDef="DocColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: DocColumns;"></tr>
-    
+
     </table>
   </mat-tab>
 
@@ -186,7 +187,7 @@
         <mat-card style="margin-top: 20px;display: flex;">{{linkedClient.firstname}} <span class="tab"></span> {{linkedClient.lastname}} <span class="tab"></span> {{linkedClient.email}} <span class="tab"></span> {{linkedClient.phnno}} <span class="flex-spacer"></span>
           <button style="width: 10%;" mat-raised-button color="primary" (click)="onMessage()">Message</button>
           <pre>  </pre>
-          <button style="width: 10%;" mat-raised-button color="accent" (click)="unlink()">Unlink</button></mat-card> 
+          <button style="width: 10%;" mat-raised-button color="accent" (click)="unlink()">Unlink</button></mat-card>
       </div>
     </div>
     <div id="search-component" *ngIf="!caseData.client">
@@ -205,7 +206,7 @@
           <ng-container matColumnDef="Contact">
             <th mat-header-cell *matHeaderCellDef> Contact </th>
             <td mat-cell *matCellDef="let element"> {{element.phnno}} </td>
-          </ng-container>        
+          </ng-container>
           <ng-container matColumnDef="Email">
             <th mat-header-cell *matHeaderCellDef> Email </th>
             <td mat-cell *matCellDef="let element"> {{element.email}} </td>
@@ -213,7 +214,7 @@
           <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element"> <button (click)="onLinkClient(element, caseData._id)" mat-icon-button color="warn"> Link </button> </td>
-          </ng-container>       
+          </ng-container>
           <tr mat-header-row *matHeaderRowDef="display"></tr>
           <tr mat-row *matRowDef="let row; columns: display;"></tr>
         </table>

@@ -9,7 +9,7 @@ import { CaseService } from '../services/case.service';
 @Component({
   selector: 'app-client-cases',
   templateUrl: './client-cases.component.html',
-  styleUrls: ['./client-cases.component.scss']
+  styleUrls: ['./client-cases.component.scss','../chats/chats.component.scss']
 })
 export class ClientCasesComponent implements OnInit ,OnDestroy{
 

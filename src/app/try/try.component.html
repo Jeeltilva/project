@@ -1,3 +1,4 @@
+<!-- <div class="bg-image"></div> -->
 <div class="grid-container">
     <div >
       <h1 mat-h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h1>
@@ -31,7 +32,7 @@
         </button>
       </div>
     </div>
-    
+
   <br />
   <div [ngSwitch]="view" div *ngIf="events$ | async; let events">
     <mwl-calendar-month-view

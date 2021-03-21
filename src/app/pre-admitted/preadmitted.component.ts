@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-preadmitted',
   templateUrl: './preadmitted.component.html',
-  styleUrls: ['./preadmitted.component.scss']
+  styleUrls: ['./preadmitted.component.scss','../chats/chats.component.scss']
 })
 export class PreadmittedComponent implements OnInit, OnDestroy {
   private caseSub: Subscription;
@@ -42,7 +42,7 @@ export class PreadmittedComponent implements OnInit, OnDestroy {
     this.caseService.setCases(this.cases);
     // this.caseService.getCases();
   }
-  
+
   onDelete(id) {
     this.caseService.deleteCase(id);
     this.cases = this.cases.filter(function(e:Case) {return e._id !== id});

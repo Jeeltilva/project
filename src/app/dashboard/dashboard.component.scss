@@ -1,7 +1,8 @@
 .grid-container {
-    margin: 20px;
+    margin: 8px;
+    width: 95%;
   }
-  
+
   .dashboard-card {
     position: absolute;
     top: 15px;
@@ -9,13 +10,47 @@
     right: 15px;
     bottom: 15px;
   }
-  
+
   .more-button {
     position: absolute;
     top: 5px;
     right: 10px;
   }
-  
+
   .dashboard-card-content {
+    text-align: center;
+  }
+
+  .bg-image {
+    /* The image used */
+    background-image: url("https://i.pinimg.com/originals/41/5e/07/415e07196894056736f476a802cecbd9.jpg");
+
+    /* Add the blur effect */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+
+    /* Full height */
+    height: 100%;
+    width:auto;
+
+    /* Center and scale the image nicely */
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .bg-text {
+    color: white;
+    font-weight: bold;
+    /* border: 3px solid #f1f1f1; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 99%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    /* width: 80%; */
+    /* padding: 20px; */
     text-align: center;
   }

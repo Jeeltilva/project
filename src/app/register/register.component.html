@@ -1,4 +1,6 @@
-<div class="grid-container">	   
+<div class="bg-image">
+</div>
+<div class="grid-container bg-text">
 	   <mat-card>
           <h3 style="text-align: center;">Register as a Lawyer</h3>
           <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" fxLayout="column">
@@ -15,7 +17,7 @@
 
 			  <mat-form-field class="w-100">
 				<mat-label>Birthdate</mat-label>
-				<input matInput [matDatepicker]="picker2" formControlName="birthdate">
+				<input matInput [matDatepicker]="picker2" formControlName="birthdate" [max]="maxDate">
 				<mat-icon matSuffix><mat-datepicker-toggle [for]="picker2"></mat-datepicker-toggle></mat-icon>
 				<mat-datepicker #picker2 color="primary"></mat-datepicker>
 				<mat-error *ngIf="data.birthdate.errors?.required">Birthdate is required</mat-error>
@@ -262,8 +264,21 @@
 				<mat-error *ngIf="data.address.errors?.required">Address is required</mat-error>
 			  </mat-form-field>
 			  <mat-form-field class="w-100">
-				<input type="text" matInput placeholder="Bar council number" formControlName="bcn">
-				<mat-error *ngIf="data.bcn.errors?.required">Bar council number is required</mat-error>
+				<!-- <input type="text" matInput placeholder="Bar council number" formControlName="bcn"> -->
+        <div *ngIf="registerForm.get('bcn').pending">Validating...</div>
+        <div [ngClass]="{'is-loading': registerForm.controls['bcn'].pending }" class="control">
+          <input [ngClass]="{'is-danger': hasError('bcn', 'any')}" type="text" matInput placeholder="Bar council number" formControlName="bcn">
+        </div>
+        <mat-error *ngIf="hasError('bcn', 'required')">
+          A valid BCN is required!
+        </mat-error>
+        <mat-error *ngIf="registerForm.controls['bcn'].errors?.bcnExists">
+          This bcn is not registered
+        </mat-error>
+        <!-- <mat-error #elseBlock>
+          Please enter a valid Bar council number
+        </mat-error> -->
+				<!-- <mat-error *ngIf="data.bcn.errors?.required">Bar council number is required</mat-error> -->
 			  </mat-form-field>
 			  <mat-form-field class="w-100">
 				<input type="text" matInput placeholder="University" formControlName="uni">
@@ -318,7 +333,7 @@
 				  </mat-form-field>
             <div class="w-100" style="display:flex;">
 			  <button mat-raised-button color="primary" [disabled]="registerForm.invalid">Register</button>
-			  <button style="margin-left: 10px;" mat-stroked-button color="warn" type="reset" (click)="onReset()">cancel</button>
+			  <button style="margin-left: 10px;" mat-stroked-button color="warn" type="reset" (click)="onReset()">Clear</button>
 			  <span class="flex-spacer"></span>
 			  <a [routerLink]="['/login']" style="margin-top: 5px;">Already registered? Login here</a>
             </div>

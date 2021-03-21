@@ -6,6 +6,8 @@ import { Subject } from "rxjs";
 import { AuthData } from "../models/auth-data.model";
 import { Lawyer } from '../models/lawyer.model';
 import { Client } from '../models/client.model';
+import { NotificationService } from "./notification.service";
+import swal from 'sweetalert/dist/sweetalert.min.js';
 
 const BACKEND_URL = 'http://localhost:4000/api';
 
@@ -17,7 +19,7 @@ export class AuthService {
   private userId: string;
   private role = new Subject<String>();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, public notifyService : NotificationService) {}
 
   getToken() {
     return this.token;
@@ -44,7 +46,7 @@ export class AuthService {
   }
 
   createLawyer(lawyer: Lawyer, role: string) {
-    const data = {...lawyer, role} 
+    const data = {...lawyer, role}
     this.http.post<{ token: string; role:string; userId: string; userName: string }>(
       BACKEND_URL + "/signupLawyer", data)
       .subscribe( (response) => {
@@ -58,6 +60,7 @@ export class AuthService {
           this.role.next(role);
           this.saveAuthData(token, role, this.userId, this.userName);
           this.router.navigate(["/dashboard"]);
+          this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
         }
       },
       error => {
@@ -67,7 +70,7 @@ export class AuthService {
   }
 
   createClient(client: Client, role: string) {
-    const data = {...client, role} 
+    const data = {...client, role}
     this.http.post<{ token: string; role:string; userId: string, userName: string  }>(
       BACKEND_URL + "/signupClient", data)
       .subscribe( (response) => {
@@ -81,6 +84,7 @@ export class AuthService {
           this.role.next(role);
           this.saveAuthData(token, role, this.userId, this.userName);
           this.router.navigate(["/clientdashboard"]);
+          this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
         }
       },
       error => {
@@ -109,10 +113,11 @@ export class AuthService {
             this.saveAuthData(token, role, this.userId, this.userName);
             console.log(this.userName)
             this.router.navigate(["/dashboard"]);
+            this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
           }
         },
         error => {
-          alert("Wrong Credentials!");
+          swal("Wrong Credentials!", "Please Try again!", "warning");
           this.role.next(null);
         }
       );
@@ -137,9 +142,11 @@ export class AuthService {
             this.role.next(role);
             this.saveAuthData(token, role, this.userId, this.userName);
             this.router.navigate(["/clientdashboard"]);
+            this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
           }
         },
         error => {
+          swal("Wrong Credentials!", "Please Try again!", "warning");
           this.role.next(null);
         }
       );
@@ -166,19 +173,46 @@ export class AuthService {
   }
 
   logoutLawyer() {
-    this.http.post<any>(BACKEND_URL + "/logoutLawyer", "")
-    .subscribe( response => {
-      this.token = null;
-      this.role.next(null);
-      this.userId = null;
-      this.userName = null;
-      this.isAuthenticated = false;
-      this.clearAuthData();
-      this.router.navigate(["/login"]);
-      alert("Logout Successfully !");
-    }, error => {
-      alert(error);
-    });
+    // this.http.post<any>(BACKEND_URL + "/logoutLawyer", "")
+    // .subscribe( response => {
+    //   this.token = null;
+    //   this.role.next(null);
+    //   this.userId = null;
+    //   this.userName = null;
+    //   this.isAuthenticated = false;
+    //   this.clearAuthData();
+      swal({
+        title: "Are you sure?",
+        text: "",
+        icon: "warning",
+        // buttons: true,
+        dangerMode: true,
+        buttons: ["No", "Yes"],
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Successfully logged Out!", {
+            icon: "success",
+          });
+          this.http.post<any>(BACKEND_URL + "/logoutLawyer", "").subscribe( response => {
+            this.token = null;
+            this.role.next(null);
+            this.userId = null;
+            this.userName = null;
+            this.isAuthenticated = false;
+            this.clearAuthData();
+            this.router.navigate(["/login"]);
+          }, error => {
+            alert(error);
+          });
+        } else {
+          swal("In the system");
+        }
+      });
+      // alert("Logout Successfully !");
+    // }, error => {
+    //   alert(error);
+    // });
   }
 
   getChatRoomsChat(chatRoom) {

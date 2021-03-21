@@ -1,4 +1,5 @@
-<div class="grid-container">
+<div class="bg-image"></div>
+<div class="grid-container bg-text">
     <h1 class="mat-h1">Add New Case</h1>
   <form (ngSubmit)="onSubmit(addcase)" #addcase="ngForm">
     <mat-card>
@@ -35,9 +36,18 @@
         </mat-select>
       </mat-form-field>
 
+      <!--Single judge Bench comprising of 1 judge
+          Division Bench- 2 judges
+          And Full Bench of 3 or more judges.-->
+
       <mat-form-field class="half-width" style="margin-left:10px">
         <mat-label>Bench</mat-label>
-        <input matInput placeholder="Morbi" name="bench" id="bench" ngModel required>
+        <!-- <input matInput placeholder="Morbi" name="bench" id="bench" ngModel required> -->
+        <mat-select ngModel name="bench" id="bench" required>
+          <mat-option value="division">DIVISION</mat-option>
+          <mat-option value="single">SINGLE</mat-option>
+          <mat-option value="disposed">FULL</mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
 
@@ -78,14 +88,14 @@
 
       <mat-form-field class="half-width">
         <mat-label>Stage</mat-label>
-        <input matInput name="stage" id="stage" ngModel>
+        <input matInput name="stage" id="stage" placeholder="e.g. DUE FOR ADMISSION, FOR FINAL HEARING" ngModel>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <input matInput #message maxlength="256" placeholder="Description" name="description" id="description" ngModel>
         <mat-hint [align]="'end'">{{message.value.length}} / 256</mat-hint>
       </mat-form-field>
-  
+
       <mat-form-field class="half-width">
         <input matInput [matDatepicker]="picker1" placeholder="Reg. Date" name="RegDate" id="RegDate" ngModel>
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -107,9 +117,9 @@
       </mat-file-upload> -->
 
   </div>
-  <mat-card-actions>
+  <mat-card-actions style="text-align: left;">
     <br><br>
-    <button mat-raised-button color="primary" type="submit">Submit</button> 
+    <button mat-raised-button color="primary" type="submit">Submit</button>
     <button mat-raised-button color="basic" type="reset">Clear</button>
    </mat-card-actions>
        </mat-card-content>

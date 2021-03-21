@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-cases',
   templateUrl: './cases.component.html',
-  styleUrls: ['./cases.component.scss']
+  styleUrls: ['./cases.component.scss', '../chats/chats.component.scss']
 })
 export class CasesComponent implements OnInit, OnDestroy {
   private caseSub: Subscription;

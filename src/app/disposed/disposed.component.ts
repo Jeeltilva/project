@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-disposed',
   templateUrl: './disposed.component.html',
-  styleUrls: ['./disposed.component.scss']
+  styleUrls: ['./disposed.component.scss','../chats/chats.component.scss']
 })
 export class DisposedComponent implements OnInit, OnDestroy {
   private caseSub: Subscription;

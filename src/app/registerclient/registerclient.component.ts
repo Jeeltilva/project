@@ -12,7 +12,8 @@ import { AuthService } from '../services/auth.service';
 export class RegisterclientComponent implements OnInit {
   registerForm: FormGroup;
   submitted:boolean = false;
-  
+  maxDate = new Date();
+
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {

@@ -27,7 +27,7 @@ export interface Note {
 @Component({
   selector: 'app-client-caseinfo',
   templateUrl: './client-caseinfo.component.html',
-  styleUrls: ['./client-caseinfo.component.scss']
+  styleUrls: ['./client-caseinfo.component.scss', '../chats/chats.component.scss']
 })
 export class ClientCaseinfoComponent implements OnInit,OnDestroy {
 
@@ -53,7 +53,7 @@ export class ClientCaseinfoComponent implements OnInit,OnDestroy {
   newOrderNote: string;
   displayNextOrder:boolean = false;
   displayedColumns: string[] = ['Order Date', 'Note'];
-  
+
 
   onDetailsUpdated() {
     this.caseData.details = this.details;
