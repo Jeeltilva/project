@@ -65,6 +65,7 @@ import { TryModule } from "./try/module";
 import { ChatroomComponent } from './chatroom/chatroom.component';
 import { ChatComponent } from './chat/chat.component';
 import { ClientListComponent } from './client-list/client-list.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -135,6 +136,7 @@ import { ClientListComponent } from './client-list/client-list.component';
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    ToastrModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

@@ -6,7 +6,7 @@ import { CaseService } from '../services/case.service';
 @Component({
   selector: 'app-client-dashboard',
   templateUrl: './client-dashboard.component.html',
-  styleUrls: ['./client-dashboard.component.scss']
+  styleUrls: ['./client-dashboard.component.scss','../chats/chats.component.scss']
 })
 export class ClientDashboardComponent {
 

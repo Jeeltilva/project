@@ -5,6 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MustMatch } from '../_helpers/must-match.validator';
 import { Lawyer } from "../models/lawyer.model";
 import { AuthService } from '../services/auth.service';
+import { BcnValidationService } from '../services/bcn.service';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -13,10 +15,12 @@ import { AuthService } from '../services/auth.service';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
-  
-  constructor(private formBuilder: FormBuilder, private router: Router, private _snackBar: MatSnackBar, private authSer: AuthService) { }
+  maxDate = new Date();
+
+  constructor(private formBuilder: FormBuilder, private router: Router, private _snackBar: MatSnackBar, private authSer: AuthService, private bcnService: BcnValidationService) { }
 
   ngOnInit() {
+
     this.registerForm = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -31,30 +35,33 @@ export class RegisterComponent implements OnInit {
       prac: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmpassword: ['', Validators.required],
-      bcn: ['',Validators.required],
+      bcn: ['',[Validators.required], [this.bcnService.bcnValidator()]],
       nationality: ['', Validators.required]
     },
     	{
             validator: MustMatch('password', 'confirmpassword')
         });
   }
+
+  hasError(field: string, error: string): boolean {
+    if (error === 'any' || error === '') {
+      return (
+        this.registerForm.controls[field].dirty &&
+        this.registerForm.controls[field].invalid
+      );
+    }
+
+    //  this.frmLogin.controls[field].pending;
+
+    return (
+      this.registerForm.controls[field].dirty &&
+      this.registerForm.controls[field].hasError(error)
+    );
+  }
   get data() { return this.registerForm.controls; }
-
-  // getErrorMessage() {
-  //   if (this.email.hasError('required')) {
-  //     return 'You must enter a value';
-  //   }
-
-  //   return this.email.hasError('email') ? 'Not a valid email' : '';
-  // }
 
   onSubmit() {
     this.submitted = true;
-
-    // // stop here if form is invalid
-    // if (this.registerForm.invalid) {
-    //     return;
-    // }
     const value = this.registerForm.value;
     const form = new Lawyer(value.firstname,
       value.lastname,

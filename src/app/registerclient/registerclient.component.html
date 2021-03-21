@@ -1,4 +1,6 @@
-<div class="grid-container">
+<div class="bg-image">
+</div>
+<div class="grid-container bg-text">
         <mat-card>
           <h3 style="text-align: center;">Register as a Client</h3>
           <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" fxLayout="column">
@@ -12,7 +14,7 @@
                 <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                 <mat-error *ngIf="data.lastname.errors?.required">Last Name is required</mat-error>
               </mat-form-field>
-              
+
             <mat-radio-group required aria-label="Select" matInput formControlName="gender" placeholder="Gender" class="w-100">Gender:
 			  <mat-radio-button style="margin-left: 5px;" value="1">Male</mat-radio-button>
 			  <mat-radio-button style="margin-left: 5px;" value="2">female</mat-radio-button>
@@ -42,7 +44,7 @@
             </mat-form-field>
             <mat-form-field class="w-100">
               <mat-label>Birthdate</mat-label>
-              <input matInput [matDatepicker]="picker2" formControlName="birthdate" required>
+              <input matInput [matDatepicker]="picker2" formControlName="birthdate" [max]="maxDate" required>
               <mat-icon matSuffix><mat-datepicker-toggle [for]="picker2"></mat-datepicker-toggle></mat-icon>
               <mat-datepicker #picker2 color="primary"></mat-datepicker>
               <mat-error *ngIf="data.birthdate.errors?.required">Birthdate is required</mat-error>
@@ -65,7 +67,7 @@
             </mat-form-field>
             <div class="w-100" style="display: flex;">
               <button mat-raised-button color="primary">Register</button>
-              <button style="margin-left: 10px;" mat-stroked-button color="warn" type="reset" (click)="onReset()">cancel</button>
+              <button style="margin-left: 10px;" mat-stroked-button color="warn" type="reset" (click)="onReset()">Clear</button>
               <span class="flex-spacer"></span>
               <a [routerLink]="['/loginclient']" style="margin-top: 5px;">Already registered? Login here</a>
             </div>

@@ -55,7 +55,7 @@ interface Film {
   selector: 'mwl-demo-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['try.component.scss'],
-  templateUrl: 'try.component.html',
+  templateUrl: 'try.component.html'
 })
 export class TryComponent implements OnInit{
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
@@ -91,7 +91,7 @@ export class TryComponent implements OnInit{
 
   refresh: Subject<any> = new Subject();
 
-  
+
   events$: Observable<CalendarEvent<{ film: Film }>[]>;
   events: CalendarEvent[] = [{
     start: subDays(startOfDay(new Date()), 1),

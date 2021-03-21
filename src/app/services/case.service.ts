@@ -9,6 +9,7 @@ import { Case } from "../models/case.model";
 import { Client } from '../models/client.model';
 import { Lawyer } from '../models/lawyer.model';
 import { LawyerInt } from '../models/lawyer.model copy';
+import swal from 'sweetalert/dist/sweetalert.min.js';
 
 const apiUrl = 'http://localhost:4000/api/';
 @Injectable({
@@ -39,7 +40,7 @@ export class CaseService {
       catchError(this.handleError)
     )
     .subscribe((res:any) => {
-      this.Caseid = res._id; 
+      this.Caseid = res._id;
       this.singleCase.next(res);
     }, (err: any) => {
       console.log(err);
@@ -60,7 +61,7 @@ export class CaseService {
       this.Cases.next(data);
     }, (err:any) => {
       console.log(err);
-    }); 
+    });
   }
 
   getpreadmittedCases() {
@@ -77,7 +78,7 @@ export class CaseService {
       this.Cases.next(data);
     }, (err:any) => {
       console.log(err);
-    }); 
+    });
   }
 
   getadmittedCases() {
@@ -94,7 +95,7 @@ export class CaseService {
       this.Cases.next(data);
     }, (err:any) => {
       console.log(err);
-    }); 
+    });
   }
 
   updateDetails(caseData) {
@@ -106,7 +107,7 @@ export class CaseService {
       this.singleCase.next(data);
     }, (err:any) => {
       console.log(err);
-    }); 
+    });
   }
 
   updateCase(caseData) {
@@ -117,14 +118,15 @@ export class CaseService {
       console.log(data)
     }, (err) => {
       console.log(err);
-    }); 
+    });
   }
 
   deleteCase(id) {
     this.http.delete<any>(apiUrl + 'case/' + id).pipe(
       catchError(this.handleError)
     ).subscribe((data) => {
-      alert(data.message);
+      // alert(data.message);
+      swal("","Successfully Deleted","info");
     });
   }
 
@@ -142,7 +144,7 @@ export class CaseService {
       this.Cases.next(data);
     }, (err:any) => {
       console.log(err);
-    }); 
+    });
   }
 
   disposeCase(_id) {
@@ -158,14 +160,14 @@ export class CaseService {
       this.singleCase.next(CaseData);
     }, (err:any) => {
       console.log(err);
-    }); 
+    });
   }
 
   onUploadDoc(file:FileList, id){
     const formData: FormData = new FormData();
     const files = file
     for (let index = 0; index < files.length; index++) {
-      formData.append('file', files.item(index), files.item(index).name); 
+      formData.append('file', files.item(index), files.item(index).name);
     }
     return this.http.post<any>(apiUrl+"uploadPdf/"+id,formData).pipe(
       catchError(this.handleError)
@@ -190,7 +192,7 @@ export class CaseService {
   setCases(data) {
     this.Cases.next(data);
   }
-  
+
   setLinkedClient(data) {
     this.linkedClient.next(data);
   }
@@ -211,7 +213,7 @@ export class CaseService {
       this.singleCase.next(data);
     }, (err:any) => {
       console.log(err);
-    }); 
+    });
   }
 
   getLinkedClient(id) {
@@ -222,7 +224,7 @@ export class CaseService {
       this.clientData = data;
     }, (err:any) => {
       console.log(err);
-    }); 
+    });
   }
 
   getLinkedLawyer(id) {
@@ -233,13 +235,13 @@ export class CaseService {
       this.lawyerData = data;
     }, (err:any) => {
       console.log(err);
-    }); 
+    });
   }
 
   getClientList() {
     return this.http.get<Client[]>(`${apiUrl}getClientList`)
   }
-  
+
   getClient(id) {
     this.http.get<Client>(`${apiUrl}getClient/${id}`).pipe(
       catchError(this.handleError)
@@ -248,7 +250,7 @@ export class CaseService {
       this.clientData = data;
     }, (err:any) => {
       console.log(err);
-    }); 
+    });
   }
 
   searchclients(term): Observable<Client[]> {
@@ -313,7 +315,8 @@ export class CaseService {
     this.http.delete<any>(apiUrl + 'deletefile/' + filename).pipe(
       catchError(this.handleError)
     ).subscribe((data) => {
-      alert(data.message);
+      // alert(data.message);
+      swal("", "file deleted Successfully!");
     });
   }
 
@@ -324,7 +327,7 @@ export class CaseService {
   getClientDashboard() {
     return this.http.get<any>(apiUrl + 'clientDashboard')
   }
-  
+
    //lawyer side
    getExistingChats(){
     return this.http.get<Client[]>(apiUrl+ 'lawyer/getchatrooms');
@@ -342,7 +345,7 @@ export class CaseService {
   storeLawyerForChat(lawyerData: LawyerInt){
     this.lawyerData = lawyerData;
   }
-  
+
   getClientCases() {
     this.http.get<Case[]>(apiUrl+ 'getClientCases').pipe(
       map((data:any) => {
@@ -357,6 +360,6 @@ export class CaseService {
       this.Cases.next(data);
     }, (err:any) => {
       console.log(err);
-    }); 
+    });
   }
 }

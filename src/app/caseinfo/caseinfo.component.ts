@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 import { Client } from '../models/client.model';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NotificationService } from '../services/notification.service';
 
 export interface Order {
   id:string;
@@ -25,11 +26,11 @@ export interface Note {
 @Component({
   selector: 'app-caseinfo',
   templateUrl: './caseinfo.component.html',
-  styleUrls: ['./caseinfo.component.scss']
+  styleUrls: ['./caseinfo.component.scss', '../chats/chats.component.scss']
 })
 export class CaseinfoComponent implements OnInit,OnDestroy {
 
-  constructor(private caseService: CaseService, private router: Router, private sanitizer: DomSanitizer) { }
+  constructor(private caseService: CaseService, private router: Router, private sanitizer: DomSanitizer, private notifyService : NotificationService) { }
 
   private caseSub : Subscription;
   caseData:Case;
@@ -56,13 +57,13 @@ export class CaseinfoComponent implements OnInit,OnDestroy {
   newOrderNote: string;
   displayNextOrder:boolean = false;
   displayedColumns: string[] = ['Order Date', 'Note', 'Action'];
-  
+
 
   onDetailsUpdated() {
     this.caseData.details = this.details;
     this.caseService.updateDetails(this.caseData);
   }
-  
+
   onNewOrder(data:NgForm) {
     if(!data.value.note) {
       data.value.note = "No Note has been added";
@@ -82,6 +83,7 @@ export class CaseinfoComponent implements OnInit,OnDestroy {
   else if(new Date(this.orders[0].orderDate) > new Date()) {
       this.displayNextOrder = true;
     }
+    this.notifyService.showSuccess("Hearing date is added to Calender!", "Woo-Hoo");
   }
 
   onDeleteOrder(id) {
@@ -93,7 +95,7 @@ export class CaseinfoComponent implements OnInit,OnDestroy {
       var d:any = new Date(b.orderDate);
       return d-c;
     });
-     
+
     if(this.caseData.orders.length==0) {
       this.displayNextOrder =false;
     }
@@ -138,7 +140,7 @@ export class CaseinfoComponent implements OnInit,OnDestroy {
     this.newTitle = this.editNote.title;
   }
 
-  onDeleteNote(id) { 
+  onDeleteNote(id) {
     this.notes = this.caseData.notes.filter(function(e) {return e._id != id});
     this.caseData.notes = this.notes;
     this.caseService.updateCase(this.caseData);
@@ -162,6 +164,7 @@ export class CaseinfoComponent implements OnInit,OnDestroy {
     this.caseService.linkClient(data.userId, id);
     this.caseData.client = data.userId;
     this.caseService.getClient(data._id);
+    this.notifyService.showSuccess(`Client ${data.firstname} linked with this case Successfully`, "");
   }
 
   unlink() {
@@ -174,7 +177,7 @@ export class CaseinfoComponent implements OnInit,OnDestroy {
   private searchTerms = new Subject<string>();
   display: string[] = ['firstName','lastName', 'Contact', 'Email', 'Action'];
 
-  
+
 
   downloadPdf(filename, contentType) {
     this.caseService.downloadPDF(filename, contentType).subscribe(
@@ -232,7 +235,7 @@ export class CaseinfoComponent implements OnInit,OnDestroy {
       }
     })
 
-    
+
     const t = this.caseService.getId()
     this.caseService.getLinkedClient(t);
   }
