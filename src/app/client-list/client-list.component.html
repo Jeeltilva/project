@@ -21,7 +21,7 @@
 
             <ng-container matColumnDef="Action">
               <th mat-header-cell *matHeaderCellDef> Action </th>
-              <td mat-cell *matCellDef="let element"><button mat-raised-button color="primary">Message</button></td>
+              <td mat-cell *matCellDef="let element"><button mat-raised-button color="primary" (click)="onMessage(element)">Message</button></td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

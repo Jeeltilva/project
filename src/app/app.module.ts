@@ -63,7 +63,6 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { DemoUtilsModule } from './demo-utils/module';
 import { TryModule } from "./try/module";
 import { ChatroomComponent } from './chatroom/chatroom.component';
-import { ChatComponent } from './chat/chat.component';
 import { ClientListComponent } from './client-list/client-list.component';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -91,7 +90,6 @@ import { ToastrModule } from 'ngx-toastr';
     ClientCasesComponent,
     ClientCaseinfoComponent,
     ClientChatroomComponent,
-    ChatComponent,
     ClientListComponent,
     ChatsComponent,
     ClientsideChatComponent

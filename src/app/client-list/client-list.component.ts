@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Client } from '../models/client.model';
 import { CaseService } from '../services/case.service';
 
@@ -10,7 +11,7 @@ import { CaseService } from '../services/case.service';
 export class ClientListComponent implements OnInit {
 
   data:Client[] = []
-  constructor(private caseService: CaseService) { }
+  constructor(private caseService: CaseService, private router: Router) { }
 
   displayedColumns: string[] = ['Name', 'Email', 'Contact No', 'Action'];
 
@@ -19,4 +20,10 @@ export class ClientListComponent implements OnInit {
       this.data = data
     })
   }
+
+  onMessage(data: Client){
+    this.caseService.storeClientForChat(data);
+    this.router.navigate(['/chatroom']);
+  }
+
 }

@@ -18,7 +18,7 @@ export class ClientChatroomComponent implements OnInit {
   username: String;
   email: String;
   chatroom;
-  message: String;
+  message: String = '';
   messageArray: Array<{username: String, message: String}> = [];
   isTyping = false;
   lawyerData:LawyerInt;
@@ -45,10 +45,13 @@ export class ClientChatroomComponent implements OnInit {
     this.webSocketService.joinRoom({lawyer: this.lawyerData.userId, room: this.chatroom, client: currentUser});
     this.authService.getChatRoomsChat(this.chatroom).subscribe(messages => {
       this.messageArray = messages;
-    }); 
+    });
   }
 
   sendMessage() {
+    if(this.message.trim()== ''){
+      return;
+    }
     this.webSocketService.sendMessage({room: this.chatroom, user: this.username, message: this.message});
     this.message = '';
   }
