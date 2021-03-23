@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -9,8 +9,9 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.scss']
 })
-export class MainNavComponent {
+export class MainNavComponent implements OnInit{
 
+  public userName: string;
   link1:boolean = false;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -19,6 +20,10 @@ export class MainNavComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver, private authService : AuthService) {}
+
+  ngOnInit():void{
+    this.userName= this.authService.getuserName();
+  }
 
   selectList() {
     this.link1=!this.link1;
