@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const socket = require('socket.io');
 const ChatRoom = require('./Schema/chatroom')
+const { sendReminderEmailLawyer, sendReminderEmailClient } = require('./routes/mail')
 mongoose.connect('mongodb://localhost/project', {
     useCreateIndex: true,
     useNewUrlParser: true,
@@ -17,6 +18,10 @@ const app = require("./app");
 
 const debug = require("debug")("node-angular");
 const http = require("http");
+const Case = require('./Schema/case');
+const Lawyer = require('./Schema/lawyer');
+const Client = require('./Schema/client');
+const User = require('./Schema/user');
 const normalizePort = val => {
   var port = parseInt(val, 10);
 
@@ -74,7 +79,7 @@ io.on('connection', (socket) => {
       try{
         const temp = await ChatRoom.findOne({name: data.room})
         if(!temp) {
-            const temp1 = new ChatRoom({ name: data.room, client: data.client, lawyer: data.lawyer,messages: [] }); 
+            const temp1 = new ChatRoom({ name: data.room, client: data.client, lawyer: data.lawyer,messages: [] });
             await temp1.save()
         }
       } catch(err) {
@@ -91,15 +96,47 @@ io.on('connection', (socket) => {
         console.log(error)
       }
 
-      // chatRooms.update({name: data.room}, { $push: { messages: { user: data.user, message: data.message } } }, (err, res) => {
-      //     if(err) {
-      //         console.log(err);
-      //         return false;
-      //     }
-      //     console.log("Document updated");
-      // });
   });
   socket.on('typing', (data) => {
       socket.broadcast.in(data.room).emit('typing', {data: data, isTyping: true});
   });
 });
+
+  var cron = require('node-cron');
+
+  cron.schedule('0 8 * * *', async() => {
+
+  Date.prototype.addDays = function (n) {
+    var time = this.getTime();
+    var changedDate = new Date(time + (n * 24 * 60 * 60 * 1000));
+    this.setTime(changedDate.getTime());
+    return this;
+  };
+    const data =  await Case.find({status:"admitted"})
+    const temp =  await Case.find({status:"pre-admitted"})
+
+    const data1 = [...data, ...temp]
+
+    const prevDate = new Date().toDateString();
+    let orders = [];
+    data1.forEach(async function(e) {
+        if(e.orders != []){
+          orders = e.orders;
+          for (let index = 0; index < orders.length; index++) {
+            const element = orders[index];
+            if (new Date(element.orderDate).addDays(-1).toDateString() == prevDate) {
+             const lawyer = await Lawyer.findOne({userId: e.lawyer})
+             const user = await User.findById({_id: e.lawyer})
+             sendReminderEmailLawyer(user.email, lawyer.firstname, element.orderDate, e.stampNo, element.orderNote)
+             if(e.client) {
+                  const client = await Client.findOne({userId: e.client})
+                  const userTemp = await User.findById({_id: e.client})
+                  sendReminderEmailClient(userTemp.email, client.firstname, element.orderDate, e.stampNo, element.orderNote)
+              }
+            }
+        }}
+    })
+ }, {
+   scheduled: true,
+   timezone: "Asia/Kolkata"
+ });
