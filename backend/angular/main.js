@@ -6634,7 +6634,7 @@ class CaseinfoComponent {
         if (!data.value.note) {
             data.value.note = "No Note has been added";
         }
-        this.orders = this.caseData.orders.concat({ id: this.caseData.stampNo, orderDate: data.value.orderDate, orderNote: data.value.note });
+        this.orders = this.caseData.orders.concat({ id: this.caseData.stampNo, orderDate: new Date(data.value.orderDate), orderNote: data.value.note });
         this.caseData.orders = this.orders;
         this.caseService.addOrder(this.caseData._id, { id: this.caseData.stampNo, orderDate: data.value.orderDate, orderNote: data.value.note });
         data.resetForm();

@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
       pass: 'LawyerSite'
     }
   });
-  
+
   const mailOptions = {
     from: 'lawyer.portal2020@gmail.com',
     to: 'kalagivora@gmail.com',
@@ -36,12 +36,6 @@ const transporter = nodemailer.createTransport({
 
   const sendReminderEmailLawyer = (email, name, date,  caseNo, note) => {
     const temp = new Date(date)
-    const x1 = temp.getDate()
-    const x2 = temp.getMonth()
-    const x3 = temp.getYear()
-    const dateTemp = new Date(x3+1900, x2, x1-1, 9, 00, 0);
-    console.log('reminder is set for ', dateTemp.toUTCString())
-    const job = schedule.scheduleJob(dateTemp, function(){
     transporter.sendMail({
         from: 'lawyer.portal2020@gmail.com',
         to: email,
@@ -55,17 +49,10 @@ Note: ${note}`
           console.log('Email sent: ' + info.response);
         }
       });
-  })
 }
 
 const sendReminderEmailClient = (email, name, date,  caseNo, note) => {
     const temp = new Date(date)
-    const x1 = temp.getDate()
-    const x2 = temp.getMonth()
-    const x3 = temp.getYear()
-    const dateTemp = new Date(x3+1900, x2, x1-1, 9, 00, 0);
-    console.log('reminder is set for ', dateTemp.toUTCString())
-    const job = schedule.scheduleJob(dateTemp, function(){
     transporter.sendMail({
         from: 'lawyer.portal2020@gmail.com',
         to: email,
@@ -79,7 +66,6 @@ Note: ${note}`
           console.log('Email sent: ' + info.response);
         }
       });
-  })
 }
 module.exports = {
     sendWelcomeEmail,

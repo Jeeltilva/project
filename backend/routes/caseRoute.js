@@ -33,7 +33,7 @@ conn.once('open', function() {
 //   });
 // let gfs ;
 // connect.once('open', () => {
-//     gfs = new mongoose.mongo.GridFSBucket(connect.db, { bucketName: "uploads"}) 
+//     gfs = new mongoose.mongo.GridFSBucket(connect.db, { bucketName: "uploads"})
 // });
 
 router.post('/api/addcase',auth ,async (req,res) => {
@@ -145,7 +145,7 @@ router.patch('/api/makedispose', auth, async(req, res) =>{
         const data = await Case.findById({_id})
         data.status = 'disposed'
         await data.save()
-        res.status(201).send(data)   
+        res.status(201).send(data)
     } catch (error) {
         res.status(500).send(error)
     }
@@ -202,12 +202,12 @@ router.patch('/api/case/order/:id', auth, async(req, res) => {
         }
         const lawyer = await Lawyer.findOne({userId: caseData.lawyer})
         const user = await User.findById({_id: caseData.lawyer})
-        sendReminderEmailLawyer(user.email, lawyer.firstname, req.body.order.orderDate, caseData.stampNo, req.body.order.orderNote)
-        if(caseData.client) {
-            const client = await Client.findOne({userId: caseData.client})
-            const userTemp = await User.findById({_id: caseData.client})
-            sendReminderEmailclient(userTemp.email, client.firstname, req.body.order.orderDate, caseData.stampNo, req.body.order.orderNote)
-        }
+        // sendReminderEmailLawyer(user.email, lawyer.firstname, req.body.order.orderDate, caseData.stampNo, req.body.order.orderNote)
+        // if(caseData.client) {
+        //     const client = await Client.findOne({userId: caseData.client})
+        //     const userTemp = await User.findById({_id: caseData.client})
+        //     sendReminderEmailclient(userTemp.email, client.firstname, req.body.order.orderDate, caseData.stampNo, req.body.order.orderNote)
+        // }
         caseData.orders = caseData.orders.concat(req.body.order)
         await caseData.save()
         res.status(201).send(caseData)
@@ -234,7 +234,7 @@ router.patch('/api/linkClient/:id', auth, async(req, res) => {
     await client.save()
     res.status(201).send(caseData)
     } catch(e) {
-        res.status(500).send(e) 
+        res.status(500).send(e)
     }
 })
 
@@ -281,7 +281,7 @@ router.get('/api/getLinkedClient/:id', auth, async(req,res)=> {
         const caseData = await Case.findById({_id})
         if(caseData.client) {
             const client = await Client.findOne({ userId :caseData.client})
-            res.status(201).send(client) 
+            res.status(201).send(client)
         }
         else {
         res.status(201).send({})}
@@ -318,7 +318,7 @@ router.post('/api/uploadPdf/:id',upload.array('file') ,async (req, res, next) =>
     try {
                 const _id = req.params.id
                 const data = await Case.findById({_id})
-        
+
                 if(req.files.length > 0){
                     req.files.map(file => {
                         data.docs = data.docs.concat({ filename: file.filename, contentType : file.contentType,
@@ -386,10 +386,10 @@ router.patch('/api/updateDoc/:id', auth,async (req, res) => {
         const data = await Case.findById({_id})
         data.docs = req.body
         await data.save()
-        res.status(201).send(data)   
+        res.status(201).send(data)
     } catch (error) {
         res.status(500).send(error)
-    } 
+    }
 })
 
 router.get('/api/calendarOrders', auth, async(req, res) => {
@@ -400,7 +400,7 @@ router.get('/api/calendarOrders', auth, async(req, res) => {
 
         const data1 = [...data, ...temp]
 
-        let orders = []; 
+        let orders = [];
         data1.forEach(function(e) {
             if(e.orders != []){
             orders = orders.concat(e.orders)}
@@ -430,7 +430,7 @@ router.get('/api/getLinkedLawyer/:id', auth, async(req,res)=> {
         const caseData = await Case.findById({_id})
         if(caseData.lawyer) {
             const lawyer = await Lawyer.findOne({ userId :caseData.lawyer})
-            res.status(201).send(lawyer) 
+            res.status(201).send(lawyer)
         }
         else {
         res.status(201).send({})}
@@ -447,7 +447,7 @@ router.get('/api/lawyer/getchatrooms',auth, async(req, res) => {
         for (let index = 0; index < data.length; index++) {
             const element = data[index].client;
             const temp = await Client.findOne({userId: element})
-            result.push(temp) 
+            result.push(temp)
         }
         res.status(201).send(result)
     } catch (error) {
@@ -463,7 +463,7 @@ router.get('/api/client/getchatrooms',auth, async(req, res) => {
         for (let index = 0; index < data.length; index++) {
             const element = data[index].lawyer;
             const temp = await Lawyer.findOne({userId: element})
-            result.push(temp) 
+            result.push(temp)
         }
         res.status(201).send(result)
     } catch (error) {
@@ -478,7 +478,7 @@ router.get('/api/lawyerDashboard', auth, async(req, res) => {
         const total_cases = cases.length
         total_admitted = 0
         total_disposed = 0
-        let clients = [] 
+        let clients = []
         for (let index = 0; index < cases.length; index++) {
             if(cases[index].status === "admitted") {
                 total_admitted = total_admitted + 1
