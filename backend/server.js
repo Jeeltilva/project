@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const socket = require('socket.io');
 const ChatRoom = require('./Schema/chatroom')
 const { sendReminderEmailLawyer, sendReminderEmailClient } = require('./routes/mail')
+// mongoose.connect('mongodb+srv://root:root@cluster0.1s4e6.mongodb.net/test', {
 mongoose.connect('mongodb://localhost/project', {
     useCreateIndex: true,
     useNewUrlParser: true,

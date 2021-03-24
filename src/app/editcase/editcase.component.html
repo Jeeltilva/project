@@ -1,5 +1,6 @@
-<div class="grid-container">
-    <h1 class="mat-h1">Edit Case</h1>
+<div class="bg-image"></div>
+<div class="grid-container bg-text">
+    <h1 class="mat-h1" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: bold;">Edit Case</h1>
   <form (ngSubmit)="onSubmit(editcase)" #editcase="ngForm" >
     <mat-card>
       <mat-card-content style="margin : 0px 30px">
@@ -84,7 +85,7 @@
         <input matInput #message maxlength="256" placeholder="Description" name="description" id="description" [(ngModel)]="File.description">
         <mat-hint [align]="'end'">{{message.value.length}} / 256</mat-hint>
       </mat-form-field>
-  
+
       <mat-form-field class="half-width">
         <input matInput [matDatepicker]="picker1" placeholder="Reg. Date" name="RegDate" id="RegDate" [(ngModel)]="File.RegDate">
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -94,7 +95,7 @@
   </div>
   <mat-card-actions>
     <br><br>
-    <button  mat-raised-button color="primary" type="submit">update</button> 
+    <button  mat-raised-button color="primary" type="submit">update</button>
     <button mat-raised-button color="basic" type="reset">Clear</button>
    </mat-card-actions>
        </mat-card-content>

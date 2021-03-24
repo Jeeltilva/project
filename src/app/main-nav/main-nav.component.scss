@@ -36,6 +36,8 @@
     top: 0;
     left: 0;
     right: 0;
+    background-color: black;
+    color: white;
   }
 
   .footer {
@@ -44,10 +46,12 @@
     bottom: 0;
     margin-bottom: 2px;
     width: 100%;
-    background-color:#673ab7;
+    // background-color:#673ab7;
+    background-color: black;
+    color: white;
     // background-color:#673ab7;
     // background: -webkit-gradient(linear, left top, left bottom, from(#673ab7), to(#9781bd));
-    color: white;
+    // color: white;
     display: inline-block;
     // -moz-box-shadow: 1px 1px 3px #673ab7;
     //     -webkit-box-shadow: 1px 1px 3px #673ab7;
