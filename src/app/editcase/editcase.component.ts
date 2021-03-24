@@ -11,7 +11,7 @@ import { CaseService } from "../services/case.service";
 @Component({
   selector: 'app-editcase',
   templateUrl: './editcase.component.html',
-  styleUrls: ['./editcase.component.scss']
+  styleUrls: ['./editcase.component.scss', '../chats/chats.component.scss']
 })
 export class EditcaseComponent implements OnInit{
 
@@ -31,7 +31,7 @@ export class EditcaseComponent implements OnInit{
   }
   @ViewChild('editcase') form:NgForm;
 
-  
+
   onSubmit(form: NgForm) {
     console.log(this.File);
     this.caseService.updateCase(this.File);

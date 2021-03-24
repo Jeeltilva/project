@@ -10,7 +10,7 @@ path = require('path')
 const crypto = require('crypto');
 let mongoose = require('mongoose');
 
-let conn = mongoose.createConnection('mongodb+srv://root:root@cluster0.1s4e6.mongodb.net/test', {
+let conn = mongoose.createConnection('mongodb://localhost/project', {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -291,6 +291,7 @@ router.get('/api/getLinkedClient/:id', auth, async(req,res)=> {
 })
 
 const storage = new GridFsStorage({
+    // url: 'mongodb+srv://root:root@cluster0.1s4e6.mongodb.net/test',
     url: 'mongodb://localhost/project',
     file: (req, file) => {
         return new Promise((resolve, reject) => {

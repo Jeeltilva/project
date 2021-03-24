@@ -9,6 +9,8 @@
     left: 15px;
     right: 15px;
     bottom: 15px;
+    background-color:  rgb(31, 28, 28);
+    color: white;
   }
 
   .more-button {
@@ -23,7 +25,7 @@
 
   .bg-image {
     /* The image used */
-    background-image: url("https://i.pinimg.com/originals/41/5e/07/415e07196894056736f476a802cecbd9.jpg");
+    background-image: url("https://npr.brightspotcdn.com/dims4/default/ff93213/2147483647/strip/true/crop/1875x1250+0+0/resize/880x587!/quality/90/?url=http:%2F%2Fnpr-brightspot.s3.amazonaws.com%2Flegacy%2Fsites%2Fwvpn%2Ffiles%2F201511%2FScalesofJustice.jpg");
 
     /* Add the blur effect */
     filter: blur(8px);
@@ -40,7 +42,8 @@
   }
 
   .bg-text {
-    color: white;
+    // color: white;
+    color: black;
     font-weight: bold;
     /* border: 3px solid #f1f1f1; */
     position: absolute;
