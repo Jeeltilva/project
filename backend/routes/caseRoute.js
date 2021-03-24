@@ -10,7 +10,7 @@ path = require('path')
 const crypto = require('crypto');
 let mongoose = require('mongoose');
 
-let conn = mongoose.createConnection('mongodb://localhost/project', {
+let conn = mongoose.createConnection('mongodb+srv://root:root@cluster0.1s4e6.mongodb.net/test', {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
