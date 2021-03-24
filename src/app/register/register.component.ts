@@ -16,6 +16,8 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   maxDate = new Date();
+  hide = true;
+  hide1 = true;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private _snackBar: MatSnackBar, private authSer: AuthService, private bcnService: BcnValidationService) { }
 

@@ -38,25 +38,44 @@
     right: 0;
   }
 
-  .example-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-
   .footer {
     position: fixed;
     left: 0;
     bottom: 0;
     margin-bottom: 2px;
     width: 100%;
-    // background-color:#673ab7;
     background-color:#673ab7;
+    // background-color:#673ab7;
+    // background: -webkit-gradient(linear, left top, left bottom, from(#673ab7), to(#9781bd));
     color: white;
-    text-align: center;
     display: inline-block;
+    // -moz-box-shadow: 1px 1px 3px #673ab7;
+    //     -webkit-box-shadow: 1px 1px 3px #673ab7;
+    //                  box-shadow: 1px 1px 3px #673ab7;
+
+    // text-align: center;
   }
+
+  .footer .rights{
+    float:left;
+    margin-top: 18px;
+    font-size:x-small;
+  }
+
+  .footer .contact{
+    float: right;
+      font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-weight: 300;
+      font-size: small;
+  }
+
+  // .footer .follow{
+  //   float: right;
+  //   margin-right: 200px;
+  //   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  //     font-weight: 330;
+  //     font-size: small;
+  // }
 
   a{
     text-decoration: none;

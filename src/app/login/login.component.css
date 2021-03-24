@@ -4,6 +4,10 @@
 }
 .vache {
     margin: 20px auto;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: medium;
+    font-style: normal;
 }
 
 .card {

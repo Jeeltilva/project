@@ -13,6 +13,8 @@ export class RegisterclientComponent implements OnInit {
   registerForm: FormGroup;
   submitted:boolean = false;
   maxDate = new Date();
+  hide = true;
+  hide1 = true;
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private _snackBar: MatSnackBar) { }
 

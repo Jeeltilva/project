@@ -11,7 +11,7 @@ import { LawyerInt } from '../models/lawyer.model copy';
 @Component({
   selector: 'app-client-chatroom',
   templateUrl: './client-chatroom.component.html',
-  styleUrls: ['./client-chatroom.component.scss']
+  styleUrls: ['./client-chatroom.component.scss', '../chatroom/chatroom.component.scss']
 })
 export class ClientChatroomComponent implements OnInit {
 

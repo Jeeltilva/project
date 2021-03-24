@@ -6,7 +6,7 @@ import { CaseService } from '../services/case.service';
 @Component({
   selector: 'app-clientside-chat',
   templateUrl: './clientside-chat.component.html',
-  styleUrls: ['./clientside-chat.component.scss']
+  styleUrls: ['./clientside-chat.component.scss', '../chats/chats.component.scss']
 })
 export class ClientsideChatComponent implements OnInit {
 

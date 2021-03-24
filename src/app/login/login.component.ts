@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
+  hide = true;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private authService : AuthService) { }
 
@@ -23,13 +24,13 @@ export class LoginComponent implements OnInit {
 
   get data() { return this.loginForm.controls; }
 
-  onSubmit() {    
+  onSubmit() {
   //   if (this.loginForm.invalid) {
   //     return;
   //   } else if (this.data.username.value == localStorage.getItem("username") && this.data.password.value == localStorage.getItem("password")) {
   //     this.router.navigate(['/home']);
   //   } else {
-  //     this.submitted = true;      
+  //     this.submitted = true;
   //   }
   const value = this.loginForm.value;
     this.authService.loginLawyer(value.username, value.password, "lawyer")
