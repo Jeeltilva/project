@@ -4,6 +4,14 @@
 
 }
 
+.vache{
+  margin: 20px auto;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: medium;
+    font-style: normal;
+}
+
 .bg-image {
   /* The image used */
   background-image: url("https://i.pinimg.com/originals/41/5e/07/415e07196894056736f476a802cecbd9.jpg");

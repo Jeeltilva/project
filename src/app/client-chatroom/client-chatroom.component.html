@@ -1,8 +1,10 @@
-<div id="mario-chat">
+<div class="bg-image">
+</div>
+<div id="mario-chat" class="bg-text">
     <h2>{{ lawyerData.firstname }}  {{lawyerData.lastname}}</h2>
     <div id="chat-window">
         <div *ngFor="let item of messageArray">
-            <p [class.userMessage]="item.username == this.username" [class.secUserMessage]="item.username != this.username">{{ item.message }}</p>                
+            <p [class.userMessage]="item.username == this.username" [class.secUserMessage]="item.username != this.username">{{ item.message }}</p>
         </div>
         <div class="secUserMessage" *ngIf="isTyping">
             <div class="typing typing-1"></div>
@@ -10,9 +12,9 @@
             <div class="typing typing-3"></div>
         </div>
     </div>
-    <div style="display: flex;"> 
+    <div style="display: flex;">
     <input (keypress)="typing()" [(ngModel)]="message" name="message" type="text" style="width: 80%;" placeholder="Message"/>
-    <span class="flex-spacer"></span>            
+    <span class="flex-spacer"></span>
     <button id="send" (click)="sendMessage()" style="width: 20%">Send</button>
-</div>    
+</div>
 </div>

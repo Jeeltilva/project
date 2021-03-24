@@ -137,7 +137,7 @@ input{
       opacity: 1;
     }
   }
-  
+
   @keyframes typing {
     0%, 75%, 100% {
       transform: translate(0, 0.25rem) scale(0.9);
@@ -147,4 +147,38 @@ input{
       transform: translate(0, -0.25rem) scale(1);
       opacity: 1;
     }
+  }
+
+  .bg-image {
+    /* The image used */
+    background-image: url("https://i.pinimg.com/originals/41/5e/07/415e07196894056736f476a802cecbd9.jpg");
+
+    /* Add the blur effect */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .bg-text {
+    background-color:white;
+// background-color: rgba(0,0,0, 0.4);
+    color: black;
+    font-weight:normal;
+    /* border: 3px solid #f1f1f1; */
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    width: 95%;
+    // height: auto;
+    transform: translate(-50%, -50%);
+    // z-index: 2;
+    /* padding: 20px; */
+    // text-align: center;
   }

@@ -8,9 +8,10 @@
         >
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-        <span>Lawyer Portal</span>
-        <small style="text-align: center;">({{userName}})</small>
+        <span>Lawyer Portal <mat-icon>gavel</mat-icon></span>
+
         <span class="flex-spacer"></span>
+        <small style="font-size:x-small;">{{userName | uppercase}}</small>
         <button mat-icon-button >
           <mat-icon routerLink="/chats">chat</mat-icon>
         </button>
@@ -53,7 +54,15 @@
 
     <mat-toolbar class="footer">
       <!-- <p style="margin-bottom:0;">Made by <a href="https://www.linkedin.com/in/kalagi-vora">Team</a></p> -->
-      <p></p>
-      <small>&copy; All rights reserved for <i>Lawyer Portal</i> 2020</small>
+      <small class="rights">&copy; All rights reserved for <i>Lawyer Portal</i> 2020</small>
+      <span class="contact">
+        <h5 style="margin-bottom:0; font-size: medium">Contact Us &#9993;</h5>
+        <p>lawyer.portal2020@gmail.com</p>
+      </span>
+      <!-- <span class="follow">
+        <h5 style="margin-bottom:0; font-size: medium">Follow Us On</h5>
+        <p>github</p>
+        <h2>Contact</h2>
+      </span> -->
     </mat-toolbar>
   </ng-container>

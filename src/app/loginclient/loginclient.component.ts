@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 export class LoginclientComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
+  hide= true;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private authService : AuthService) { }
 
@@ -23,11 +24,11 @@ export class LoginclientComponent implements OnInit {
 
   get data() { return this.loginForm.controls; }
 
-  onSubmit() {    
+  onSubmit() {
     if (this.loginForm.invalid) {
       return;
     } else {
-      this.authService.loginClient(this.data.username.value, this.data.password.value, "client")    
+      this.authService.loginClient(this.data.username.value, this.data.password.value, "client")
     }
   }
 }

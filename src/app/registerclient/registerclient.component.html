@@ -2,7 +2,7 @@
 </div>
 <div class="grid-container bg-text">
         <mat-card>
-          <h3 style="text-align: center;">Register as a Client</h3>
+          <h3 style="text-align: center;" class="vache">Register as a Client</h3>
           <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" fxLayout="column">
               <mat-form-field class="w-100">
                 <input type="text" matInput placeholder="First Name" formControlName="firstname" required>
@@ -50,20 +50,22 @@
               <mat-error *ngIf="data.birthdate.errors?.required">Birthdate is required</mat-error>
               </mat-form-field>
             <mat-form-field class="w-100">
-              <input type="password" matInput placeholder="Password" formControlName="password" required [ngClass]="{ 'is-invalid': submitted && data.password.errors }">
-              <mat-icon matSuffix>lock</mat-icon>
+              <input type="password" matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required [ngClass]="{ 'is-invalid': submitted && data.password.errors }">
+              <mat-icon matSuffix style="cursor: pointer;" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <!-- <mat-icon matSuffix>lock</mat-icon> -->
               <mat-error *ngIf="submitted && data.password.errors">
 	              <mat-error *ngIf="data.password.errors?.required">Password is required</mat-error>
 	              <mat-error *ngIf="data.password.errors.minlength">Password must be at least 8 characters</mat-error>
 	          </mat-error>
             </mat-form-field>
             <mat-form-field class="w-100">
-              <input type="password" matInput placeholder="Confirm Password" formControlName="confirmpassword" required [ngClass]="{ 'is-invalid': submitted && data.confirmpassword.errors }">
+              <input type="password" matInput placeholder="Confirm Password" [type]="hide1 ? 'password' : 'text'" formControlName="confirmpassword" required [ngClass]="{ 'is-invalid': submitted && data.confirmpassword.errors }">
               <mat-error *ngIf="submitted && data.confirmpassword.errors">
                         <mat-error *ngIf="data.confirmpassword.errors.required">Confirm Password is required</mat-error>
                         <mat-error *ngIf="data.confirmpassword.errors.mustMatch">Passwords must match</mat-error>
                </mat-error>
-              <mat-icon matSuffix>lock</mat-icon>
+              <mat-icon matSuffix style="cursor: pointer;" (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <!-- <mat-icon matSuffix>lock</mat-icon> -->
             </mat-form-field>
             <div class="w-100" style="display: flex;">
               <button mat-raised-button color="primary">Register</button>
