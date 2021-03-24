@@ -346,6 +346,10 @@ export class CaseService {
     this.lawyerData = lawyerData;
   }
 
+  getLawyerList() {
+    return this.http.get<LawyerInt[]>(`${apiUrl}getLawyerList`)
+  }
+
   getClientCases() {
     this.http.get<Case[]>(apiUrl+ 'getClientCases').pipe(
       map((data:any) => {

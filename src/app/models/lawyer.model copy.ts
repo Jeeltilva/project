@@ -16,4 +16,5 @@ export interface LawyerInt {
     _v?: string,
     createdAt?: Date,
     updatedAt?: Date,
+    email?: string
 }

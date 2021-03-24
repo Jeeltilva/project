@@ -539,4 +539,22 @@ router.get('/api/getClientList', auth, async(req, res) => {
     }
 })
 
+router.get('/api/getLawyerList', auth, async(req, res) => {
+  try {
+      const _id = req.user._id
+      const cases = await Case.find({client: _id})
+      let lawyers = []
+      for (let index = 0; index < cases.length; index++) {
+              if(!lawyers.includes(String(cases[index].lawyer))){
+                  const temp = await Lawyer.findOne({userId: cases[index].lawyer})
+                  const temp1 = await User.findById({ _id })
+                  lawyers.push({...temp._doc, email: temp1.email })
+              }
+      }
+      res.status(201).send(lawyers)
+  } catch (error) {
+      res.status(500).send(error)
+  }
+})
+
 module.exports = router
