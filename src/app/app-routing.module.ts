@@ -22,6 +22,7 @@ import { ClientChatroomComponent } from './client-chatroom/client-chatroom.compo
 import { ClientListComponent } from "./client-list/client-list.component";
 import { ChatsComponent } from './chats/chats.component';
 import { ClientsideChatComponent } from './clientside-chat/clientside-chat.component';
+import { LawyerListComponent } from './lawyer-list/lawyer-list.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'caseinfo', component: CaseinfoComponent, canActivate: [AuthGuard]},
   { path: 'try', component: TryComponent, canActivate: [AuthGuard]},
   { path: 'clientlist', component: ClientListComponent, canActivate: [AuthGuard]},
+  { path: 'lawyerlist', component: LawyerListComponent, canActivate: [AuthGuard]},
   { path: 'editcase', component: EditcaseComponent, canActivate: [AuthGuard]},
   { path: 'chats', component: ChatsComponent, canActivate: [AuthGuard]},
   { path: 'chatroom', component: ChatroomComponent },
