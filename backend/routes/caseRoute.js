@@ -238,43 +238,6 @@ router.patch('/api/linkClient/:id', auth, async(req, res) => {
     }
 })
 
-// router.get('/api/linkClient',auth, async (req,res) => {
-//     const match =  { client = req.body.client}
-//     const sort = {}
-
-//     if (req.query.status) {
-//         if(req.query.status === "disposed") {
-//             match.status = "disposed"
-//         }
-//         if(req.query.status === "admitted") {
-//             match.status = "admitted"
-//         }
-//         if(req.query.status === "preAdmission") {
-//             match.status = "preAdmission"
-//         }
-//     }
-
-//     if (req.query.sortBy) {
-//         const parts = req.query.sortBy.split(':')
-//         sort[parts[0]] = parts[1] === 'desc' ? -1 : 1
-//     }
-
-//     try{
-//         await req.user.populate({
-//             path:'Cases',
-//             match,
-//             options: {
-//                 limit: parseInt(req.query.limit),
-//                 skip: parseInt(req.query.skip),
-//                 sort
-//             }
-//         }).execPopulate()
-//         res.status(201).send(req.user.Cases)
-//     } catch(e) {
-//         res.status(500).send(e)
-//     }
-// })
-
 router.get('/api/getLinkedClient/:id', auth, async(req,res)=> {
     try {
         const _id =  req.params.id

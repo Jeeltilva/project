@@ -59,6 +59,7 @@ export class AuthService {
           this.userName = response.userName;
           this.role.next(role);
           this.saveAuthData(token, role, this.userId, this.userName);
+          location.reload();
           this.router.navigate(["/dashboard"]);
           this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
         }
@@ -83,6 +84,7 @@ export class AuthService {
           this.userName = response.userName;
           this.role.next(role);
           this.saveAuthData(token, role, this.userId, this.userName);
+          location.reload();
           this.router.navigate(["/clientdashboard"]);
           this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
         }
@@ -112,6 +114,7 @@ export class AuthService {
             this.role.next(role);
             this.saveAuthData(token, role, this.userId, this.userName);
             console.log(this.userName)
+            location.reload();
             this.router.navigate(["/dashboard"]);
             this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
           }
@@ -141,6 +144,7 @@ export class AuthService {
             this.userName = response.userName;
             this.role.next(role);
             this.saveAuthData(token, role, this.userId, this.userName);
+            location.reload();
             this.router.navigate(["/clientdashboard"]);
             this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
           }
@@ -167,20 +171,11 @@ export class AuthService {
       this.router.navigate(["/dashboard"]);
     }
     if(role === "client"){
-      this.router.navigate(["/clientdashboard"
-    ])
+      this.router.navigate(["/clientdashboard"])
     }
   }
 
   logoutLawyer() {
-    // this.http.post<any>(BACKEND_URL + "/logoutLawyer", "")
-    // .subscribe( response => {
-    //   this.token = null;
-    //   this.role.next(null);
-    //   this.userId = null;
-    //   this.userName = null;
-    //   this.isAuthenticated = false;
-    //   this.clearAuthData();
       swal({
         title: "Are you sure?",
         text: "",

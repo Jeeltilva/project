@@ -25,14 +25,8 @@ export class LoginComponent implements OnInit {
   get data() { return this.loginForm.controls; }
 
   onSubmit() {
-  //   if (this.loginForm.invalid) {
-  //     return;
-  //   } else if (this.data.username.value == localStorage.getItem("username") && this.data.password.value == localStorage.getItem("password")) {
-  //     this.router.navigate(['/home']);
-  //   } else {
-  //     this.submitted = true;
-  //   }
   const value = this.loginForm.value;
-    this.authService.loginLawyer(value.username, value.password, "lawyer")
+    this.authService.loginLawyer(value.username, value.password, "lawyer");
+    // location.reload()
   }
 }
