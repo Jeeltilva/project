@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class WebsocketService {
 
-  private socket = io('http://localhost:4000');
+  private socket = io('http://localhost:4000/');
   constructor() { }
 
   joinRoom(data) {

@@ -23,6 +23,7 @@ import { ClientListComponent } from "./client-list/client-list.component";
 import { ChatsComponent } from './chats/chats.component';
 import { ClientsideChatComponent } from './clientside-chat/clientside-chat.component';
 import { LawyerListComponent } from './lawyer-list/lawyer-list.component';
+import { ClientAuthGuard } from './clientauth.guard';
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
@@ -34,19 +35,19 @@ const routes: Routes = [
   { path: 'caseinfo', component: CaseinfoComponent, canActivate: [AuthGuard]},
   { path: 'try', component: TryComponent, canActivate: [AuthGuard]},
   { path: 'clientlist', component: ClientListComponent, canActivate: [AuthGuard]},
-  { path: 'lawyerlist', component: LawyerListComponent, canActivate: [AuthGuard]},
+  { path: 'lawyerlist', component: LawyerListComponent, canActivate: [ClientAuthGuard]},
   { path: 'editcase', component: EditcaseComponent, canActivate: [AuthGuard]},
   { path: 'chats', component: ChatsComponent, canActivate: [AuthGuard]},
-  { path: 'chatroom', component: ChatroomComponent },
+  { path: 'chatroom', component: ChatroomComponent ,canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'loginclient', component: LoginclientComponent },
   { path: 'registerclient', component: RegisterclientComponent },
-  { path: 'clientdashboard', component: ClientDashboardComponent},
-  { path: 'clientcases', component: ClientCasesComponent},
-  { path: 'clientcaseinfo', component: ClientCaseinfoComponent},
-  { path: 'clientChatroom', component: ClientChatroomComponent},
-  { path: 'lawyerchats', component: ClientsideChatComponent},
+  { path: 'clientdashboard', component: ClientDashboardComponent, canActivate: [ClientAuthGuard]},
+  { path: 'clientcases', component: ClientCasesComponent ,canActivate: [ClientAuthGuard]},
+  { path: 'clientcaseinfo', component: ClientCaseinfoComponent, canActivate: [ClientAuthGuard]},
+  { path: 'clientChatroom', component: ClientChatroomComponent, canActivate: [ClientAuthGuard]},
+  { path: 'lawyerchats', component: ClientsideChatComponent, canActivate: [ClientAuthGuard]},
   { path: '**', component:LoginComponent }
 ];
 
@@ -56,6 +57,6 @@ const routes: Routes = [
     relativeLinkResolution: 'legacy'
 })],
   exports: [RouterModule],
-  providers: [AuthGuard]
+  providers: [AuthGuard, ClientAuthGuard]
 })
 export class AppRoutingModule { }
