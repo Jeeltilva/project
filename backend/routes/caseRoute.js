@@ -179,6 +179,32 @@ router.patch('/api/editcase/:id', auth, async (req,res) => {
     }
 })
 
+router.patch('/api/editlawyerprofile',auth,async(req,res)=>{
+  const user = {...req.user._doc}
+  const updates = Object.keys(req.body)
+    try {
+        const lawyer = await Lawyer.findOne({userId: user._id})
+        updates.forEach((update) => lawyer[update] = req.body[update])
+        await lawyer.save()
+        res.status(201).send(lawyer)
+    } catch(e) {
+        res.status(500).send(e)
+    }
+})
+
+router.patch('/api/editclientprofile',auth,async(req,res)=>{
+  const user = {...req.user._doc}
+  const updates = Object.keys(req.body)
+    try {
+        const client = await Client.findOne({userId: user._id})
+        updates.forEach((update) => client[update] = req.body[update])
+        await client.save()
+        res.status(201).send(client)
+    } catch(e) {
+        res.status(500).send(e)
+    }
+})
+
 router.delete('/api/case/:id', auth, async(req, res) => {
     const _id = req.params.id
     try {
@@ -518,6 +544,36 @@ router.get('/api/getLawyerList', auth, async(req, res) => {
       res.status(201).send(lawyers)
   } catch (error) {
       res.status(500).send(error)
+  }
+})
+
+router.get('/api/getLawyerProfile', auth, async(req,res)=>{
+  try {
+    const user = {...req.user._doc}
+    const lawyer = await Lawyer.findOne({userId: user._id})
+    if(lawyer){
+      res.status(201).send({...lawyer._doc, email: user.email})
+    }
+    else{
+      res.status(404).send({})
+    }
+  } catch (error) {
+    res.status(500).send(error)
+  }
+})
+
+router.get('/api/getClientProfile', auth, async(req,res)=>{
+  try {
+    const user = {...req.user._doc}
+    const client = await Client.findOne({userId: user._id})
+    if(client){
+      res.status(201).send({...client._doc})
+    }
+    else{
+      res.status(404).send({})
+    }
+  } catch (error) {
+    res.status(500).send(error)
   }
 })
 

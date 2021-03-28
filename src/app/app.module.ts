@@ -66,6 +66,8 @@ import { ChatroomComponent } from './chatroom/chatroom.component';
 import { ClientListComponent } from './client-list/client-list.component';
 import { ToastrModule } from 'ngx-toastr';
 import { LawyerListComponent } from './lawyer-list/lawyer-list.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ClientEditProfileComponent } from './client-edit-profile/client-edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +96,9 @@ import { LawyerListComponent } from './lawyer-list/lawyer-list.component';
     ClientListComponent,
     ChatsComponent,
     ClientsideChatComponent,
-    LawyerListComponent
+    LawyerListComponent,
+    EditProfileComponent,
+    ClientEditProfileComponent
   ],
   imports: [
     BrowserModule,

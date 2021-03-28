@@ -1,0 +1,54 @@
+<div class="bg-image">
+</div>
+<div class="grid-container bg-text">
+	   <mat-card>
+          <h3 style="text-align: center;" class="vache">Edit Profile</h3>
+          <form *ngIf="profileForm" [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm.value)" fxLayout="column">
+            <mat-form-field class="w-100">
+				<input type="text" matInput placeholder="First Name" formControlName="firstname">
+				<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+				<!-- <mat-error *ngIf="data.firstname.errors?.required">First Name is required</mat-error> -->
+			  </mat-form-field>
+
+			  <mat-form-field class="w-100">
+				<input type="text" matInput placeholder="Last Name" formControlName="lastname">
+				<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+				<!-- <mat-error *ngIf="data.lastname.errors?.required">Last Name is required</mat-error> -->
+			  </mat-form-field>
+
+			  <mat-form-field class="w-100">
+				<mat-label>Birthdate</mat-label>
+				<input matInput [matDatepicker]="picker2" formControlName="birthdate" [max]="maxDate">
+				<mat-icon matSuffix><mat-datepicker-toggle [for]="picker2"></mat-datepicker-toggle></mat-icon>
+				<mat-datepicker #picker2 color="primary"></mat-datepicker>
+				<!-- <mat-error *ngIf="data.birthdate.errors?.required">Birthdate is required</mat-error> -->
+			  </mat-form-field>
+
+			  <mat-form-field class="w-100">
+				<mat-label>Enter your email</mat-label>
+				<input matInput placeholder="abc@example.com" formControlName="email">
+				<mat-icon matSuffix>email</mat-icon>
+
+			  </mat-form-field>
+			  <mat-form-field class="w-100">
+				<input type="text" matInput placeholder="Contact number" formControlName="phnno" [ngClass]="{ 'is-invalid': submitted}">
+				<mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+
+			  <mat-form-field class="w-100">
+				<input type="text" matInput placeholder="City" formControlName="city">
+				<mat-icon matSuffix>location_city</mat-icon>
+				<!-- <mat-error *ngIf="data.city.errors?.required">City is required</mat-error> -->
+			  </mat-form-field>
+
+            <div class="w-100" style="display:flex;">
+			  <button mat-raised-button color="primary" [disabled]="profileForm.invalid">Save</button>
+			  <!-- <button style="margin-left: 10px;" mat-stroked-button color="warn" type="reset" (click)="onReset()">Clear</button> -->
+			  <button style="margin-left: 10px;" mat-stroked-button color="primary" routerLink='/clientdashboard'>Cancel</button>
+			  <span class="flex-spacer"></span>
+            </div>
+          </form>
+		</mat-card>
+</div>
+
+

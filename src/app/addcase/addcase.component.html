@@ -64,12 +64,12 @@
     </div>
 
     <div fxLayout="row">
-      <mat-form-field class="full-width">
+      <mat-form-field class="half-width">
         <mat-label>District</mat-label>
         <input matInput placeholder="Ex. Morbi" name="district" id="district" ngModel required>
       </mat-form-field>
 
-     <mat-form-field class="full-width" style="margin-left: 10px;">
+     <mat-form-field class="half-width" style="margin-left: 10px;">
            <mat-label>Postal Code</mat-label>
            <input matInput #postalCode maxlength="6" placeholder="Ex. 363642" name="postalCode" id="postalCode" ngModel required>
            <mat-hint>{{postalCode.value.length}} / 6</mat-hint>
