@@ -1,0 +1,45 @@
+.w-100 {
+  width: 60%;
+  margin: 6px auto;
+
+}
+
+.bg-image {
+/* The image used */
+background-image: url("https://npr.brightspotcdn.com/dims4/default/ff93213/2147483647/strip/true/crop/1875x1250+0+0/resize/880x587!/quality/90/?url=http:%2F%2Fnpr-brightspot.s3.amazonaws.com%2Flegacy%2Fsites%2Fwvpn%2Ffiles%2F201511%2FScalesofJustice.jpg");
+
+/* Add the blur effect */
+filter: blur(8px);
+-webkit-filter: blur(8px);
+
+/* Full height */
+height: 160%;
+
+/* Center and scale the image nicely */
+background-position:inherit;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+.vache{
+margin: 20px auto;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: medium;
+  font-style: normal;
+}
+
+.bg-text {
+color: black;
+/* font-weight: bold; */
+/* border: 3px solid #f1f1f1; */
+position: absolute;
+top: 10%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 2;
+width: 50%;
+height: 20%;
+/* padding: 20px; */
+/* text-align: center; */
+}

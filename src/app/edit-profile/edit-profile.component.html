@@ -1,0 +1,284 @@
+<div class="bg-image">
+</div>
+<div class="grid-container bg-text">
+	   <mat-card>
+          <h3 style="text-align: center;" class="vache">Edit Profile</h3>
+          <form *ngIf="profileForm" [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm.value)" fxLayout="column">
+            <mat-form-field class="w-100">
+				<input type="text" matInput placeholder="First Name" formControlName="firstname">
+				<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+				<!-- <mat-error *ngIf="data.firstname.errors?.required">First Name is required</mat-error> -->
+			  </mat-form-field>
+
+			  <mat-form-field class="w-100">
+				<input type="text" matInput placeholder="Last Name" formControlName="lastname">
+				<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+				<!-- <mat-error *ngIf="data.lastname.errors?.required">Last Name is required</mat-error> -->
+			  </mat-form-field>
+
+			  <mat-form-field class="w-100">
+				<mat-label>Birthdate</mat-label>
+				<input matInput [matDatepicker]="picker2" formControlName="birthdate" [max]="maxDate">
+				<mat-icon matSuffix><mat-datepicker-toggle [for]="picker2"></mat-datepicker-toggle></mat-icon>
+				<mat-datepicker #picker2 color="primary"></mat-datepicker>
+				<!-- <mat-error *ngIf="data.birthdate.errors?.required">Birthdate is required</mat-error> -->
+			  </mat-form-field>
+
+			  <mat-form-field class="w-100">
+				<mat-label>Enter your email</mat-label>
+				<input matInput placeholder="abc@example.com" formControlName="email">
+				<mat-icon matSuffix>email</mat-icon>
+
+			  </mat-form-field>
+			  <mat-form-field class="w-100">
+				<input type="text" matInput placeholder="Contact number" formControlName="phnno" [ngClass]="{ 'is-invalid': submitted}">
+				<mat-icon matSuffix>phone</mat-icon>
+
+			  </mat-form-field>
+            <mat-form-field class="w-100">
+			    <mat-label>Nationality</mat-label>
+			    <mat-select formControlName="nationality">
+			      <!-- <mat-option value="mat-option">mat-option</mat-option> -->
+			     <!--  <mat-option value="" disabled selected> <h6>Nationality<h6></mat-option> -->
+						<mat-option value="Afghan"> Afghan </mat-option>
+						<mat-option value="Albanian"> Albanian </mat-option>
+						<mat-option value="Algerian"> Algerian </mat-option>
+						<mat-option value="American"> American </mat-option>
+						<mat-option value="Andorran"> Andorran </mat-option>
+						<mat-option value="Angolan"> Angolan </mat-option>
+						<mat-option value="Antiguans"> Antiguans </mat-option>
+						<mat-option value="Argentinean"> Argentinean </mat-option>
+						<mat-option value="Armenian"> Armenian </mat-option>
+						<mat-option value="Australian"> Australian </mat-option>
+						<mat-option value="Austrian"> Austrian </mat-option>
+						<mat-option value="Azerbaijani"> Azerbaijani </mat-option>
+						<mat-option value="Bahamian"> Bahamian </mat-option>
+						<mat-option value="Bahraini"> Bahraini </mat-option>
+						<mat-option value="Bangladeshi"> Bangladeshi </mat-option>
+						<mat-option value="Barbadian"> Barbadian </mat-option>
+						<mat-option value="Barbudans"> Barbudans </mat-option>
+						<mat-option value="Batswana"> Batswana </mat-option>
+						<mat-option value="Belarusian"> Belarusian </mat-option>
+						<mat-option value="Belgian"> Belgian </mat-option>
+						<mat-option value="Belizean"> Belizean </mat-option>
+						<mat-option value="Beninese"> Beninese </mat-option>
+						<mat-option value="Bhutanese"> Bhutanese </mat-option>
+						<mat-option value="Bolivian"> Bolivian </mat-option>
+						<mat-option value="Bosnian"> Bosnian </mat-option>
+						<mat-option value="Brazilian"> Brazilian </mat-option>
+						<mat-option value="British"> British </mat-option>
+						<mat-option value="Bruneian"> Bruneian </mat-option>
+						<mat-option value="Bulgarian"> Bulgarian </mat-option>
+						<mat-option value="Burkinabe"> Burkinabe </mat-option>
+						<mat-option value="Burmese"> Burmese </mat-option>
+						<mat-option value="Burundian"> Burundian </mat-option>
+						<mat-option value="Cambodian"> Cambodian </mat-option>
+						<mat-option value="Cameroonian"> Cameroonian </mat-option>
+						<mat-option value="Canadian"> Canadian </mat-option>
+						<mat-option value="Cape Verdean"> Cape Verdean </mat-option>
+						<mat-option value="Central African"> Central African </mat-option>
+						<mat-option value="Chadian"> Chadian </mat-option>
+						<mat-option value="Chilean"> Chilean </mat-option>
+						<mat-option value="Chinese"> Chinese </mat-option>
+						<mat-option value="Colombian"> Colombian </mat-option>
+						<mat-option value="Comoran"> Comoran </mat-option>
+						<mat-option value="Congolese"> Congolese </mat-option>
+						<mat-option value="Congolese"> Congolese </mat-option>
+						<mat-option value="Costa Rican"> Costa Rican </mat-option>
+						<mat-option value="Croatian"> Croatian </mat-option>
+						<mat-option value="Cuban"> Cuban </mat-option>
+						<mat-option value="Cypriot"> Cypriot </mat-option>
+						<mat-option value="Czech"> Czech </mat-option>
+						<mat-option value="Danish"> Danish </mat-option>
+						<mat-option value="Djibouti"> Djibouti </mat-option>
+						<mat-option value="Dominican"> Dominican </mat-option>
+						<mat-option value="Dominican"> Dominican </mat-option>
+						<mat-option value="Dutch"> Dutch </mat-option>
+						<mat-option value="Dutchman"> Dutchman </mat-option>
+						<mat-option value="Dutchwoman"> Dutchwoman </mat-option>
+						<mat-option value="East Timorese"> East Timorese </mat-option>
+						<mat-option value="Ecuadorean"> Ecuadorean </mat-option>
+						<mat-option value="Egyptian"> Egyptian </mat-option>
+						<mat-option value="Emirian"> Emirian </mat-option>
+						<mat-option value="Equatorial Guinean"> Equatorial Guinean </mat-option>
+						<mat-option value="Eritrean"> Eritrean </mat-option>
+						<mat-option value="Estonian"> Estonian </mat-option>
+						<mat-option value="Ethiopian"> Ethiopian </mat-option>
+						<mat-option value="Fijian"> Fijian </mat-option>
+						<mat-option value="Filipino"> Filipino </mat-option>
+						<mat-option value="Finnish"> Finnish </mat-option>
+						<mat-option value="French"> French </mat-option>
+						<mat-option value="Gabonese"> Gabonese </mat-option>
+						<mat-option value="Gambian"> Gambian </mat-option>
+						<mat-option value="Georgian"> Georgian </mat-option>
+						<mat-option value="German"> German </mat-option>
+						<mat-option value="Ghanaian"> Ghanaian </mat-option>
+						<mat-option value="Greek"> Greek </mat-option>
+						<mat-option value="Grenadian"> Grenadian </mat-option>
+						<mat-option value="Guatemalan"> Guatemalan </mat-option>
+						<mat-option value="Guinea-Bissauan"> Guinea-Bissauan </mat-option>
+						<mat-option value="Guinean"> Guinean </mat-option>
+						<mat-option value="Guyanese"> Guyanese </mat-option>
+						<mat-option value="Haitian"> Haitian </mat-option>
+						<mat-option value="Herzegovinian"> Herzegovinian </mat-option>
+						<mat-option value="Honduran"> Honduran </mat-option>
+						<mat-option value="Hungarian"> Hungarian </mat-option>
+						<mat-option value="I-Kiribati"> I-Kiribati </mat-option>
+						<mat-option value="Icelander"> Icelander </mat-option>
+						<mat-option value="Indian"> Indian </mat-option>
+						<mat-option value="Indonesian"> Indonesian </mat-option>
+						<mat-option value="Iranian"> Iranian </mat-option>
+						<mat-option value="Iraqi"> Iraqi </mat-option>
+						<mat-option value="Irish"> Irish </mat-option>
+						<mat-option value="Irish"> Irish </mat-option>
+						<mat-option value="Israeli"> Israeli </mat-option>
+						<mat-option value="Italian"> Italian </mat-option>
+						<mat-option value="Ivorian"> Ivorian </mat-option>
+						<mat-option value="Jamaican"> Jamaican </mat-option>
+						<mat-option value="Japanese"> Japanese </mat-option>
+						<mat-option value="Jordanian"> Jordanian </mat-option>
+						<mat-option value="Kazakhstani"> Kazakhstani </mat-option>
+						<mat-option value="Kenyan"> Kenyan </mat-option>
+						<mat-option value="Kittian and Nevisian"> Kittian and Nevisian </mat-option>
+						<mat-option value="Kuwaiti"> Kuwaiti </mat-option>
+						<mat-option value="Kyrgyz"> Kyrgyz </mat-option>
+						<mat-option value="Laotian"> Laotian </mat-option>
+						<mat-option value="Latvian"> Latvian </mat-option>
+						<mat-option value="Lebanese"> Lebanese </mat-option>
+						<mat-option value="Liberian"> Liberian </mat-option>
+						<mat-option value="Libyan"> Libyan </mat-option>
+						<mat-option value="Liechtensteiner"> Liechtensteiner </mat-option>
+						<mat-option value="Lithuanian"> Lithuanian </mat-option>
+						<mat-option value="Luxembourger"> Luxembourger </mat-option>
+						<mat-option value="Macedonian"> Macedonian </mat-option>
+						<mat-option value="Malagasy"> Malagasy </mat-option>
+						<mat-option value="Malawian"> Malawian </mat-option>
+						<mat-option value="Malaysian"> Malaysian </mat-option>
+						<mat-option value="Maldivan"> Maldivan </mat-option>
+						<mat-option value="Malian"> Malian </mat-option>
+						<mat-option value="Maltese"> Maltese </mat-option>
+						<mat-option value="Marshallese"> Marshallese </mat-option>
+						<mat-option value="Mauritanian"> Mauritanian </mat-option>
+						<mat-option value="Mauritian"> Mauritian </mat-option>
+						<mat-option value="Mexican"> Mexican </mat-option>
+						<mat-option value="Micronesian"> Micronesian </mat-option>
+						<mat-option value="Moldovan"> Moldovan </mat-option>
+						<mat-option value="Monacan"> Monacan </mat-option>
+						<mat-option value="Mongolian"> Mongolian </mat-option>
+						<mat-option value="Moroccan"> Moroccan </mat-option>
+						<mat-option value="Mosotho"> Mosotho </mat-option>
+						<mat-option value="Motswana"> Motswana </mat-option>
+						<mat-option value="Mozambican"> Mozambican </mat-option>
+						<mat-option value="Namibian"> Namibian </mat-option>
+						<mat-option value="Nauruan"> Nauruan </mat-option>
+						<mat-option value="Nepalese"> Nepalese </mat-option>
+						<mat-option value="Netherlander"> Netherlander </mat-option>
+						<mat-option value="New Zealander"> New Zealander </mat-option>
+						<mat-option value="Ni-Vanuatu"> Ni-Vanuatu </mat-option>
+						<mat-option value="Nicaraguan"> Nicaraguan </mat-option>
+						<mat-option value="Nigerian"> Nigerian </mat-option>
+						<mat-option value="Nigerien"> Nigerien </mat-option>
+						<mat-option value="North Korean"> North Korean </mat-option>
+						<mat-option value="Northern Irish"> Northern Irish </mat-option>
+						<mat-option value="Norwegian"> Norwegian </mat-option>
+						<mat-option value="Omani"> Omani </mat-option>
+						<mat-option value="Pakistani"> Pakistani </mat-option>
+						<mat-option value="Palauan"> Palauan </mat-option>
+						<mat-option value="Panamanian"> Panamanian </mat-option>
+						<mat-option value="Papua New Guinean"> Papua New Guinean </mat-option>
+						<mat-option value="Paraguayan"> Paraguayan </mat-option>
+						<mat-option value="Peruvian"> Peruvian </mat-option>
+						<mat-option value="Polish"> Polish </mat-option>
+						<mat-option value="Portuguese"> Portuguese </mat-option>
+						<mat-option value="Qatari"> Qatari </mat-option>
+						<mat-option value="Romanian"> Romanian </mat-option>
+						<mat-option value="Russian"> Russian </mat-option>
+						<mat-option value="Rwandan"> Rwandan </mat-option>
+						<mat-option value="Saint Lucian"> Saint Lucian </mat-option>
+						<mat-option value="Salvadoran"> Salvadoran </mat-option>
+						<mat-option value="Samoan"> Samoan </mat-option>
+						<mat-option value="San Marinese"> San Marinese </mat-option>
+						<mat-option value="Sao Tomean"> Sao Tomean </mat-option>
+						<mat-option value="Saudi"> Saudi </mat-option>
+						<mat-option value="Scottish"> Scottish </mat-option>
+						<mat-option value="Senegalese"> Senegalese </mat-option>
+						<mat-option value="Serbian"> Serbian </mat-option>
+						<mat-option value="Seychellois"> Seychellois </mat-option>
+						<mat-option value="Sierra Leonean"> Sierra Leonean </mat-option>
+						<mat-option value="Singaporean"> Singaporean </mat-option>
+						<mat-option value="Slovakian"> Slovakian </mat-option>
+						<mat-option value="Slovenian"> Slovenian </mat-option>
+						<mat-option value="Solomon Islander"> Solomon Islander </mat-option>
+						<mat-option value="Somali"> Somali </mat-option>
+						<mat-option value="South African"> South African </mat-option>
+						<mat-option value="South Korean"> South Korean </mat-option>
+						<mat-option value="Spanish"> Spanish </mat-option>
+						<mat-option value="Sri Lankan"> Sri Lankan </mat-option>
+						<mat-option value="Sudanese"> Sudanese </mat-option>
+						<mat-option value="Surinamer"> Surinamer </mat-option>
+						<mat-option value="Swazi"> Swazi </mat-option>
+						<mat-option value="Swedish"> Swedish </mat-option>
+						<mat-option value="Swiss"> Swiss </mat-option>
+						<mat-option value="Syrian"> Syrian </mat-option>
+						<mat-option value="Taiwanese"> Taiwanese </mat-option>
+						<mat-option value="Tajik"> Tajik </mat-option>
+						<mat-option value="Tanzanian"> Tanzanian </mat-option>
+						<mat-option value="Thai"> Thai </mat-option>
+						<mat-option value="Togolese"> Togolese </mat-option>
+						<mat-option value="Tongan"> Tongan </mat-option>
+						<mat-option value="Trinidadian or Tobagonian"> Trinidadian or Tobagonian </mat-option>
+						<mat-option value="Tunisian"> Tunisian </mat-option>
+						<mat-option value="Turkish"> Turkish </mat-option>
+						<mat-option value="Tuvaluan"> Tuvaluan </mat-option>
+						<mat-option value="Ugandan"> Ugandan </mat-option>
+						<mat-option value="Ukrainian"> Ukrainian </mat-option>
+						<mat-option value="Uruguayan"> Uruguayan </mat-option>
+						<mat-option value="Uzbekistani"> Uzbekistani </mat-option>
+						<mat-option value="Venezuelan"> Venezuelan </mat-option>
+						<mat-option value="Vietnamese"> Vietnamese </mat-option>
+						<mat-option value="Welsh"> Welsh </mat-option>
+						<mat-option value="Welsh"> Welsh </mat-option>
+						<mat-option value="Yemenite"> Yemenite </mat-option>
+						<mat-option value="Zambian"> Zambian </mat-option>
+						<mat-option value="Zimbabwean"> Zimbabwean </mat-option>
+			    </mat-select>
+			  </mat-form-field>
+			  <mat-form-field class="w-100">
+				<input type="text" matInput placeholder="City" formControlName="city">
+				<mat-icon matSuffix>location_city</mat-icon>
+				<!-- <mat-error *ngIf="data.city.errors?.required">City is required</mat-error> -->
+			  </mat-form-field>
+			  <mat-form-field class="w-100">
+				<textarea type="text" matInput placeholder="Address" formControlName="address"></textarea>
+				<!-- <mat-error *ngIf="data.address.errors?.required">Address is required</mat-error> -->
+			  </mat-form-field>
+			  <mat-form-field class="w-100">
+				<!-- <input type="text" matInput placeholder="Bar council number" formControlName="bcn"> -->
+        <div *ngIf="profileForm.get('bcn').pending">Validating...</div>
+        <div [ngClass]="{'is-loading': profileForm.controls['bcn'].pending }" class="control">
+          <input type="text" matInput placeholder="Bar council number" formControlName="bcn">
+        </div>
+
+			  </mat-form-field>
+			  <mat-form-field class="w-100">
+				<input type="text" matInput placeholder="University" formControlName="uni">
+				<mat-icon matSuffix>school</mat-icon>
+			  </mat-form-field>
+			  <mat-form-field class="w-100">
+				<input type="number" matInput placeholder="year since you are practicing" formControlName="year">
+				<mat-icon matSuffix>date_range</mat-icon>
+			  </mat-form-field>
+			  <mat-form-field class="w-100">
+				<input type="text" matInput placeholder="Area of Practice" formControlName="prac">
+				<mat-icon matSuffix>work</mat-icon>
+				</mat-form-field>
+
+            <div class="w-100" style="display:flex;">
+			  <button mat-raised-button color="primary" [disabled]="profileForm.invalid">Save</button>
+			  <button style="margin-left: 10px;" mat-stroked-button color="primary" routerLink='/dashboard'>Cancel</button>
+			  <span class="flex-spacer"></span>
+            </div>
+          </form>
+		</mat-card>
+</div>
+

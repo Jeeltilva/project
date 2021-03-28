@@ -350,6 +350,22 @@ export class CaseService {
     return this.http.get<LawyerInt[]>(`${apiUrl}getLawyerList`)
   }
 
+  getProfile(){
+    return this.http.get<LawyerInt>(`${apiUrl}getLawyerProfile`)
+  }
+
+  editLawyerProfile(data: LawyerInt){
+    return this.http.patch<LawyerInt>(`${apiUrl}editlawyerprofile`, data);
+  }
+
+  getClientProfile(){
+    return this.http.get<Client>(`${apiUrl}getClientProfile`);
+  }
+
+  editClientProfile(data: Client){
+    return this.http.patch<Client>(`${apiUrl}editclientprofile`, data);
+  }
+
   getClientCases() {
     this.http.get<Case[]>(apiUrl+ 'getClientCases').pipe(
       map((data:any) => {
