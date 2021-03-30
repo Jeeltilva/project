@@ -13,7 +13,6 @@ import { RegisterComponent } from './register/register.component';
 import { RegisterclientComponent } from './registerclient/registerclient.component';
 import { AuthGuard } from "../app/auth.guard";
 import { EditcaseComponent } from './editcase/editcase.component';
-import { TryComponent } from './try/try.component';
 import { ChatroomComponent } from "./chatroom/chatroom.component";
 import { ClientDashboardComponent } from './client-dashboard/client-dashboard.component';
 import { ClientCasesComponent } from './client-cases/client-cases.component';
@@ -35,7 +34,8 @@ const routes: Routes = [
   {path: 'disposedcases', component: DisposedComponent, canActivate: [AuthGuard]},
   {path: 'addcase', component: AddcaseComponent, canActivate: [AuthGuard]},
   { path: 'caseinfo', component: CaseinfoComponent, canActivate: [AuthGuard]},
-  { path: 'try', component: TryComponent, canActivate: [AuthGuard]},
+  // { path: 'try', component: TryComponent, canActivate: [AuthGuard]},
+  { path: 'try', loadChildren: ()=> import('./try/module').then(m => m.TryModule)},
   { path: 'clientlist', component: ClientListComponent, canActivate: [AuthGuard]},
   { path: 'lawyerlist', component: LawyerListComponent, canActivate: [ClientAuthGuard]},
   { path: 'editcase', component: EditcaseComponent, canActivate: [AuthGuard]},

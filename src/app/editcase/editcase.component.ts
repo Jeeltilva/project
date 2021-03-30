@@ -1,10 +1,7 @@
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { Case } from '../models/case.model';
 import { CaseService } from "../services/case.service";
 

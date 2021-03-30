@@ -57,11 +57,9 @@ import { ChatsComponent } from "./chats/chats.component";
 import { ClientsideChatComponent } from "./clientside-chat/clientside-chat.component";
 
 import { FlatpickrModule } from 'angularx-flatpickr';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { DemoUtilsModule } from './demo-utils/module';
-import { TryModule } from "./try/module";
+// import { TryModule } from "./try/module";
 import { ChatroomComponent } from './chatroom/chatroom.component';
 import { ClientListComponent } from './client-list/client-list.component';
 import { ToastrModule } from 'ngx-toastr';
@@ -134,12 +132,8 @@ import { ClientEditProfileComponent } from './client-edit-profile/client-edit-pr
     MatTableModule,
     NgbModalModule,
     DemoUtilsModule,
-    TryModule,
+    // TryModule,
     FlatpickrModule.forRoot(),
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
     ToastrModule.forRoot()
   ],
   providers: [

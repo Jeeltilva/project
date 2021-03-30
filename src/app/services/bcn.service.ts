@@ -16,8 +16,6 @@ export class BcnValidationService {
   constructor() {}
 
   checkIfbcnExists(bcn:string): Observable<boolean> {
-    // normally, this is where you will connect to your backend for validation lookup
-    // using http, we simulate an internet connection by delaying it by a second
     return of(!this.bcnList.includes(parseInt(bcn)));
   }
 
@@ -26,7 +24,7 @@ export class BcnValidationService {
       return this.checkIfbcnExists(control.value).pipe(
         map(res => {
           console.log(res);
-          // if res is true, username exists, return true
+          // if res is true, exists, return true
           return res ? { bcnExists: true } : null;
           // NB: Return null if there is no error
         })

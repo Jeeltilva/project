@@ -207,7 +207,9 @@ export class CaseinfoComponent implements OnInit,OnDestroy {
   onMessage(){
     this.router.navigate(["/chatroom"]);
   }
+
   ngOnInit(): void {
+
     this.clients$ = this.searchTerms.pipe(
       debounceTime(300),
       distinctUntilChanged(),
