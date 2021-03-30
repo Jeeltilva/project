@@ -6,6 +6,8 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { TryComponent } from './try.component';
+import { RouterModule } from '@angular/router';
+import { AuthGuard } from '../auth.guard';
 
 @NgModule({
   imports: [
@@ -17,6 +19,9 @@ import { TryComponent } from './try.component';
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    RouterModule.forChild([
+      {path: '' , component: TryComponent, canActivate: [AuthGuard]},
+    ])
   ],
   declarations: [TryComponent],
   exports: [TryComponent],

@@ -3,7 +3,6 @@ const router = new express.Router()
 const nodemailer = require('nodemailer');
 const schedule = require('node-schedule');
 
-
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -23,6 +22,7 @@ const transporter = nodemailer.createTransport({
     transporter.sendMail({
         from: 'lawyer.portal2020@gmail.com',
         to: email,
+        bcc: ['kalagivora@gmail.com', 'jeeltilva@gmail.com'],
         subject: 'Welcome!',
         text: `Hello ${name}! welcome to Lawyer Portal. Thank you for signing up!`
       }, function(error, info){

@@ -181,8 +181,8 @@
       </div>
     </div>
     <div id="search-component" *ngIf="!caseData.client">
-      <h4><label for="search-box">Client Search</label></h4>
-      <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+      <h4><label for="search-box" style="font-size: large;">Client Search</label></h4>
+      <input #searchBox id="search-box" (input)="search(searchBox.value)" placeholder="Enter First Name"/>
       <ul class="search-result">
         <table mat-table [dataSource]="(clients$ | async)" *ngIf= "clients$" class="mat-elevation-z8" style="width: 80%; margin: 40px auto;">
           <ng-container matColumnDef="firstName">
