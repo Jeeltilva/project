@@ -8,6 +8,7 @@ import { Lawyer } from '../models/lawyer.model';
 import { Client } from '../models/client.model';
 import { NotificationService } from "./notification.service";
 import swal from 'sweetalert/dist/sweetalert.min.js';
+import { LocalService } from "./local.service";
 
 const BACKEND_URL = 'http://localhost:4000/api';
 
@@ -18,8 +19,9 @@ export class AuthService {
   private userName: string;
   private userId: string;
   private role = new Subject<String>();
+  private originalData;
 
-  constructor(private http: HttpClient, private router: Router, public notifyService : NotificationService) {}
+  constructor(private http: HttpClient, private router: Router, public notifyService : NotificationService , private localService: LocalService) {}
 
   getToken() {
     return this.token;
@@ -215,32 +217,26 @@ export class AuthService {
   }
 
   private saveAuthData(token: string, role: string, userId: string, userName: string) {
-    localStorage.setItem("token", token);
-    localStorage.setItem("role", role);
-    localStorage.setItem("userId", userId);
-    localStorage.setItem("userName", userName);
+
+    const user = {token: token, role: role, userId: userId, userName: userName};
+    this.localService.setJsonValue('user', user);
   }
 
   private clearAuthData() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("userName")
+    this.localService.clear();
   }
 
   private getAuthData() {
-    const token = localStorage.getItem("token");
-    const role = localStorage.getItem("role");
-    const userId = localStorage.getItem("userId");
-    const userName = localStorage.getItem("userName");
-    if (!token) {
+    const user = this.localService.getJsonValue('user');
+
+    if (!user) {
       return;
     }
     return {
-      token: token,
-      role: role,
-      userId: userId,
-      userName: userName
+      token: user.token,
+      role: user.role,
+      userId: user.userId,
+      userName: user.userName
     };
   }
 }

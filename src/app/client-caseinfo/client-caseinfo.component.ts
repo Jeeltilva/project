@@ -74,7 +74,6 @@ export class ClientCaseinfoComponent implements OnInit,OnDestroy {
     this.caseService.onUploadDoc(this.fileToUpload, this.caseData._id).subscribe((data:any)=> {
       this.files = data;
       this.caseData.docs = data;
-      console.log(data);
     })
   } }
 
