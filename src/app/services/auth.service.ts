@@ -18,8 +18,9 @@ export class AuthService {
   private token: string;
   private userName: string;
   private userId: string;
+  private isVerified: boolean = false;
   private role = new Subject<String>();
-  private originalData;
+  private Role: String;
 
   constructor(private http: HttpClient, private router: Router, public notifyService : NotificationService , private localService: LocalService) {}
 
@@ -32,7 +33,7 @@ export class AuthService {
   }
 
   getRole() {
-    return this.role;
+    return this.Role;
   }
 
   getIsAuth() {
@@ -48,6 +49,7 @@ export class AuthService {
   }
 
   createLawyer(lawyer: Lawyer, role: string) {
+
     const data = {...lawyer, role}
     this.http.post<{ token: string; role:string; userId: string; userName: string }>(
       BACKEND_URL + "/signupLawyer", data)
@@ -60,10 +62,12 @@ export class AuthService {
           this.userId = response.userId;
           this.userName = response.userName;
           this.role.next(role);
+          this.Role = role
           this.saveAuthData(token, role, this.userId, this.userName);
-          location.reload();
-          this.router.navigate(["/dashboard"]);
-          this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
+          this.router.navigate(["/verify-email"]);
+          // location.reload();
+          // this.router.navigate(["/dashboard"]);
+          // this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
         }
       },
       error => {
@@ -85,10 +89,12 @@ export class AuthService {
           this.userId = response.userId;
           this.userName = response.userName;
           this.role.next(role);
+          this.Role = role
           this.saveAuthData(token, role, this.userId, this.userName);
-          location.reload();
-          this.router.navigate(["/clientdashboard"]);
-          this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
+          this.router.navigate(["/verify-email"]);
+          // location.reload();
+          // this.router.navigate(["/clientdashboard"]);
+          // this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
         }
       },
       error => {
@@ -115,10 +121,16 @@ export class AuthService {
             this.userName = response.userName;
             this.role.next(role);
             this.saveAuthData(token, role, this.userId, this.userName);
-            console.log(this.userName)
+            this.checkVerifiedStatus(this.userId)
+            if(this.isVerified===false) {
+              this.router.navigate(["/verify-email"]);
+            }
+            else {
+              location.reload();
+              this.router.navigate(["/dashboard"]);
+              this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
+            }
             location.reload();
-            this.router.navigate(["/dashboard"]);
-            this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
           }
         },
         error => {
@@ -146,9 +158,16 @@ export class AuthService {
             this.userName = response.userName;
             this.role.next(role);
             this.saveAuthData(token, role, this.userId, this.userName);
+            this.checkVerifiedStatus(this.userId)
+            if(this.isVerified===false) {
+              this.router.navigate(["/verify-email"]);
+            }
+            else {
+              location.reload();
+              this.router.navigate(["/clientdashboard"]);
+              this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
+            }
             location.reload();
-            this.router.navigate(["/clientdashboard"]);
-            this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
           }
         },
         error => {
@@ -157,6 +176,15 @@ export class AuthService {
         }
       );
   }
+
+  checkVerifiedStatus(id:string) {
+    return this.http.get<boolean>(BACKEND_URL+'/verifyedStatus/'+id)
+  }
+
+  checkStatus() {
+    return this.http.get<boolean>(BACKEND_URL + '/checkVerifiedStatus/' + this.userId)
+  }
+
 
   autoAuthUser() {
     const authInformation = this.getAuthData();
@@ -169,12 +197,20 @@ export class AuthService {
     this.userId = authInformation.userId;
     this.userName = authInformation.userName;
     this.role.next(role);
-    if(role === "lawyer") {
-      this.router.navigate(["/dashboard"]);
-    }
-    if(role === "client"){
-      this.router.navigate(["/clientdashboard"])
-    }
+    this.Role = role;
+
+    this.checkVerifiedStatus(authInformation.userId).subscribe(data => {
+      this.isVerified = data;
+      if(this.isVerified === false) {
+        this.router.navigate(["/verify-email"]);
+      }
+      if(role === "lawyer" && this.isVerified === true) {
+        this.router.navigate(["/dashboard"]);
+      }
+      if(role === "client" && this.isVerified === true){
+        this.router.navigate(["/clientdashboard"]);
+      }
+    })
   }
 
   logoutLawyer() {
@@ -227,6 +263,7 @@ export class AuthService {
   }
 
   private getAuthData() {
+
     const user = this.localService.getJsonValue('user');
 
     if (!user) {
@@ -239,4 +276,5 @@ export class AuthService {
       userName: user.userName
     };
   }
+
 }

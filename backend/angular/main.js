@@ -1,5 +1,65 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"],{
 
+/***/ "+3Io":
+/*!********************************************************!*\
+  !*** ./src/app/verify-email/verify-email.component.ts ***!
+  \********************************************************/
+/*! exports provided: VerifyEmailComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VerifyEmailComponent", function() { return VerifyEmailComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/auth.service */ "lGQG");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "tyNb");
+
+
+
+class VerifyEmailComponent {
+    constructor(authService, router) {
+        this.authService = authService;
+        this.router = router;
+    }
+    ngOnInit() {
+        this.role = this.authService.getRole();
+        const check = () => {
+            this.authService.checkStatus().subscribe(data => {
+                this.isVerified = data;
+                if ((data == true && this.role == 'lawyer')) {
+                    this.router.navigate(["/dashboard"]);
+                    clearInterval(this.myvar);
+                }
+                if ((data == true && this.role == 'client')) {
+                    this.router.navigate(["/clientdashboard"]);
+                    clearInterval(this.myvar);
+                }
+            });
+        };
+        this.myvar = setInterval(check, 2000);
+    }
+    ngOnDestroy() {
+        //Called once, before the instance is destroyed.
+        //Add 'implements OnDestroy' to the class.
+        clearInterval(this.myvar);
+    }
+}
+VerifyEmailComponent.ɵfac = function VerifyEmailComponent_Factory(t) { return new (t || VerifyEmailComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"])); };
+VerifyEmailComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: VerifyEmailComponent, selectors: [["app-verify-email"]], decls: 6, vars: 0, template: function VerifyEmailComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h3");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "Verify your Email Address!");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "hr");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "Before proceeding, please check your Email for verification link.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    } }, styles: ["div[_ngcontent-%COMP%] {\n  margin: auto;\n  text-align: center;\n  border-style: solid;\n  border-width: 1px;\n  width: 65%;\n  margin-top: 30px;\n  background-color: #fffcf9;\n  font-family: Cambria, Cochin, Georgia, Times, \"Times New Roman\", serif;\n}\n\nh1[_ngcontent-%COMP%] {\n  font-weight: bolder;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXHZlcmlmeS1lbWFpbC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQUE7RUFDQSxrQkFBQTtFQUNBLG1CQUFBO0VBQ0EsaUJBQUE7RUFDQSxVQUFBO0VBQ0EsZ0JBQUE7RUFDQSx5QkFBQTtFQUNBLHNFQUFBO0FBQ0Y7O0FBRUE7RUFDRSxtQkFBQTtBQUNGIiwiZmlsZSI6InZlcmlmeS1lbWFpbC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImRpdntcclxuICBtYXJnaW46IGF1dG87XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIGJvcmRlci1zdHlsZTogc29saWQ7XHJcbiAgYm9yZGVyLXdpZHRoOiAxcHg7XHJcbiAgd2lkdGg6IDY1JTtcclxuICBtYXJnaW4tdG9wOiAzMHB4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigyNTUsIDI1MiwgMjQ5KTtcclxuICBmb250LWZhbWlseTogQ2FtYnJpYSwgQ29jaGluLCBHZW9yZ2lhLCBUaW1lcywgJ1RpbWVzIE5ldyBSb21hbicsIHNlcmlmO1xyXG59XHJcblxyXG5oMXtcclxuICBmb250LXdlaWdodDogYm9sZGVyO1xyXG59XHJcbiJdfQ== */"] });
+
+
+/***/ }),
+
 /***/ 0:
 /*!***************************!*\
   !*** multi ./src/main.ts ***!
@@ -2956,6 +3016,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/button */ "bTqV");
 /* harmony import */ var _angular_material_menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/menu */ "STbY");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/divider */ "f0Cb");
+
 
 
 
@@ -2972,7 +3034,7 @@ class HomepageComponent {
     }
 }
 HomepageComponent.ɵfac = function HomepageComponent_Factory(t) { return new (t || HomepageComponent)(); };
-HomepageComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: HomepageComponent, selectors: [["app-homepage"]], decls: 27, vars: 10, consts: [[1, "header", 2, "display", "flex"], [2, "padding-right", "10px"], [1, "flex-spacer"], ["mat-button", "", 3, "matMenuTriggerFor"], ["menu", "matMenu"], ["mat-menu-item", "", 3, "routerLink"], ["menu1", "matMenu"]], template: function HomepageComponent_Template(rf, ctx) { if (rf & 1) {
+HomepageComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: HomepageComponent, selectors: [["app-homepage"]], decls: 29, vars: 10, consts: [[1, "header", 2, "display", "flex"], [2, "padding-right", "10px"], [1, "flex-spacer"], ["mat-button", "", 3, "matMenuTriggerFor"], ["menu", "matMenu"], ["mat-menu-item", "", 3, "routerLink"], ["menu1", "matMenu"]], template: function HomepageComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-toolbar", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "span");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "Lawyer Portal ");
@@ -2991,42 +3053,44 @@ HomepageComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "button", 5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, "Login as client");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "button", 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](16, "Login as Lawyer");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](15, "mat-divider");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "button", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17, "Login as Lawyer");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "button", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, " Register");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "mat-icon");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20, "arrow_drop_down");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "button", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](19, " Register");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "mat-icon");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, "arrow_drop_down");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "mat-menu", null, 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "button", 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](24, "Register as client");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "mat-menu", null, 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "button", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](25, "Register as client");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "button", 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](26, "Register as Lawyer");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](26, "mat-divider");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "button", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](28, "Register as Lawyer");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
         const _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](12);
-        const _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](22);
+        const _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](23);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](7);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matMenuTriggerFor", _r0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](6);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](6, _c0));
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](7, _c1));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matMenuTriggerFor", _r1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](6);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](8, _c2));
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](9, _c3));
-    } }, directives: [_angular_material_toolbar__WEBPACK_IMPORTED_MODULE_1__["MatToolbar"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_2__["MatIcon"], _angular_material_button__WEBPACK_IMPORTED_MODULE_3__["MatButton"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_4__["MatMenuTrigger"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_4__["_MatMenu"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_4__["MatMenuItem"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterLink"]], styles: [".header[_ngcontent-%COMP%] {\n  background-color: black;\n  color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXGhvbWVwYWdlLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsdUJBQUE7RUFDRSxZQUFBO0FBQ0oiLCJmaWxlIjoiaG9tZXBhZ2UuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaGVhZGVye1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGJsYWNrO1xyXG4gICAgY29sb3I6IHdoaXRlO1xyXG59XHJcbiJdfQ== */"] });
+    } }, directives: [_angular_material_toolbar__WEBPACK_IMPORTED_MODULE_1__["MatToolbar"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_2__["MatIcon"], _angular_material_button__WEBPACK_IMPORTED_MODULE_3__["MatButton"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_4__["MatMenuTrigger"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_4__["_MatMenu"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_4__["MatMenuItem"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterLink"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_6__["MatDivider"]], styles: [".header[_ngcontent-%COMP%] {\n  background-color: black;\n  color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXGhvbWVwYWdlLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsdUJBQUE7RUFDRSxZQUFBO0FBQ0oiLCJmaWxlIjoiaG9tZXBhZ2UuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaGVhZGVye1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGJsYWNrO1xyXG4gICAgY29sb3I6IHdoaXRlO1xyXG59XHJcbiJdfQ== */"] });
 
 
 /***/ }),
@@ -3294,6 +3358,7 @@ class AppComponent {
         this.errorService = errorService;
         this.isLoading = true;
         this.hasError = false;
+        this.verified = false;
     }
     ngOnInit() {
         this.isLoading = true;
@@ -5922,6 +5987,7 @@ class AuthService {
         this.notifyService = notifyService;
         this.localService = localService;
         this.isAuthenticated = false;
+        this.isVerified = false;
         this.role = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
     }
     getToken() {
@@ -5931,7 +5997,7 @@ class AuthService {
         return this.userName;
     }
     getRole() {
-        return this.role;
+        return this.Role;
     }
     getIsAuth() {
         return this.isAuthenticated;
@@ -5954,10 +6020,12 @@ class AuthService {
                 this.userId = response.userId;
                 this.userName = response.userName;
                 this.role.next(role);
+                this.Role = role;
                 this.saveAuthData(token, role, this.userId, this.userName);
-                location.reload();
-                this.router.navigate(["/dashboard"]);
-                this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
+                this.router.navigate(["/verify-email"]);
+                // location.reload();
+                // this.router.navigate(["/dashboard"]);
+                // this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
             }
         }, error => {
             this.role.next(null);
@@ -5975,10 +6043,12 @@ class AuthService {
                 this.userId = response.userId;
                 this.userName = response.userName;
                 this.role.next(role);
+                this.Role = role;
                 this.saveAuthData(token, role, this.userId, this.userName);
-                location.reload();
-                this.router.navigate(["/clientdashboard"]);
-                this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
+                this.router.navigate(["/verify-email"]);
+                // location.reload();
+                // this.router.navigate(["/clientdashboard"]);
+                // this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
             }
         }, error => {
             this.role.next(null);
@@ -5998,10 +6068,16 @@ class AuthService {
                 this.userName = response.userName;
                 this.role.next(role);
                 this.saveAuthData(token, role, this.userId, this.userName);
-                console.log(this.userName);
+                this.checkVerifiedStatus(this.userId);
+                if (this.isVerified === false) {
+                    this.router.navigate(["/verify-email"]);
+                }
+                else {
+                    location.reload();
+                    this.router.navigate(["/dashboard"]);
+                    this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
+                }
                 location.reload();
-                this.router.navigate(["/dashboard"]);
-                this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
             }
         }, error => {
             sweetalert_dist_sweetalert_min_js__WEBPACK_IMPORTED_MODULE_1___default()("Wrong Credentials!", "Please Try again!", "warning");
@@ -6022,14 +6098,27 @@ class AuthService {
                 this.userName = response.userName;
                 this.role.next(role);
                 this.saveAuthData(token, role, this.userId, this.userName);
+                this.checkVerifiedStatus(this.userId);
+                if (this.isVerified === false) {
+                    this.router.navigate(["/verify-email"]);
+                }
+                else {
+                    location.reload();
+                    this.router.navigate(["/clientdashboard"]);
+                    this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
+                }
                 location.reload();
-                this.router.navigate(["/clientdashboard"]);
-                this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
             }
         }, error => {
             sweetalert_dist_sweetalert_min_js__WEBPACK_IMPORTED_MODULE_1___default()("Wrong Credentials!", "Please Try again!", "warning");
             this.role.next(null);
         });
+    }
+    checkVerifiedStatus(id) {
+        return this.http.get(BACKEND_URL + '/verifyedStatus/' + id);
+    }
+    checkStatus() {
+        return this.http.get(BACKEND_URL + '/checkVerifiedStatus/' + this.userId);
     }
     autoAuthUser() {
         const authInformation = this.getAuthData();
@@ -6042,12 +6131,19 @@ class AuthService {
         this.userId = authInformation.userId;
         this.userName = authInformation.userName;
         this.role.next(role);
-        if (role === "lawyer") {
-            this.router.navigate(["/dashboard"]);
-        }
-        if (role === "client") {
-            this.router.navigate(["/clientdashboard"]);
-        }
+        this.Role = role;
+        this.checkVerifiedStatus(authInformation.userId).subscribe(data => {
+            this.isVerified = data;
+            if (this.isVerified === false) {
+                this.router.navigate(["/verify-email"]);
+            }
+            if (role === "lawyer" && this.isVerified === true) {
+                this.router.navigate(["/dashboard"]);
+            }
+            if (role === "client" && this.isVerified === true) {
+                this.router.navigate(["/clientdashboard"]);
+            }
+        });
     }
     logoutLawyer() {
         sweetalert_dist_sweetalert_min_js__WEBPACK_IMPORTED_MODULE_1___default()({
@@ -6767,7 +6863,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _clientauth_guard__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./clientauth.guard */ "NGIv");
 /* harmony import */ var _edit_profile_edit_profile_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./edit-profile/edit-profile.component */ "bF/t");
 /* harmony import */ var _client_edit_profile_client_edit_profile_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./client-edit-profile/client-edit-profile.component */ "pg5L");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _verify_email_verify_email_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./verify-email/verify-email.component */ "+3Io");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
 
 
 
@@ -6822,17 +6920,18 @@ const routes = [
     { path: 'clientChatroom', component: _client_chatroom_client_chatroom_component__WEBPACK_IMPORTED_MODULE_18__["ClientChatroomComponent"], canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]] },
     { path: 'lawyerchats', component: _clientside_chat_clientside_chat_component__WEBPACK_IMPORTED_MODULE_21__["ClientsideChatComponent"], canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]] },
     { path: 'client-profile', component: _client_edit_profile_client_edit_profile_component__WEBPACK_IMPORTED_MODULE_25__["ClientEditProfileComponent"], canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]] },
+    { path: 'verify-email', component: _verify_email_verify_email_component__WEBPACK_IMPORTED_MODULE_26__["VerifyEmailComponent"] },
     { path: '**', component: _login_login_component__WEBPACK_IMPORTED_MODULE_8__["LoginComponent"] }
 ];
 class AppRoutingModule {
 }
 AppRoutingModule.ɵfac = function AppRoutingModule_Factory(t) { return new (t || AppRoutingModule)(); };
-AppRoutingModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_26__["ɵɵdefineNgModule"]({ type: AppRoutingModule });
-AppRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_26__["ɵɵdefineInjector"]({ providers: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"], _clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]], imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(routes, {
+AppRoutingModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_27__["ɵɵdefineNgModule"]({ type: AppRoutingModule });
+AppRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_27__["ɵɵdefineInjector"]({ providers: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"], _clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]], imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(routes, {
                 onSameUrlNavigation: 'reload',
                 relativeLinkResolution: 'legacy'
             })], _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_26__["ɵɵsetNgModuleScope"](AppRoutingModule, { imports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]], exports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]] }); })();
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_27__["ɵɵsetNgModuleScope"](AppRoutingModule, { imports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]], exports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]] }); })();
 
 
 /***/ }),

@@ -3,26 +3,74 @@ const User = require("../Schema/user")
 const Lawyer = require("../Schema/lawyer")
 const Client = require("../Schema/client")
 const auth = require('../middleware/Auth')
-const ChatRoom = require('../Schema/chatroom')
-const { sendWelcomeEmail} = require('./mail')
+const crypto = require('crypto')
+const { sendWelcomeEmail, verifyEmail} = require('./mail')
 const router = new express.Router()
 
 router.post('/api/signupLawyer', async (req, res) => {
-    const user = new User({ email: req.body.email, password: req.body.password,role: req.body.role})
-    const lawyer = new Lawyer({firstname: req.body.firstname, lastname: req.body.lastname, birthdate: req.body.birthdate,
-        phnno: req.body.phnno,year: req.body.year, address: req.body.address, uni: req.body.uni, city: req.body.city,
-        gender: req.body.gender, prac: req.body.prac, bcn: req.body.bcn, nationality: req.body.nationality, userId: user._id })
-    try {
-        const token = await user.generateAuthToken()
-        await user.save()
-        await lawyer.save()
-        sendWelcomeEmail(user.email, lawyer.firstname)
-        var firstname = String(lawyer.firstname)
-        var lastname = String(lawyer.lastname)
-        res.status(201).send({ userId: user._id, token, role: user.role, userName: firstname.concat(" ",lastname)})
-    } catch(e) {
-        res.status(400).send({message: "Email is already in use!"})
-    }
+  const hash = crypto.randomBytes(16).toString('hex')
+  const user = new User({ email: req.body.email, password: req.body.password,role: req.body.role, hash: hash})
+  const lawyer = new Lawyer({firstname: req.body.firstname, lastname: req.body.lastname, birthdate: req.body.birthdate,
+      phnno: req.body.phnno,year: req.body.year, address: req.body.address, uni: req.body.uni, city: req.body.city,
+      gender: req.body.gender, prac: req.body.prac, bcn: req.body.bcn, nationality: req.body.nationality, userId: user._id })
+  try {
+      const token = await user.generateAuthToken()
+      await user.save()
+      await lawyer.save()
+      verifyEmail(user.email, hash);
+      var firstname = String(lawyer.firstname)
+      var lastname = String(lawyer.lastname)
+      res.status(201).send({ userId: user._id, token, role: user.role,userName: firstname.concat(" ",lastname) })
+  } catch(e) {
+      res.status(400).send({message: "The email has already been taken!"})
+  }
+})
+
+router.get('/api/verify/:id', async(req, res) => {
+  try {
+      const id = req.params.id
+      const user = await User.findOne({hash: id})
+      if(user) {
+          user.isVerified = true
+          await user.save()
+          if( user.role === 'lawyer') {
+              const lawyer = await Lawyer.findOne({userId: user._id})
+              sendWelcomeEmail(user.email, lawyer.firstname)
+              res.redirect('/dashboard')
+          }
+          if( user.role === 'client') {
+              const client = await Client.findOne({userId: user._id})
+              sendWelcomeEmail(user.email, client.firstname)
+              res.redirect('/clientdashboard')
+          }
+      }
+  } catch (error) {
+      res.status(501).send(error)
+  }
+})
+
+router.get('/api/checkVerifiedStatus/:id', async(req,res) => {
+  try {
+      const _id = req.params.id
+      const user = await User.findById(_id)
+      if(user) {
+          res.status(201).send(user.isVerified)
+      }
+  } catch (error) {
+      res.status(500).send(error)
+  }
+})
+
+router.get('/api/verifyedStatus/:id', async(req, res) => {
+  try {
+      const _id = req.params.id
+      const user = await User.findById(_id)
+      if(user) {
+          res.status(201).send(user.isVerified)
+      }
+  } catch (error) {
+      res.status(501).send(error)
+  }
 })
 
 router.post('/api/login', async (req,res) => {
@@ -65,16 +113,17 @@ router.post('/api/logoutLawyer', auth, async (req,res) => {
 })
 
 router.post('/api/signupClient', async (req, res) => {
-    const user = new User({ email: req.body.email, password: req.body.password,role: req.body.role})
+    const hash = crypto.randomBytes(16).toString('hex')
+    const user = new User({ email: req.body.email, password: req.body.password,role: req.body.role, hash: hash})
     const client = new Client({firstname: req.body.firstname, lastname: req.body.lastname, birthdate: req.body.birthdate,
         phnno: req.body.phnno, city: req.body.city, email: req.body.email, gender: req.body.gender, userId: user._id })
     try {
         const token = await user.generateAuthToken()
-        sendWelcomeEmail(user.email, client.firstname)
         var firstname = String(client.firstname)
         var lastname = String(client.lastname)
         await user.save()
         await client.save()
+        verifyEmail(user.email, hash);
         res.status(201).send({ userId: user._id, token, role: user.role,userName: firstname.concat(" ",lastname) })
     } catch(e) {
         res.status(400).send({message: "Email is already in use!"})
