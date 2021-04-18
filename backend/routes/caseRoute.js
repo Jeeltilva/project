@@ -5,7 +5,7 @@ const Client = require("../Schema/client")
 const auth = require('../middleware/Auth')
 const router = new express.Router()
 const Case = require("../Schema/case");
-const { sendReminderEmailLawyer, sendReminderEmailClient } = require('./mail')
+const { sendReminderEmailLawyer, sendReminderEmailClient, linkedToCase } = require('./mail')
 path = require('path')
 const crypto = require('crypto');
 let mongoose = require('mongoose');
@@ -258,6 +258,8 @@ router.patch('/api/linkClient/:id', auth, async(req, res) => {
 
     await caseData.save()
     await client.save()
+    linkedToCase(client.email, caseData.stampNo)
+
     res.status(201).send(caseData)
     } catch(e) {
         res.status(500).send(e)

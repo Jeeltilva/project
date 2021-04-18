@@ -8,6 +8,7 @@ import { Lawyer } from '../models/lawyer.model';
 import { Client } from '../models/client.model';
 import { NotificationService } from "./notification.service";
 import swal from 'sweetalert/dist/sweetalert.min.js';
+import { LocalService } from "./local.service";
 
 const BACKEND_URL = 'http://localhost:4000/api';
 
@@ -17,9 +18,11 @@ export class AuthService {
   private token: string;
   private userName: string;
   private userId: string;
+  private isVerified: boolean = false;
   private role = new Subject<String>();
+  private Role: String;
 
-  constructor(private http: HttpClient, private router: Router, public notifyService : NotificationService) {}
+  constructor(private http: HttpClient, private router: Router, public notifyService : NotificationService , private localService: LocalService) {}
 
   getToken() {
     return this.token;
@@ -30,7 +33,7 @@ export class AuthService {
   }
 
   getRole() {
-    return this.role;
+    return this.Role;
   }
 
   getIsAuth() {
@@ -46,6 +49,7 @@ export class AuthService {
   }
 
   createLawyer(lawyer: Lawyer, role: string) {
+
     const data = {...lawyer, role}
     this.http.post<{ token: string; role:string; userId: string; userName: string }>(
       BACKEND_URL + "/signupLawyer", data)
@@ -58,10 +62,12 @@ export class AuthService {
           this.userId = response.userId;
           this.userName = response.userName;
           this.role.next(role);
+          this.Role = role
           this.saveAuthData(token, role, this.userId, this.userName);
-          location.reload();
-          this.router.navigate(["/dashboard"]);
-          this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
+          this.router.navigate(["/verify-email"]);
+          // location.reload();
+          // this.router.navigate(["/dashboard"]);
+          // this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
         }
       },
       error => {
@@ -83,10 +89,12 @@ export class AuthService {
           this.userId = response.userId;
           this.userName = response.userName;
           this.role.next(role);
+          this.Role = role
           this.saveAuthData(token, role, this.userId, this.userName);
-          location.reload();
-          this.router.navigate(["/clientdashboard"]);
-          this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
+          this.router.navigate(["/verify-email"]);
+          // location.reload();
+          // this.router.navigate(["/clientdashboard"]);
+          // this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
         }
       },
       error => {
@@ -113,10 +121,16 @@ export class AuthService {
             this.userName = response.userName;
             this.role.next(role);
             this.saveAuthData(token, role, this.userId, this.userName);
-            console.log(this.userName)
+            this.checkVerifiedStatus(this.userId)
+            if(this.isVerified===false) {
+              this.router.navigate(["/verify-email"]);
+            }
+            else {
+              location.reload();
+              this.router.navigate(["/dashboard"]);
+              this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
+            }
             location.reload();
-            this.router.navigate(["/dashboard"]);
-            this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
           }
         },
         error => {
@@ -144,9 +158,16 @@ export class AuthService {
             this.userName = response.userName;
             this.role.next(role);
             this.saveAuthData(token, role, this.userId, this.userName);
+            this.checkVerifiedStatus(this.userId)
+            if(this.isVerified===false) {
+              this.router.navigate(["/verify-email"]);
+            }
+            else {
+              location.reload();
+              this.router.navigate(["/clientdashboard"]);
+              this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
+            }
             location.reload();
-            this.router.navigate(["/clientdashboard"]);
-            this.notifyService.showSuccess("Logged In Successfully", "Yayy!");
           }
         },
         error => {
@@ -155,6 +176,15 @@ export class AuthService {
         }
       );
   }
+
+  checkVerifiedStatus(id:string) {
+    return this.http.get<boolean>(BACKEND_URL+'/verifyedStatus/'+id)
+  }
+
+  checkStatus() {
+    return this.http.get<boolean>(BACKEND_URL + '/checkVerifiedStatus/' + this.userId)
+  }
+
 
   autoAuthUser() {
     const authInformation = this.getAuthData();
@@ -167,12 +197,20 @@ export class AuthService {
     this.userId = authInformation.userId;
     this.userName = authInformation.userName;
     this.role.next(role);
-    if(role === "lawyer") {
-      this.router.navigate(["/dashboard"]);
-    }
-    if(role === "client"){
-      this.router.navigate(["/clientdashboard"])
-    }
+    this.Role = role;
+
+    this.checkVerifiedStatus(authInformation.userId).subscribe(data => {
+      this.isVerified = data;
+      if(this.isVerified === false) {
+        this.router.navigate(["/verify-email"]);
+      }
+      if(role === "lawyer" && this.isVerified === true) {
+        this.router.navigate(["/dashboard"]);
+      }
+      if(role === "client" && this.isVerified === true){
+        this.router.navigate(["/clientdashboard"]);
+      }
+    })
   }
 
   logoutLawyer() {
@@ -215,32 +253,28 @@ export class AuthService {
   }
 
   private saveAuthData(token: string, role: string, userId: string, userName: string) {
-    localStorage.setItem("token", token);
-    localStorage.setItem("role", role);
-    localStorage.setItem("userId", userId);
-    localStorage.setItem("userName", userName);
+
+    const user = {token: token, role: role, userId: userId, userName: userName};
+    this.localService.setJsonValue('user', user);
   }
 
   private clearAuthData() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("userName")
+    this.localService.clear();
   }
 
   private getAuthData() {
-    const token = localStorage.getItem("token");
-    const role = localStorage.getItem("role");
-    const userId = localStorage.getItem("userId");
-    const userName = localStorage.getItem("userName");
-    if (!token) {
+
+    const user = this.localService.getJsonValue('user');
+
+    if (!user) {
       return;
     }
     return {
-      token: token,
-      role: role,
-      userId: userId,
-      userName: userName
+      token: user.token,
+      role: user.role,
+      userId: user.userId,
+      userName: user.userName
     };
   }
+
 }

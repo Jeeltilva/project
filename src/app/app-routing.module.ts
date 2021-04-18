@@ -25,6 +25,7 @@ import { LawyerListComponent } from './lawyer-list/lawyer-list.component';
 import { ClientAuthGuard } from './clientauth.guard';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ClientEditProfileComponent } from './client-edit-profile/client-edit-profile.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
@@ -52,6 +53,7 @@ const routes: Routes = [
   { path: 'clientChatroom', component: ClientChatroomComponent, canActivate: [ClientAuthGuard]},
   { path: 'lawyerchats', component: ClientsideChatComponent, canActivate: [ClientAuthGuard]},
   { path: 'client-profile', component: ClientEditProfileComponent, canActivate: [ClientAuthGuard]},
+  { path: 'verify-email', component: VerifyEmailComponent},
   { path: '**', component:LoginComponent }
 ];
 

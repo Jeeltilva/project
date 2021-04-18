@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
             if(!validator.isEmail(value)) {
                 throw new Error('Email is Invalid.')
             }
-        }    
+        }
     },
     password: {
         type: String,
@@ -30,6 +30,13 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         required: true,
+    },
+    isVerified: {
+      type: Boolean,
+      default: false
+    },
+    hash: {
+        type: String,
     },
     // avatar: {
     //     type: Buffer

@@ -67,8 +67,48 @@ Note: ${note}`
         }
       });
 }
+
+const verifyEmail = (email, uniqueString) => {
+  transporter.sendMail({
+      from: 'lawyer.portal2020@gmail.com',
+      to: email,
+      subject: 'Email Verification',
+      html:`<h3>Hello!</h3>
+            <p>Please Click <a href=http://localhost:4000/api/verify/${uniqueString} target="_self"> here </a> to verify your email.</p>
+            <p>If you did not create an account, no further action is required.</p>
+            <br>
+            <p>Thanks,<br>
+            Lawyer Portal<p>
+            <hr>
+            <small>If you’re having trouble clicking the "Verify Email Address" button, copy and paste the URL below into your web browser: <br>http://localhost:4000/api/verify/${uniqueString}</small>`
+    }, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+}
+
+const linkedToCase = (email, caseNo) => {
+  transporter.sendMail({
+      from: 'lawyer.portal2020@gmail.com',
+      to: email,
+      subject: 'Access to Information of Case',
+      html: `<p>You are linked with the case ${caseNo}</p><p>Now you can Interact with your Lawyer</p><br><small><i>Thank you!</i></small>`
+    }, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+}
+
 module.exports = {
     sendWelcomeEmail,
     sendReminderEmailLawyer,
-    sendReminderEmailClient
+    sendReminderEmailClient,
+    verifyEmail,
+    linkedToCase
 }

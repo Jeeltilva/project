@@ -7,7 +7,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Case } from "../models/case.model";
 import { Client } from '../models/client.model';
-import { Lawyer } from '../models/lawyer.model';
+// import { Lawyer } from '../models/lawyer.model';
 import { LawyerInt } from '../models/lawyer.model copy';
 import swal from 'sweetalert/dist/sweetalert.min.js';
 
@@ -115,7 +115,6 @@ export class CaseService {
       catchError(this.handleError)
     ) .subscribe((data:Case) => {
       this.singleCase.next(data);
-      console.log(data)
     }, (err) => {
       console.log(err);
     });
@@ -151,7 +150,6 @@ export class CaseService {
     this.http.patch<any>(apiUrl+'makedispose', {_id}).pipe(
       catchError(this.handleError)
     ).subscribe((data) => {
-      console.log(data);
     })
   }
 

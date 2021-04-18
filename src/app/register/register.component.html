@@ -267,18 +267,15 @@
 				<!-- <input type="text" matInput placeholder="Bar council number" formControlName="bcn"> -->
         <div *ngIf="registerForm.get('bcn').pending">Validating...</div>
         <div [ngClass]="{'is-loading': registerForm.controls['bcn'].pending }" class="control">
-          <input [ngClass]="{'is-danger': hasError('bcn', 'any')}" type="text" matInput placeholder="Bar council number" formControlName="bcn">
+          <input [ngClass]="{'is-danger': hasError('bcn', 'any')}" type="text" matInput placeholder="Bar council number(i.e. 123456789123)" formControlName="bcn">
         </div>
         <mat-error *ngIf="hasError('bcn', 'required')">
           A valid BCN is required!
         </mat-error>
         <mat-error *ngIf="registerForm.controls['bcn'].errors?.bcnExists">
-          This bcn is not registered
+          This bcn is not registered (Use 123456789123)
         </mat-error>
-        <!-- <mat-error #elseBlock>
-          Please enter a valid Bar council number
-        </mat-error> -->
-				<!-- <mat-error *ngIf="data.bcn.errors?.required">Bar council number is required</mat-error> -->
+
 			  </mat-form-field>
 			  <mat-form-field class="w-100">
 				<input type="text" matInput placeholder="University" formControlName="uni">

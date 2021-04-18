@@ -222,7 +222,6 @@ export class CaseinfoComponent implements OnInit,OnDestroy {
 
     this.caseSub = this.caseService.getsingleCaseUpdateListener().subscribe((data:Case) => {
       this.caseData = data;
-      console.log(data)
       this.details = data.details;
       this.orders = data.orders;
       this.notes = data.notes;
