@@ -1,69 +1,99 @@
 <ng-container>
-    <mat-toolbar class="example-header">
-      <button
-          type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="sidenav.toggle()"
+  <mat-toolbar class="example-header">
+    <button
+      type="button"
+      aria-label="Toggle sidenav"
+      mat-icon-button
+      (click)="sidenav.toggle()"
+    >
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <span
+      >Lawyer Portal <span style="padding-right: 10px"></span
+      ><mat-icon>gavel</mat-icon></span
+    >
+
+    <span class="flex-spacer"></span>
+    <small style="font-size: x-small">{{ userName | uppercase }}</small>
+    <button mat-icon-button>
+      <mat-icon routerLink="/chats">chat</mat-icon>
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>settings</mat-icon>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/profile">
+          <mat-icon>account_circle</mat-icon> Profile
+        </button>
+        <mat-divider></mat-divider>
+        <button (click)="logoutLawyer()" mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon> Logout
+        </button>
+      </mat-menu>
+    </button>
+  </mat-toolbar>
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav
+      #sidenav
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      opened
+      class="example-sidenav"
+      [fixedInViewport]="'fixed'"
+      [fixedTopGap]="60"
+      [fixedBottomGap]="60"
+      [opened]="(isHandset$ | async) === false"
+    >
+      <mat-nav-list>
+        <a mat-list-item routerLink="/dashboard">Dashboard</a
+        ><mat-divider></mat-divider>
+        <a mat-list-item (click)="selectList()"
+          >Cases
+          <span class="flex-spacer"></span>
+          <mat-icon *ngIf="link1 === false">arrow_drop_down</mat-icon>
+          <mat-icon *ngIf="link1 === true">arrow_drop_up</mat-icon>
+        </a>
+        <a mat-list-item *ngIf="link1 === true" routerLink="addcase"
+          >Add new Case</a
         >
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
-        <span>Lawyer Portal <span style="padding-right:10px"></span><mat-icon>gavel</mat-icon></span>
+        <a mat-list-item *ngIf="link1 === true" routerLink="/cases"
+          >All Cases</a
+        >
+        <a mat-list-item *ngIf="link1 === true" routerLink="preadmittedcases"
+          >Pre-Admitted</a
+        >
+        <a mat-list-item *ngIf="link1 === true" routerLink="/admittedcases"
+          >Admitted</a
+        >
+        <a mat-list-item *ngIf="link1 === true" routerLink="disposedcases"
+          >Disposed/Rejected</a
+        >
+        <mat-divider></mat-divider>
+        <a mat-list-item routerLink="/lawbook">Lawbook</a
+        ><mat-divider></mat-divider>
+        <a mat-list-item routerLink="/cases">Reference Cases</a
+        ><mat-divider></mat-divider>
+        <a mat-list-item routerLink="/try">Calendar</a
+        ><mat-divider></mat-divider>
+        <a mat-list-item routerLink="/clientlist">Clients</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <ng-content></ng-content>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 
-        <span class="flex-spacer"></span>
-        <small style="font-size:x-small;">{{userName | uppercase}}</small>
-        <button mat-icon-button >
-          <mat-icon routerLink="/chats">chat</mat-icon>
-        </button>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>settings</mat-icon>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item routerLink="/profile"><mat-icon>account_circle</mat-icon> Profile</button>
-              <mat-divider></mat-divider>
-              <button (click)="logoutLawyer()" mat-menu-item><mat-icon>exit_to_app</mat-icon> Logout</button>
-            </mat-menu>
-        </button>
-    </mat-toolbar>
-    <mat-sidenav-container class="example-container">
-      <mat-sidenav #sidenav [mode]="(isHandset$ | async) ? 'over' : 'side'" opened class="example-sidenav"
-                   [fixedInViewport]="'fixed'"
-                   [fixedTopGap]="60" [fixedBottomGap]="60"
-                   [opened]="(isHandset$ | async) === false">
-                   <mat-nav-list>
-                    <a mat-list-item routerLink='/dashboard'>Dashboard</a><mat-divider></mat-divider>
-                    <a mat-list-item (click)='selectList()'>Cases
-                      <span class="flex-spacer"></span>
-                      <mat-icon *ngIf="link1===false">arrow_drop_down</mat-icon>
-                      <mat-icon *ngIf="link1===true">arrow_drop_up</mat-icon>
-                    </a>
-                    <a mat-list-item *ngIf="link1===true" routerLink='addcase'>Add new Case</a>
-                    <a mat-list-item *ngIf="link1===true" routerLink='/cases'>All Cases</a>
-                    <a mat-list-item *ngIf="link1===true" routerLink='preadmittedcases'>Pre-Admitted</a>
-                    <a mat-list-item *ngIf="link1===true" routerLink='/admittedcases'>Admitted</a>
-                    <a mat-list-item *ngIf="link1===true" routerLink='disposedcases'>Disposed/Rejected</a>
-                    <mat-divider></mat-divider>
-                    <a mat-list-item routerLink='/cases'>Lawbook</a><mat-divider></mat-divider>
-                    <a mat-list-item routerLink='/cases'>Reference Cases</a><mat-divider></mat-divider>
-                    <a mat-list-item routerLink='/try'>Calendar</a><mat-divider></mat-divider>
-                    <a mat-list-item routerLink='/clientlist'>Clients</a>
-                  </mat-nav-list>
-      </mat-sidenav>
-      <mat-sidenav-content>
-        <ng-content></ng-content>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-
-    <mat-toolbar class="footer">
-      <!-- <p style="margin-bottom:0;">Made by <a href="https://www.linkedin.com/in/kalagi-vora">Team</a></p> -->
-      <small class="rights">&copy; All rights reserved for <i>Lawyer Portal</i> 2020</small>
-      <span class="contact">
-        <h5 style="margin-bottom:0; font-size: medium">Contact Us &#9993;</h5>
-        <p>lawyer.portal2020@gmail.com</p>
-      </span>
-      <!-- <span class="follow">
+  <mat-toolbar class="footer">
+    <!-- <p style="margin-bottom:0;">Made by <a href="https://www.linkedin.com/in/kalagi-vora">Team</a></p> -->
+    <small class="rights"
+      >&copy; All rights reserved for <i>Lawyer Portal</i> 2020</small
+    >
+    <span class="contact">
+      <h5 style="margin-bottom: 0; font-size: medium">Contact Us &#9993;</h5>
+      <p>lawyer.portal2020@gmail.com</p>
+    </span>
+    <!-- <span class="follow">
         <h5 style="margin-bottom:0; font-size: medium">Follow Us On</h5>
         <p>github</p>
         <h2>Contact</h2>
       </span> -->
-    </mat-toolbar>
-  </ng-container>
+  </mat-toolbar>
+</ng-container>

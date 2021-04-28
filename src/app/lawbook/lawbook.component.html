@@ -1,0 +1,65 @@
+<div class="bg-image"></div>
+<div class="grid-container bg-text" style="width: 95%">
+  <h1
+    class="mat-h1"
+    style="
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-weight: bold;
+    "
+  >
+    Lawbook
+  </h1>
+  <br />
+  <div>
+    <form
+      class="searchButton"
+      style="
+        margin: 20px 70px 20px 20px;
+        max-width: 250px;
+        display: flex;
+        max-height: 40px;
+      "
+    >
+      <input
+        #searchBox
+        type="text"
+        placeholder="Search"
+        name="search"
+        [(ngModel)]="searchedKeyword"
+        (input)="resetPagination()"
+      />
+      <button type="button"><mat-icon>search</mat-icon></button>
+    </form>
+
+    <table
+      style="width: 90%; margin: auto; background-color: white; color: black"
+    >
+      <tr>
+        <th>Name</th>
+        <th>Action</th>
+      </tr>
+      <tr
+        *ngFor="
+          let file of files
+            | async
+            | filter: searchedKeyword
+            | paginate: { itemsPerPage: 6, currentPage: p }
+        "
+      >
+        <td>{{ file.originalname }}</td>
+        <td>
+          <button
+            mat-button
+            color="accent"
+            (click)="downloadPdf(file.filename, file.contentType)"
+          >
+            View
+          </button>
+        </td>
+      </tr>
+    </table>
+    <div class="pagination">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

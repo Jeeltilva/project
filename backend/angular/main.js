@@ -1805,27 +1805,27 @@ function MainNavComponent_mat_icon_44_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
 } }
 function MainNavComponent_a_45_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "a", 30);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "a", 31);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "Add new Case");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
 } }
 function MainNavComponent_a_46_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "a", 23);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "a", 24);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "All Cases");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
 } }
 function MainNavComponent_a_47_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "a", 31);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "a", 32);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "Pre-Admitted");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
 } }
 function MainNavComponent_a_48_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "a", 32);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "a", 33);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "Admitted");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
 } }
 function MainNavComponent_a_49_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "a", 33);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "a", 34);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "Disposed/Rejected");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
 } }
@@ -1850,7 +1850,7 @@ class MainNavComponent {
     }
 }
 MainNavComponent.ɵfac = function MainNavComponent_Factory(t) { return new (t || MainNavComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_cdk_layout__WEBPACK_IMPORTED_MODULE_0__["BreakpointObserver"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"])); };
-MainNavComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineComponent"]({ type: MainNavComponent, selectors: [["app-main-nav"]], ngContentSelectors: _c0, decls: 75, vars: 20, consts: [[1, "example-header"], ["type", "button", "aria-label", "Toggle sidenav", "mat-icon-button", "", 3, "click"], ["aria-label", "Side nav toggle icon"], [2, "padding-right", "10px"], [1, "flex-spacer"], [2, "font-size", "x-small"], ["mat-icon-button", ""], ["routerLink", "/chats"], ["mat-icon-button", "", 3, "matMenuTriggerFor"], ["menu", "matMenu"], ["mat-menu-item", "", "routerLink", "/profile"], ["mat-menu-item", "", 3, "click"], [1, "example-container"], ["opened", "", 1, "example-sidenav", 3, "mode", "fixedInViewport", "fixedTopGap", "fixedBottomGap", "opened"], ["sidenav", ""], ["mat-list-item", "", "routerLink", "/dashboard"], ["mat-list-item", "", 3, "click"], [4, "ngIf"], ["mat-list-item", "", "routerLink", "addcase", 4, "ngIf"], ["mat-list-item", "", "routerLink", "/cases", 4, "ngIf"], ["mat-list-item", "", "routerLink", "preadmittedcases", 4, "ngIf"], ["mat-list-item", "", "routerLink", "/admittedcases", 4, "ngIf"], ["mat-list-item", "", "routerLink", "disposedcases", 4, "ngIf"], ["mat-list-item", "", "routerLink", "/cases"], ["mat-list-item", "", "routerLink", "/try"], ["mat-list-item", "", "routerLink", "/clientlist"], [1, "footer"], [1, "rights"], [1, "contact"], [2, "margin-bottom", "0", "font-size", "medium"], ["mat-list-item", "", "routerLink", "addcase"], ["mat-list-item", "", "routerLink", "preadmittedcases"], ["mat-list-item", "", "routerLink", "/admittedcases"], ["mat-list-item", "", "routerLink", "disposedcases"]], template: function MainNavComponent_Template(rf, ctx) { if (rf & 1) {
+MainNavComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineComponent"]({ type: MainNavComponent, selectors: [["app-main-nav"]], ngContentSelectors: _c0, decls: 75, vars: 20, consts: [[1, "example-header"], ["type", "button", "aria-label", "Toggle sidenav", "mat-icon-button", "", 3, "click"], ["aria-label", "Side nav toggle icon"], [2, "padding-right", "10px"], [1, "flex-spacer"], [2, "font-size", "x-small"], ["mat-icon-button", ""], ["routerLink", "/chats"], ["mat-icon-button", "", 3, "matMenuTriggerFor"], ["menu", "matMenu"], ["mat-menu-item", "", "routerLink", "/profile"], ["mat-menu-item", "", 3, "click"], [1, "example-container"], ["opened", "", 1, "example-sidenav", 3, "mode", "fixedInViewport", "fixedTopGap", "fixedBottomGap", "opened"], ["sidenav", ""], ["mat-list-item", "", "routerLink", "/dashboard"], ["mat-list-item", "", 3, "click"], [4, "ngIf"], ["mat-list-item", "", "routerLink", "addcase", 4, "ngIf"], ["mat-list-item", "", "routerLink", "/cases", 4, "ngIf"], ["mat-list-item", "", "routerLink", "preadmittedcases", 4, "ngIf"], ["mat-list-item", "", "routerLink", "/admittedcases", 4, "ngIf"], ["mat-list-item", "", "routerLink", "disposedcases", 4, "ngIf"], ["mat-list-item", "", "routerLink", "/lawbook"], ["mat-list-item", "", "routerLink", "/cases"], ["mat-list-item", "", "routerLink", "/try"], ["mat-list-item", "", "routerLink", "/clientlist"], [1, "footer"], [1, "rights"], [1, "contact"], [2, "margin-bottom", "0", "font-size", "medium"], ["mat-list-item", "", "routerLink", "addcase"], ["mat-list-item", "", "routerLink", "preadmittedcases"], ["mat-list-item", "", "routerLink", "/admittedcases"], ["mat-list-item", "", "routerLink", "disposedcases"]], template: function MainNavComponent_Template(rf, ctx) { if (rf & 1) {
         const _r9 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵgetCurrentView"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵprojectionDef"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementContainerStart"](0);
@@ -1887,7 +1887,7 @@ MainNavComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineC
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](23, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](24, "account_circle");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](25, " Profile");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](25, " Profile ");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](26, "mat-divider");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](27, "button", 11);
@@ -1895,7 +1895,7 @@ MainNavComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineC
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](28, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](29, "exit_to_app");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](30, " Logout");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](30, " Logout ");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
@@ -1926,15 +1926,15 @@ MainNavComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineC
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](52, "Lawbook");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](53, "mat-divider");
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](54, "a", 23);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](54, "a", 24);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](55, "Reference Cases");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](56, "mat-divider");
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](57, "a", 24);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](57, "a", 25);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](58, "Calendar");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](59, "mat-divider");
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](60, "a", 25);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](60, "a", 26);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](61, "Clients");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
@@ -1943,16 +1943,16 @@ MainNavComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineC
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵprojection"](63);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](64, "mat-toolbar", 26);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](65, "small", 27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](64, "mat-toolbar", 27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](65, "small", 28);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](66, "\u00A9 All rights reserved for ");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](67, "i");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](68, "Lawyer Portal");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](69, " 2020");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](70, "span", 28);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](71, "h5", 29);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](70, "span", 29);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](71, "h5", 30);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](72, "Contact Us \u2709");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](73, "p");
@@ -2445,6 +2445,121 @@ LoginclientComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdef
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](7, _c0));
     } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], _angular_material_card__WEBPACK_IMPORTED_MODULE_5__["MatCard"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_forms_forms_ba"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormGroupDirective"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_6__["MatFormField"], _angular_material_input__WEBPACK_IMPORTED_MODULE_7__["MatInput"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormControlName"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_8__["MatIcon"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_6__["MatSuffix"], _angular_material_button__WEBPACK_IMPORTED_MODULE_9__["MatButton"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterLinkWithHref"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_6__["MatError"]], styles: [".mast[_ngcontent-%COMP%] {\r\n  margin: auto;\r\n  width: 80%;\r\n}\r\n.vache[_ngcontent-%COMP%] {\r\n  margin: 20px auto;\r\n    font-family:Georgia, 'Times New Roman', Times, serif;\r\n    font-weight: bold;\r\n    font-size: medium;\r\n    font-style: normal;\r\n}\r\n.card[_ngcontent-%COMP%] {\r\n  width: 60%;\r\n  margin: 20px auto;\r\n  border-radius: 4px;\r\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\r\n}\r\n.bg-image[_ngcontent-%COMP%] {\r\n\r\n\r\nbackground-image: url('/assets/bg.jpg');\r\n\r\nfilter: blur(8px);\r\n-webkit-filter: blur(8px);\r\n\r\n\r\nheight: 90%;\r\n\r\n\r\nbackground-position: center;\r\nbackground-repeat: no-repeat;\r\nbackground-size: cover;\r\n}\r\n.bg-text[_ngcontent-%COMP%] {\r\ncolor: black;\r\nfont-weight: bold;\r\n\r\nposition: absolute;\r\ntop: 50%;\r\nleft: 50%;\r\ntransform: translate(-50%, -50%);\r\nz-index: 2;\r\n\r\n\r\ntext-align: center;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxvZ2luY2xpZW50LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxZQUFZO0VBQ1osVUFBVTtBQUNaO0FBQ0E7RUFDRSxpQkFBaUI7SUFDZixvREFBb0Q7SUFDcEQsaUJBQWlCO0lBQ2pCLGlCQUFpQjtJQUNqQixrQkFBa0I7QUFDdEI7QUFFQTtFQUNFLFVBQVU7RUFDVixpQkFBaUI7RUFDakIsa0JBQWtCO0lBQ2hCLDRFQUE0RTtBQUNoRjtBQUVBO0FBQ0EsbUJBQW1CO0FBQ25CLHFRQUFxUTtBQUNyUSx1Q0FBdUM7QUFDdkMsd0JBQXdCO0FBQ3hCLGlCQUFpQjtBQUNqQix5QkFBeUI7O0FBRXpCLGdCQUFnQjtBQUNoQixXQUFXOztBQUVYLHNDQUFzQztBQUN0QywyQkFBMkI7QUFDM0IsNEJBQTRCO0FBQzVCLHNCQUFzQjtBQUN0QjtBQUVBO0FBQ0EsWUFBWTtBQUNaLGlCQUFpQjtBQUNqQiwrQkFBK0I7QUFDL0Isa0JBQWtCO0FBQ2xCLFFBQVE7QUFDUixTQUFTO0FBQ1QsZ0NBQWdDO0FBQ2hDLFVBQVU7QUFDVixnQkFBZ0I7QUFDaEIsbUJBQW1CO0FBQ25CLGtCQUFrQjtBQUNsQiIsImZpbGUiOiJsb2dpbmNsaWVudC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1hc3Qge1xyXG4gIG1hcmdpbjogYXV0bztcclxuICB3aWR0aDogODAlO1xyXG59XHJcbi52YWNoZSB7XHJcbiAgbWFyZ2luOiAyMHB4IGF1dG87XHJcbiAgICBmb250LWZhbWlseTpHZW9yZ2lhLCAnVGltZXMgTmV3IFJvbWFuJywgVGltZXMsIHNlcmlmO1xyXG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbiAgICBmb250LXNpemU6IG1lZGl1bTtcclxuICAgIGZvbnQtc3R5bGU6IG5vcm1hbDtcclxufVxyXG5cclxuLmNhcmQge1xyXG4gIHdpZHRoOiA2MCU7XHJcbiAgbWFyZ2luOiAyMHB4IGF1dG87XHJcbiAgYm9yZGVyLXJhZGl1czogNHB4O1xyXG4gICAgYm94LXNoYWRvdzogMCA0cHggOHB4IDAgcmdiYSgwLCAwLCAwLCAwLjIpLCAwIDZweCAyMHB4IDAgcmdiYSgwLCAwLCAwLCAwLjE5KTtcclxufVxyXG5cclxuLmJnLWltYWdlIHtcclxuLyogVGhlIGltYWdlIHVzZWQgKi9cclxuLyogYmFja2dyb3VuZC1pbWFnZTogdXJsKFwiaHR0cHM6Ly9ucHIuYnJpZ2h0c3BvdGNkbi5jb20vZGltczQvZGVmYXVsdC9mZjkzMjEzLzIxNDc0ODM2NDcvc3RyaXAvdHJ1ZS9jcm9wLzE4NzV4MTI1MCswKzAvcmVzaXplLzg4MHg1ODchL3F1YWxpdHkvOTAvP3VybD1odHRwOiUyRiUyRm5wci1icmlnaHRzcG90LnMzLmFtYXpvbmF3cy5jb20lMkZsZWdhY3klMkZzaXRlcyUyRnd2cG4lMkZmaWxlcyUyRjIwMTUxMSUyRlNjYWxlc29mSnVzdGljZS5qcGdcIik7ICovXHJcbmJhY2tncm91bmQtaW1hZ2U6IHVybCgnL2Fzc2V0cy9iZy5qcGcnKTtcclxuLyogQWRkIHRoZSBibHVyIGVmZmVjdCAqL1xyXG5maWx0ZXI6IGJsdXIoOHB4KTtcclxuLXdlYmtpdC1maWx0ZXI6IGJsdXIoOHB4KTtcclxuXHJcbi8qIEZ1bGwgaGVpZ2h0ICovXHJcbmhlaWdodDogOTAlO1xyXG5cclxuLyogQ2VudGVyIGFuZCBzY2FsZSB0aGUgaW1hZ2UgbmljZWx5ICovXHJcbmJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcclxuYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcclxuYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcclxufVxyXG5cclxuLmJnLXRleHQge1xyXG5jb2xvcjogYmxhY2s7XHJcbmZvbnQtd2VpZ2h0OiBib2xkO1xyXG4vKiBib3JkZXI6IDNweCBzb2xpZCAjZjFmMWYxOyAqL1xyXG5wb3NpdGlvbjogYWJzb2x1dGU7XHJcbnRvcDogNTAlO1xyXG5sZWZ0OiA1MCU7XHJcbnRyYW5zZm9ybTogdHJhbnNsYXRlKC01MCUsIC01MCUpO1xyXG56LWluZGV4OiAyO1xyXG4vKiB3aWR0aDogODAlOyAqL1xyXG4vKiBwYWRkaW5nOiAyMHB4OyAqL1xyXG50ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuIl19 */"] });
+
+
+/***/ }),
+
+/***/ "G9L2":
+/*!**********************************************!*\
+  !*** ./src/app/lawbook/lawbook.component.ts ***!
+  \**********************************************/
+/*! exports provided: LawbookComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LawbookComponent", function() { return LawbookComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _services_case_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/case.service */ "eECP");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/icon */ "NFeN");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var ngx_pagination__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-pagination */ "oOf3");
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/button */ "bTqV");
+/* harmony import */ var ng2_search_filter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ng2-search-filter */ "cZdB");
+
+
+
+
+
+
+
+
+function LawbookComponent_tr_18_Template(rf, ctx) { if (rf & 1) {
+    const _r4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "tr");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "td");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "td");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "button", 11);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function LawbookComponent_tr_18_Template_button_click_4_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r4); const file_r2 = ctx.$implicit; const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r3.downloadPdf(file_r2.filename, file_r2.contentType); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, " View ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const file_r2 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](file_r2.originalname);
+} }
+const _c0 = function (a1) { return { itemsPerPage: 6, currentPage: a1 }; };
+class LawbookComponent {
+    constructor(caseService) {
+        this.caseService = caseService;
+        this.p = 1;
+        this.DocColumns = ['Name', 'Size', 'Created_At', 'Actions'];
+    }
+    downloadPdf(filename, contentType) {
+        this.caseService.downloadPDF(filename, contentType).subscribe((res) => {
+            const file = new Blob([res], { type: 'application/pdf' });
+            const fileURL = URL.createObjectURL(file);
+            window.open(fileURL);
+        });
+    }
+    ngOnInit() {
+        this.files = this.caseService.getLawbook();
+    }
+    resetPagination() {
+        this.p = 1;
+    }
+}
+LawbookComponent.ɵfac = function LawbookComponent_Factory(t) { return new (t || LawbookComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_case_service__WEBPACK_IMPORTED_MODULE_1__["CaseService"])); };
+LawbookComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: LawbookComponent, selectors: [["app-lawbook"]], decls: 24, vars: 12, consts: [[1, "bg-image"], [1, "grid-container", "bg-text", 2, "width", "95%"], [1, "mat-h1", 2, "font-family", "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif", "font-weight", "bold"], [1, "searchButton", 2, "margin", "20px 70px 20px 20px", "max-width", "250px", "display", "flex", "max-height", "40px"], ["type", "text", "placeholder", "Search", "name", "search", 3, "ngModel", "ngModelChange", "input"], ["searchBox", ""], ["type", "button"], [2, "width", "90%", "margin", "auto", "background-color", "white", "color", "black"], [4, "ngFor", "ngForOf"], [1, "pagination"], [3, "pageChange"], ["mat-button", "", "color", "accent", 3, "click"]], template: function LawbookComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "h1", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, " Lawbook ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](4, "br");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "form", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "input", 4, 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function LawbookComponent_Template_input_ngModelChange_7_listener($event) { return ctx.searchedKeyword = $event; })("input", function LawbookComponent_Template_input_input_7_listener() { return ctx.resetPagination(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "button", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "mat-icon");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "search");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "table", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "tr");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "th");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15, "Name");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "th");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17, "Action");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](18, LawbookComponent_tr_18_Template, 6, 1, "tr", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](19, "paginate");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](20, "filter");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](21, "async");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "div", 9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "pagination-controls", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("pageChange", function LawbookComponent_Template_pagination_controls_pageChange_23_listener($event) { return ctx.p = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.searchedKeyword);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](11);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](19, 2, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](20, 5, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](21, 8, ctx.files), ctx.searchedKeyword), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](10, _c0, ctx.p)));
+    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["ɵangular_packages_forms_forms_ba"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["NgForm"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["NgModel"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_3__["MatIcon"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgForOf"], ngx_pagination__WEBPACK_IMPORTED_MODULE_5__["PaginationControlsComponent"], _angular_material_button__WEBPACK_IMPORTED_MODULE_6__["MatButton"]], pipes: [ngx_pagination__WEBPACK_IMPORTED_MODULE_5__["PaginatePipe"], ng2_search_filter__WEBPACK_IMPORTED_MODULE_7__["Ng2SearchPipe"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["AsyncPipe"]], styles: ["form.searchButton[_ngcontent-%COMP%]   input[type=text][_ngcontent-%COMP%] {\n  padding: 10px;\n  font-size: 17px;\n  border: 1px solid grey;\n  float: left;\n  width: 80%;\n  background: #ffffff;\n}\n\nform.searchButton[_ngcontent-%COMP%]   button[_ngcontent-%COMP%] {\n  float: left;\n  width: 20%;\n  padding: 10px;\n  background: #2196f3;\n  color: white;\n  font-size: 17px;\n  border: 1px solid grey;\n  border-left: none;\n  cursor: pointer;\n}\n\nform.searchButton[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]:hover {\n  background: #0b7dda;\n}\n\nform.searchButton[_ngcontent-%COMP%]::after {\n  content: \"\";\n  clear: both;\n  display: table;\n}\n\nth[_ngcontent-%COMP%] {\n  text-align: left;\n  padding-top: 15px !important;\n  padding-bottom: 10px !important;\n  padding-left: 30px !important;\n}\n\ntd[_ngcontent-%COMP%] {\n  padding-left: 30px !important;\n}\n\nform[_ngcontent-%COMP%] {\n  float: right;\n}\n\ntable[_ngcontent-%COMP%] {\n  border-collapse: collapse;\n}\n\nth[_ngcontent-%COMP%], td[_ngcontent-%COMP%] {\n  padding: 6px;\n  text-align: left;\n  border-bottom: 1px solid #ddd;\n}\n\ntr[_ngcontent-%COMP%]:hover {\n  background-color: #f5f5f5;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXGxhd2Jvb2suY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFBO0VBQ0EsZUFBQTtFQUNBLHNCQUFBO0VBQ0EsV0FBQTtFQUNBLFVBQUE7RUFDQSxtQkFBQTtBQUNGOztBQUVBO0VBQ0UsV0FBQTtFQUNBLFVBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSxZQUFBO0VBQ0EsZUFBQTtFQUNBLHNCQUFBO0VBQ0EsaUJBQUE7RUFDQSxlQUFBO0FBQ0Y7O0FBRUE7RUFDRSxtQkFBQTtBQUNGOztBQUVBO0VBQ0UsV0FBQTtFQUNBLFdBQUE7RUFDQSxjQUFBO0FBQ0Y7O0FBRUE7RUFDRSxnQkFBQTtFQUNBLDRCQUFBO0VBQ0EsK0JBQUE7RUFDQSw2QkFBQTtBQUNGOztBQUVBO0VBQ0UsNkJBQUE7QUFDRjs7QUFFQTtFQUNFLFlBQUE7QUFDRjs7QUFFQTtFQUNFLHlCQUFBO0FBQ0Y7O0FBRUE7O0VBRUUsWUFBQTtFQUNBLGdCQUFBO0VBQ0EsNkJBQUE7QUFDRjs7QUFFQTtFQUNFLHlCQUFBO0FBQ0YiLCJmaWxlIjoibGF3Ym9vay5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImZvcm0uc2VhcmNoQnV0dG9uIGlucHV0W3R5cGU9XCJ0ZXh0XCJdIHtcclxuICBwYWRkaW5nOiAxMHB4O1xyXG4gIGZvbnQtc2l6ZTogMTdweDtcclxuICBib3JkZXI6IDFweCBzb2xpZCBncmV5O1xyXG4gIGZsb2F0OiBsZWZ0O1xyXG4gIHdpZHRoOiA4MCU7XHJcbiAgYmFja2dyb3VuZDogI2ZmZmZmZjtcclxufVxyXG5cclxuZm9ybS5zZWFyY2hCdXR0b24gYnV0dG9uIHtcclxuICBmbG9hdDogbGVmdDtcclxuICB3aWR0aDogMjAlO1xyXG4gIHBhZGRpbmc6IDEwcHg7XHJcbiAgYmFja2dyb3VuZDogIzIxOTZmMztcclxuICBjb2xvcjogd2hpdGU7XHJcbiAgZm9udC1zaXplOiAxN3B4O1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkIGdyZXk7XHJcbiAgYm9yZGVyLWxlZnQ6IG5vbmU7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcblxyXG5mb3JtLnNlYXJjaEJ1dHRvbiBidXR0b246aG92ZXIge1xyXG4gIGJhY2tncm91bmQ6ICMwYjdkZGE7XHJcbn1cclxuXHJcbmZvcm0uc2VhcmNoQnV0dG9uOjphZnRlciB7XHJcbiAgY29udGVudDogXCJcIjtcclxuICBjbGVhcjogYm90aDtcclxuICBkaXNwbGF5OiB0YWJsZTtcclxufVxyXG5cclxudGgge1xyXG4gIHRleHQtYWxpZ246IGxlZnQ7XHJcbiAgcGFkZGluZy10b3A6IDE1cHggIWltcG9ydGFudDtcclxuICBwYWRkaW5nLWJvdHRvbTogMTBweCAhaW1wb3J0YW50O1xyXG4gIHBhZGRpbmctbGVmdDogMzBweCAhaW1wb3J0YW50O1xyXG59XHJcblxyXG50ZCB7XHJcbiAgcGFkZGluZy1sZWZ0OiAzMHB4ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbmZvcm0ge1xyXG4gIGZsb2F0OiByaWdodDtcclxufVxyXG5cclxudGFibGUge1xyXG4gIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XHJcbn1cclxuXHJcbnRoLFxyXG50ZCB7XHJcbiAgcGFkZGluZzogNnB4O1xyXG4gIHRleHQtYWxpZ246IGxlZnQ7XHJcbiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNkZGQ7XHJcbn1cclxuXHJcbnRyOmhvdmVyIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjVmNWY1O1xyXG59XHJcbiJdfQ== */", ".bg-image[_ngcontent-%COMP%] {\n  \n  background-image: url(\"/assets/bg.jpg\");\n  \n  filter: blur(8px);\n  -webkit-filter: blur(8px);\n  \n  height: 100%;\n  \n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\n\n.bg-text[_ngcontent-%COMP%] {\n  color: black;\n  font-weight: normal;\n  \n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 95%;\n  height: 100%;\n  transform: translate(-50%, -50%);\n  \n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXGNoYXRzLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNFO0VBQ0UsbUJBQUE7RUFFQSx1Q0FBQTtFQUVBLHdCQUFBO0VBQ0EsaUJBQUE7RUFDQSx5QkFBQTtFQUVBLGdCQUFBO0VBQ0EsWUFBQTtFQUVBLHNDQUFBO0VBQ0EsMkJBQUE7RUFDQSw0QkFBQTtFQUNBLHNCQUFBO0FBSko7O0FBT0U7RUFDRSxZQUFBO0VBQ0EsbUJBQUE7RUFDQSwrQkFBQTtFQUNBLGtCQUFBO0VBQ0EsUUFBQTtFQUNBLFNBQUE7RUFDQSxVQUFBO0VBQ0EsWUFBQTtFQUNBLGdDQUFBO0VBRUEsbUJBQUE7QUFMSiIsImZpbGUiOiJjaGF0cy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG4gIC5iZy1pbWFnZSB7XHJcbiAgICAvKiBUaGUgaW1hZ2UgdXNlZCAqL1xyXG4gICAgLy8gYmFja2dyb3VuZC1pbWFnZTogdXJsKFwiaHR0cHM6Ly9ucHIuYnJpZ2h0c3BvdGNkbi5jb20vZGltczQvZGVmYXVsdC9mZjkzMjEzLzIxNDc0ODM2NDcvc3RyaXAvdHJ1ZS9jcm9wLzE4NzV4MTI1MCswKzAvcmVzaXplLzg4MHg1ODchL3F1YWxpdHkvOTAvP3VybD1odHRwOiUyRiUyRm5wci1icmlnaHRzcG90LnMzLmFtYXpvbmF3cy5jb20lMkZsZWdhY3klMkZzaXRlcyUyRnd2cG4lMkZmaWxlcyUyRjIwMTUxMSUyRlNjYWxlc29mSnVzdGljZS5qcGdcIik7XHJcbiAgICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoJy9hc3NldHMvYmcuanBnJyk7XHJcblxyXG4gICAgLyogQWRkIHRoZSBibHVyIGVmZmVjdCAqL1xyXG4gICAgZmlsdGVyOiBibHVyKDhweCk7XHJcbiAgICAtd2Via2l0LWZpbHRlcjogYmx1cig4cHgpO1xyXG5cclxuICAgIC8qIEZ1bGwgaGVpZ2h0ICovXHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcblxyXG4gICAgLyogQ2VudGVyIGFuZCBzY2FsZSB0aGUgaW1hZ2UgbmljZWx5ICovXHJcbiAgICBiYWNrZ3JvdW5kLXBvc2l0aW9uOmNlbnRlcjtcclxuICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XHJcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG4gIH1cclxuXHJcbiAgLmJnLXRleHQge1xyXG4gICAgY29sb3I6IGJsYWNrO1xyXG4gICAgZm9udC13ZWlnaHQ6bm9ybWFsO1xyXG4gICAgLyogYm9yZGVyOiAzcHggc29saWQgI2YxZjFmMTsgKi9cclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHRvcDogNTAlO1xyXG4gICAgbGVmdDogNTAlO1xyXG4gICAgd2lkdGg6IDk1JTtcclxuICAgIGhlaWdodDogMTAwJTtcclxuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKC01MCUsIC01MCUpO1xyXG4gICAgLy8gei1pbmRleDogMjtcclxuICAgIC8qIHBhZGRpbmc6IDIwcHg7ICovXHJcbiAgICAvLyB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgfVxyXG4iXX0= */"] });
 
 
 /***/ }),
@@ -3623,7 +3738,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lawyer_list_lawyer_list_component__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ./lawyer-list/lawyer-list.component */ "e8NY");
 /* harmony import */ var _edit_profile_edit_profile_component__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ./edit-profile/edit-profile.component */ "bF/t");
 /* harmony import */ var _client_edit_profile_client_edit_profile_component__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! ./client-edit-profile/client-edit-profile.component */ "pg5L");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _lawbook_lawbook_component__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! ./lawbook/lawbook.component */ "G9L2");
+/* harmony import */ var ng2_search_filter__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! ng2-search-filter */ "cZdB");
+/* harmony import */ var ngx_pagination__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! ngx-pagination */ "oOf3");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! @angular/core */ "fXoL");
 
 
 
@@ -3691,16 +3809,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 class AppModule {
 }
 AppModule.ɵfac = function AppModule_Factory(t) { return new (t || AppModule)(); };
-AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_62__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_27__["AppComponent"]] });
-AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_62__["ɵɵdefineInjector"]({ providers: [
+AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_65__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_27__["AppComponent"]] });
+AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_65__["ɵɵdefineInjector"]({ providers: [
         { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HTTP_INTERCEPTORS"], useClass: _auth_interceptor__WEBPACK_IMPORTED_MODULE_40__["AuthInterceptor"], multi: true },
     ], imports: [[
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
             _app_routing_module__WEBPACK_IMPORTED_MODULE_26__["AppRoutingModule"],
-            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_28__["BrowserAnimationsModule"], _angular_flex_layout__WEBPACK_IMPORTED_MODULE_1__["FlexLayoutModule"],
+            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_28__["BrowserAnimationsModule"],
+            _angular_flex_layout__WEBPACK_IMPORTED_MODULE_1__["FlexLayoutModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"],
             _angular_material_form_field__WEBPACK_IMPORTED_MODULE_9__["MatFormFieldModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
@@ -3731,11 +3853,13 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_62__["ɵɵdefineInjecto
             _angular_material_table__WEBPACK_IMPORTED_MODULE_25__["MatTableModule"],
             _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_54__["NgbModalModule"],
             _demo_utils_module__WEBPACK_IMPORTED_MODULE_55__["DemoUtilsModule"],
+            ng2_search_filter__WEBPACK_IMPORTED_MODULE_63__["Ng2SearchPipeModule"],
+            ngx_pagination__WEBPACK_IMPORTED_MODULE_64__["NgxPaginationModule"],
             // TryModule,
             angularx_flatpickr__WEBPACK_IMPORTED_MODULE_53__["FlatpickrModule"].forRoot(),
-            ngx_toastr__WEBPACK_IMPORTED_MODULE_58__["ToastrModule"].forRoot()
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_58__["ToastrModule"].forRoot(),
         ]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_62__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_27__["AppComponent"],
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_65__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_27__["AppComponent"],
         _addcase_addcase_component__WEBPACK_IMPORTED_MODULE_32__["AddcaseComponent"],
         _caseinfo_caseinfo_component__WEBPACK_IMPORTED_MODULE_33__["CaseinfoComponent"],
         _cases_cases_component__WEBPACK_IMPORTED_MODULE_31__["CasesComponent"],
@@ -3762,9 +3886,11 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_62__["ɵɵdefineInjecto
         _clientside_chat_clientside_chat_component__WEBPACK_IMPORTED_MODULE_52__["ClientsideChatComponent"],
         _lawyer_list_lawyer_list_component__WEBPACK_IMPORTED_MODULE_59__["LawyerListComponent"],
         _edit_profile_edit_profile_component__WEBPACK_IMPORTED_MODULE_60__["EditProfileComponent"],
-        _client_edit_profile_client_edit_profile_component__WEBPACK_IMPORTED_MODULE_61__["ClientEditProfileComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+        _client_edit_profile_client_edit_profile_component__WEBPACK_IMPORTED_MODULE_61__["ClientEditProfileComponent"],
+        _lawbook_lawbook_component__WEBPACK_IMPORTED_MODULE_62__["LawbookComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
         _app_routing_module__WEBPACK_IMPORTED_MODULE_26__["AppRoutingModule"],
-        _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_28__["BrowserAnimationsModule"], _angular_flex_layout__WEBPACK_IMPORTED_MODULE_1__["FlexLayoutModule"],
+        _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_28__["BrowserAnimationsModule"],
+        _angular_flex_layout__WEBPACK_IMPORTED_MODULE_1__["FlexLayoutModule"],
         _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"],
         _angular_material_form_field__WEBPACK_IMPORTED_MODULE_9__["MatFormFieldModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
@@ -3794,7 +3920,9 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_62__["ɵɵdefineInjecto
         _ckeditor_ckeditor5_angular__WEBPACK_IMPORTED_MODULE_24__["CKEditorModule"],
         _angular_material_table__WEBPACK_IMPORTED_MODULE_25__["MatTableModule"],
         _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_54__["NgbModalModule"],
-        _demo_utils_module__WEBPACK_IMPORTED_MODULE_55__["DemoUtilsModule"], angularx_flatpickr__WEBPACK_IMPORTED_MODULE_53__["FlatpickrModule"], ngx_toastr__WEBPACK_IMPORTED_MODULE_58__["ToastrModule"]] }); })();
+        _demo_utils_module__WEBPACK_IMPORTED_MODULE_55__["DemoUtilsModule"],
+        ng2_search_filter__WEBPACK_IMPORTED_MODULE_63__["Ng2SearchPipeModule"],
+        ngx_pagination__WEBPACK_IMPORTED_MODULE_64__["NgxPaginationModule"], angularx_flatpickr__WEBPACK_IMPORTED_MODULE_53__["FlatpickrModule"], ngx_toastr__WEBPACK_IMPORTED_MODULE_58__["ToastrModule"]] }); })();
 
 
 /***/ }),
@@ -5121,12 +5249,13 @@ class CaseService {
         this.linkedLawyer = new rxjs_internal_Subject__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
     }
     handleError(error) {
-        console.error(`Backend returned code ${error.status}, ` +
-            `body was: ${error.message}`);
+        console.error(`Backend returned code ${error.status}, ` + `body was: ${error.message}`);
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["throwError"])('Something bad happened; please try again later.');
     }
     addCase(addcase) {
-        this.http.post(apiUrl + 'addcase', addcase).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError))
+        this.http
+            .post(apiUrl + 'addcase', addcase)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError))
             .subscribe((res) => {
             this.Caseid = res._id;
             this.singleCase.next(res);
@@ -5135,89 +5264,115 @@ class CaseService {
         });
     }
     getCases() {
-        this.http.get(apiUrl + 'cases').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((data) => {
+        this.http
+            .get(apiUrl + 'cases')
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((data) => {
             if (data) {
                 return data;
             }
             else {
                 Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError);
             }
-        })).subscribe((data) => {
+        }))
+            .subscribe((data) => {
             this.Cases.next(data);
         }, (err) => {
             console.log(err);
         });
     }
     getpreadmittedCases() {
-        this.http.get(apiUrl + 'preadmittedcases').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((data) => {
+        this.http
+            .get(apiUrl + 'preadmittedcases')
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((data) => {
             if (data) {
                 return data;
             }
             else {
                 Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError);
             }
-        })).subscribe((data) => {
+        }))
+            .subscribe((data) => {
             this.Cases.next(data);
         }, (err) => {
             console.log(err);
         });
     }
     getadmittedCases() {
-        this.http.get(apiUrl + 'admittedcases').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((data) => {
+        this.http
+            .get(apiUrl + 'admittedcases')
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((data) => {
             if (data) {
                 return data;
             }
             else {
                 Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError);
             }
-        })).subscribe((data) => {
+        }))
+            .subscribe((data) => {
             this.Cases.next(data);
         }, (err) => {
             console.log(err);
         });
     }
     updateDetails(caseData) {
-        this.http.patch(apiUrl + 'case/' + caseData._id, { details: caseData.details }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError))
+        this.http
+            .patch(apiUrl + 'case/' + caseData._id, {
+            details: caseData.details,
+        })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError))
             .subscribe((data) => {
-            this.router.navigate(["/caseinfo"]);
+            this.router.navigate(['/caseinfo']);
             this.singleCase.next(data);
         }, (err) => {
             console.log(err);
         });
     }
     updateCase(caseData) {
-        this.http.patch(apiUrl + 'editcase/' + caseData._id, caseData).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError)).subscribe((data) => {
+        this.http
+            .patch(apiUrl + 'editcase/' + caseData._id, caseData)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError))
+            .subscribe((data) => {
             this.singleCase.next(data);
         }, (err) => {
             console.log(err);
         });
     }
     deleteCase(id) {
-        this.http.delete(apiUrl + 'case/' + id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError)).subscribe((data) => {
+        this.http
+            .delete(apiUrl + 'case/' + id)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError))
+            .subscribe((data) => {
             // alert(data.message);
-            sweetalert_dist_sweetalert_min_js__WEBPACK_IMPORTED_MODULE_3___default()("", "Successfully Deleted", "info");
+            sweetalert_dist_sweetalert_min_js__WEBPACK_IMPORTED_MODULE_3___default()('', 'Successfully Deleted', 'info');
         });
     }
     getdisposedCases() {
-        this.http.get(apiUrl + 'disposedcases').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((data) => {
+        this.http
+            .get(apiUrl + 'disposedcases')
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((data) => {
             if (data) {
                 return data;
             }
             else {
                 Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError);
             }
-        })).subscribe((data) => {
+        }))
+            .subscribe((data) => {
             this.Cases.next(data);
         }, (err) => {
             console.log(err);
         });
     }
     disposeCase(_id) {
-        this.http.patch(apiUrl + 'makedispose', { _id }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError)).subscribe((data) => {
-        });
+        this.http
+            .patch(apiUrl + 'makedispose', { _id })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError))
+            .subscribe((data) => { });
     }
     addOrder(id, data) {
-        this.http.patch(`${apiUrl}case/order/${id}`, { order: data }).subscribe((CaseData) => {
+        this.http
+            .patch(`${apiUrl}case/order/${id}`, { order: data })
+            .subscribe((CaseData) => {
             this.singleCase.next(CaseData);
         }, (err) => {
             console.log(err);
@@ -5229,7 +5384,9 @@ class CaseService {
         for (let index = 0; index < files.length; index++) {
             formData.append('file', files.item(index), files.item(index).name);
         }
-        return this.http.post(apiUrl + "uploadPdf/" + id, formData).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError));
+        return this.http
+            .post(apiUrl + 'uploadPdf/' + id, formData)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError));
     }
     onDeleteDoc(files, id) {
         this.http.patch(apiUrl + 'updateDoc/' + id, files).subscribe((data) => {
@@ -5252,19 +5409,28 @@ class CaseService {
     }
     getCaseData(id) {
         this.Caseid = id;
-        this.http.get(apiUrl + 'case/' + id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError)).subscribe((data) => {
+        this.http
+            .get(apiUrl + 'case/' + id)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError))
+            .subscribe((data) => {
             this.singleCase.next(data);
         });
     }
     linkClient(_id, id) {
-        this.http.patch(`${apiUrl}linkClient/${id}`, { userId: _id }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError)).subscribe((data) => {
+        this.http
+            .patch(`${apiUrl}linkClient/${id}`, { userId: _id })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError))
+            .subscribe((data) => {
             this.singleCase.next(data);
         }, (err) => {
             console.log(err);
         });
     }
     getLinkedClient(id) {
-        this.http.get(`${apiUrl}getLinkedClient/${id}`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError)).subscribe((data) => {
+        this.http
+            .get(`${apiUrl}getLinkedClient/${id}`)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError))
+            .subscribe((data) => {
             this.linkedClient.next(data);
             this.clientData = data;
         }, (err) => {
@@ -5272,7 +5438,10 @@ class CaseService {
         });
     }
     getLinkedLawyer(id) {
-        this.http.get(`${apiUrl}getLinkedLawyer/${id}`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError)).subscribe((data) => {
+        this.http
+            .get(`${apiUrl}getLinkedLawyer/${id}`)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError))
+            .subscribe((data) => {
             this.linkedLawyer.next(data);
             this.lawyerData = data;
         }, (err) => {
@@ -5283,7 +5452,10 @@ class CaseService {
         return this.http.get(`${apiUrl}getClientList`);
     }
     getClient(id) {
-        this.http.get(`${apiUrl}getClient/${id}`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError)).subscribe((data) => {
+        this.http
+            .get(`${apiUrl}getClient/${id}`)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError))
+            .subscribe((data) => {
             this.linkedClient.next(data);
             this.clientData = data;
         }, (err) => {
@@ -5295,7 +5467,9 @@ class CaseService {
         if (!term.trim()) {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])([]);
         }
-        return this.http.get(`${apiUrl}getClients?firstname=${term}`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])(x => console.log(x)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handle('searchClients', [])));
+        return this.http
+            .get(`${apiUrl}getClients?firstname=${term}`)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])((x) => console.log(x)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handle('searchClients', [])));
     }
     handle(operation = 'operation', result) {
         return (error) => {
@@ -5332,9 +5506,12 @@ class CaseService {
         return this.http.get(apiUrl + 'file/' + filename, { responseType: 'blob' });
     }
     deletePDF(filename) {
-        this.http.delete(apiUrl + 'deletefile/' + filename).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError)).subscribe((data) => {
+        this.http
+            .delete(apiUrl + 'deletefile/' + filename)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError))
+            .subscribe((data) => {
             // alert(data.message);
-            sweetalert_dist_sweetalert_min_js__WEBPACK_IMPORTED_MODULE_3___default()("", "file deleted Successfully!");
+            sweetalert_dist_sweetalert_min_js__WEBPACK_IMPORTED_MODULE_3___default()('', 'file deleted Successfully!');
         });
     }
     getLawyerDashboard() {
@@ -5373,18 +5550,24 @@ class CaseService {
         return this.http.patch(`${apiUrl}editclientprofile`, data);
     }
     getClientCases() {
-        this.http.get(apiUrl + 'getClientCases').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((data) => {
+        this.http
+            .get(apiUrl + 'getClientCases')
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((data) => {
             if (data) {
                 return data;
             }
             else {
                 Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleError);
             }
-        })).subscribe((data) => {
+        }))
+            .subscribe((data) => {
             this.Cases.next(data);
         }, (err) => {
             console.log(err);
         });
+    }
+    getLawbook() {
+        return this.http.get(apiUrl + 'getLawbook');
     }
 }
 CaseService.ɵfac = function CaseService_Factory(t) { return new (t || CaseService)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"])); };
@@ -6332,7 +6515,7 @@ class StorageService {
                 data = crypto_js__WEBPACK_IMPORTED_MODULE_1___default.a.AES.decrypt(data, SECRET_KEY);
                 data = data.toString(crypto_js__WEBPACK_IMPORTED_MODULE_1___default.a.enc.Utf8);
                 return data;
-            }
+            },
         });
     }
 }
@@ -6767,7 +6950,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _clientauth_guard__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./clientauth.guard */ "NGIv");
 /* harmony import */ var _edit_profile_edit_profile_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./edit-profile/edit-profile.component */ "bF/t");
 /* harmony import */ var _client_edit_profile_client_edit_profile_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./client-edit-profile/client-edit-profile.component */ "pg5L");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _lawbook_lawbook_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./lawbook/lawbook.component */ "G9L2");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
 
 
 
@@ -6797,42 +6982,100 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const routes = [
-    { path: 'dashboard', component: _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_1__["DashboardComponent"], canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]] },
+    {
+        path: 'dashboard',
+        component: _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_1__["DashboardComponent"],
+        canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]],
+    },
     { path: 'cases', component: _cases_cases_component__WEBPACK_IMPORTED_MODULE_2__["CasesComponent"], canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]] },
-    { path: 'preadmittedcases', component: _pre_admitted_preadmitted_component__WEBPACK_IMPORTED_MODULE_3__["PreadmittedComponent"], canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]] },
-    { path: 'admittedcases', component: _admitted_admitted_component__WEBPACK_IMPORTED_MODULE_4__["AdmittedComponent"], canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]] },
-    { path: 'disposedcases', component: _disposed_disposed_component__WEBPACK_IMPORTED_MODULE_5__["DisposedComponent"], canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]] },
+    {
+        path: 'preadmittedcases',
+        component: _pre_admitted_preadmitted_component__WEBPACK_IMPORTED_MODULE_3__["PreadmittedComponent"],
+        canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]],
+    },
+    {
+        path: 'admittedcases',
+        component: _admitted_admitted_component__WEBPACK_IMPORTED_MODULE_4__["AdmittedComponent"],
+        canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]],
+    },
+    {
+        path: 'disposedcases',
+        component: _disposed_disposed_component__WEBPACK_IMPORTED_MODULE_5__["DisposedComponent"],
+        canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]],
+    },
     { path: 'addcase', component: _addcase_addcase_component__WEBPACK_IMPORTED_MODULE_6__["AddcaseComponent"], canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]] },
     { path: 'caseinfo', component: _caseinfo_caseinfo_component__WEBPACK_IMPORTED_MODULE_7__["CaseinfoComponent"], canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]] },
     // { path: 'try', component: TryComponent, canActivate: [AuthGuard]},
-    { path: 'try', loadChildren: () => __webpack_require__.e(/*! import() | try-module */ "try-module").then(__webpack_require__.bind(null, /*! ./try/module */ "Y1zf")).then(m => m.TryModule) },
-    { path: 'clientlist', component: _client_list_client_list_component__WEBPACK_IMPORTED_MODULE_19__["ClientListComponent"], canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]] },
-    { path: 'lawyerlist', component: _lawyer_list_lawyer_list_component__WEBPACK_IMPORTED_MODULE_22__["LawyerListComponent"], canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]] },
+    {
+        path: 'try',
+        loadChildren: () => __webpack_require__.e(/*! import() | try-module */ "try-module").then(__webpack_require__.bind(null, /*! ./try/module */ "Y1zf")).then((m) => m.TryModule),
+    },
+    {
+        path: 'clientlist',
+        component: _client_list_client_list_component__WEBPACK_IMPORTED_MODULE_19__["ClientListComponent"],
+        canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]],
+    },
+    {
+        path: 'lawyerlist',
+        component: _lawyer_list_lawyer_list_component__WEBPACK_IMPORTED_MODULE_22__["LawyerListComponent"],
+        canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]],
+    },
     { path: 'editcase', component: _editcase_editcase_component__WEBPACK_IMPORTED_MODULE_13__["EditcaseComponent"], canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]] },
     { path: 'chats', component: _chats_chats_component__WEBPACK_IMPORTED_MODULE_20__["ChatsComponent"], canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]] },
     { path: 'chatroom', component: _chatroom_chatroom_component__WEBPACK_IMPORTED_MODULE_14__["ChatroomComponent"], canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]] },
-    { path: 'profile', component: _edit_profile_edit_profile_component__WEBPACK_IMPORTED_MODULE_24__["EditProfileComponent"], canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]] },
+    {
+        path: 'profile',
+        component: _edit_profile_edit_profile_component__WEBPACK_IMPORTED_MODULE_24__["EditProfileComponent"],
+        canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]],
+    },
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_8__["LoginComponent"] },
     { path: 'register', component: _register_register_component__WEBPACK_IMPORTED_MODULE_10__["RegisterComponent"] },
     { path: 'loginclient', component: _loginclient_loginclient_component__WEBPACK_IMPORTED_MODULE_9__["LoginclientComponent"] },
     { path: 'registerclient', component: _registerclient_registerclient_component__WEBPACK_IMPORTED_MODULE_11__["RegisterclientComponent"] },
-    { path: 'clientdashboard', component: _client_dashboard_client_dashboard_component__WEBPACK_IMPORTED_MODULE_15__["ClientDashboardComponent"], canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]] },
-    { path: 'clientcases', component: _client_cases_client_cases_component__WEBPACK_IMPORTED_MODULE_16__["ClientCasesComponent"], canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]] },
-    { path: 'clientcaseinfo', component: _client_caseinfo_client_caseinfo_component__WEBPACK_IMPORTED_MODULE_17__["ClientCaseinfoComponent"], canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]] },
-    { path: 'clientChatroom', component: _client_chatroom_client_chatroom_component__WEBPACK_IMPORTED_MODULE_18__["ClientChatroomComponent"], canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]] },
-    { path: 'lawyerchats', component: _clientside_chat_clientside_chat_component__WEBPACK_IMPORTED_MODULE_21__["ClientsideChatComponent"], canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]] },
-    { path: 'client-profile', component: _client_edit_profile_client_edit_profile_component__WEBPACK_IMPORTED_MODULE_25__["ClientEditProfileComponent"], canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]] },
-    { path: '**', component: _login_login_component__WEBPACK_IMPORTED_MODULE_8__["LoginComponent"] }
+    {
+        path: 'clientdashboard',
+        component: _client_dashboard_client_dashboard_component__WEBPACK_IMPORTED_MODULE_15__["ClientDashboardComponent"],
+        canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]],
+    },
+    {
+        path: 'clientcases',
+        component: _client_cases_client_cases_component__WEBPACK_IMPORTED_MODULE_16__["ClientCasesComponent"],
+        canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]],
+    },
+    {
+        path: 'clientcaseinfo',
+        component: _client_caseinfo_client_caseinfo_component__WEBPACK_IMPORTED_MODULE_17__["ClientCaseinfoComponent"],
+        canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]],
+    },
+    {
+        path: 'clientChatroom',
+        component: _client_chatroom_client_chatroom_component__WEBPACK_IMPORTED_MODULE_18__["ClientChatroomComponent"],
+        canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]],
+    },
+    {
+        path: 'lawyerchats',
+        component: _clientside_chat_clientside_chat_component__WEBPACK_IMPORTED_MODULE_21__["ClientsideChatComponent"],
+        canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]],
+    },
+    {
+        path: 'client-profile',
+        component: _client_edit_profile_client_edit_profile_component__WEBPACK_IMPORTED_MODULE_25__["ClientEditProfileComponent"],
+        canActivate: [_clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]],
+    },
+    { path: 'lawbook', component: _lawbook_lawbook_component__WEBPACK_IMPORTED_MODULE_26__["LawbookComponent"], canActivate: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"]] },
+    { path: '**', component: _login_login_component__WEBPACK_IMPORTED_MODULE_8__["LoginComponent"] },
 ];
 class AppRoutingModule {
 }
 AppRoutingModule.ɵfac = function AppRoutingModule_Factory(t) { return new (t || AppRoutingModule)(); };
-AppRoutingModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_26__["ɵɵdefineNgModule"]({ type: AppRoutingModule });
-AppRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_26__["ɵɵdefineInjector"]({ providers: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"], _clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]], imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(routes, {
+AppRoutingModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_27__["ɵɵdefineNgModule"]({ type: AppRoutingModule });
+AppRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_27__["ɵɵdefineInjector"]({ providers: [_app_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"], _clientauth_guard__WEBPACK_IMPORTED_MODULE_23__["ClientAuthGuard"]], imports: [[
+            _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(routes, {
                 onSameUrlNavigation: 'reload',
-                relativeLinkResolution: 'legacy'
-            })], _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_26__["ɵɵsetNgModuleScope"](AppRoutingModule, { imports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]], exports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]] }); })();
+                relativeLinkResolution: 'legacy',
+            }),
+        ], _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]] });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_27__["ɵɵsetNgModuleScope"](AppRoutingModule, { imports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]], exports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]] }); })();
 
 
 /***/ }),

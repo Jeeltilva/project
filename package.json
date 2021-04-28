@@ -44,6 +44,8 @@
     "mongoose": "^5.11.17",
     "multer": "^1.4.2",
     "multer-gridfs-storage": "^4.2.0",
+    "ng2-search-filter": "^0.5.1",
+    "ngx-pagination": "^5.0.0",
     "ngx-toastr": "^13.2.1",
     "node-cron": "^3.0.0",
     "node-schedule": "^2.0.0",
@@ -51,6 +53,7 @@
     "nodemon": "^2.0.4",
     "path": "^0.12.7",
     "rxjs": "~6.5.5",
+    "secure-web-storage": "^1.0.2",
     "socket.io": "^3.1.2",
     "socket.io-client": "^3.1.2",
     "sweetalert": "^2.1.2",
@@ -81,5 +84,5 @@
   "browser": {
     "crypto": false,
     "stream": false
-}
+  }
 }
