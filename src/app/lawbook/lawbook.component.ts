@@ -9,10 +9,10 @@ import { CaseService } from '../services/case.service';
 export class LawbookComponent implements OnInit {
   public searchedKeyword: string;
   public p: number = 1;
+  order: string = 'originalname';
 
   constructor(private caseService: CaseService) {}
 
-  DocColumns: string[] = ['Name', 'Size', 'Created_At', 'Actions'];
   files: any;
   downloadPdf(filename, contentType) {
     this.caseService.downloadPDF(filename, contentType).subscribe((res) => {

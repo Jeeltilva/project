@@ -69,6 +69,7 @@ import { ClientEditProfileComponent } from './client-edit-profile/client-edit-pr
 import { LawbookComponent } from './lawbook/lawbook.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -139,6 +140,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DemoUtilsModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
+    OrderModule,
     // TryModule,
     FlatpickrModule.forRoot(),
     ToastrModule.forRoot(),
